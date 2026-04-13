@@ -1,0 +1,19 @@
+# Python 관련
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Azure & API Secrets
+*.appsettings.json
+*.pem
+secrets.json
+
+# IDE 관련
+.vscode/
+.idea/
+
+# OS 관련
+.DS_Store
+Thumbs.db
