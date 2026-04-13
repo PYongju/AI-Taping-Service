@@ -1,0 +1,3293 @@
+{
+  "source": "A Practical Guide to Kinesiology Taping, 3rd Ed. (John Gibbons, 2024)",
+  "isbn": "978-1-7182-2701-9",
+  "extraction_note": "PDF coordinate-based extraction. Embedded images via PyMuPDF, composite anatomy diagrams via page rasterization (pdftoppm).",
+  "stats": {
+    "total_images": 218,
+    "embedded_content_images": 190,
+    "rasterized_anatomy_pages": 28,
+    "chapters_covered": 10
+  },
+  "images": [
+    {
+      "filename": "images/embedded/p001_xref6.png",
+      "type": "embedded",
+      "source_chapter": "unknown",
+      "page_pdf": 1,
+      "page_book": 0,
+      "dimensions": "498x684",
+      "section_headings": [],
+      "figure_captions": [],
+      "surrounding_text": ""
+    },
+    {
+      "filename": "images/embedded/p001_xref7.png",
+      "type": "embedded",
+      "source_chapter": "unknown",
+      "page_pdf": 1,
+      "page_book": 0,
+      "dimensions": "669x945",
+      "section_headings": [],
+      "figure_captions": [],
+      "surrounding_text": ""
+    },
+    {
+      "filename": "images/embedded/p014_xref129.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 14,
+      "page_book": 13,
+      "dimensions": "1007x643",
+      "section_headings": [
+        "INTRODUCTION",
+        "OVERVIEW OF \nKINESIOLOGY TAPING"
+      ],
+      "figure_captions": [],
+      "surrounding_text": "OVERVIEW OF KINESIOLOGY TAPING C H A P T E R  1 INTRODUCTION"
+    },
+    {
+      "filename": "images/embedded/p017_xref151.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 17,
+      "page_book": 16,
+      "dimensions": "386x280",
+      "section_headings": [
+        "COMPARISON OF KINESIOLOGY",
+        "ATHLETIC TAPE"
+      ],
+      "figure_captions": [
+        "Figure 1.1  Comparison of conventional taping "
+      ],
+      "surrounding_text": "When conventional athletic tape is applied there is the possibility that circulation can be compromised, plus the issue of removing the tape after every sporting event. Kinesiology tape, on the other hand, can be worn for many days, providing support and therapeutic benefits “24/7.” In addition, this tape does not cause problems to the underlying tissues or restriction to the associated joint(s). "
+    },
+    {
+      "filename": "images/embedded/p017_xref152.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 17,
+      "page_book": 16,
+      "dimensions": "387x280",
+      "section_headings": [
+        "COMPARISON OF KINESIOLOGY",
+        "ATHLETIC TAPE"
+      ],
+      "figure_captions": [
+        "Figure 1.1  Comparison of conventional taping "
+      ],
+      "surrounding_text": "When conventional athletic tape is applied there is the possibility that circulation can be compromised, plus the issue of removing the tape after every sporting event. Kinesiology tape, on the other hand, can be worn for many days, providing support and therapeutic benefits “24/7.” In addition, this tape does not cause problems to the underlying tissues or restriction to the associated joint(s). "
+    },
+    {
+      "filename": "images/embedded/p019_xref170.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 19,
+      "page_book": 18,
+      "dimensions": "389x318",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.3  16.4 ft × 4 in (5 m × 10 cm) ",
+        "Figure 1.2  16.4 ft. × 2 in. (5 m × 5 cm) Rocktape®."
+      ],
+      "surrounding_text": "Rocktape is a company that I recommend highly and I have used its products many times on athletes and other patients (Fig. 1.2). They have various kinesiology taping products on the market and I am a huge fan of their alternative designs and funky colors, and all without com­promising the effectiveness of the tape. Figure 1.3  16.4 ft × 4 in (5 m × 10 cm) (Big Daddy) Rocktape®. Rocktape also offer"
+    },
+    {
+      "filename": "images/embedded/p019_xref171.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 19,
+      "page_book": 18,
+      "dimensions": "389x261",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.3  16.4 ft × 4 in (5 m × 10 cm) ",
+        "Figure 1.2  16.4 ft. × 2 in. (5 m × 5 cm) Rocktape®."
+      ],
+      "surrounding_text": "Rocktape is a company that I recommend highly and I have used its products many times on athletes and other patients (Fig. 1.2). They have various kinesiology taping products on the market and I am a huge fan of their alternative designs and funky colors, and all without com­promising the effectiveness of the tape. Figure 1.3  16.4 ft × 4 in (5 m × 10 cm) (Big Daddy) Rocktape®. Rocktape also offer"
+    },
+    {
+      "filename": "images/embedded/p022_xref331.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 22,
+      "page_book": 21,
+      "dimensions": "259x217",
+      "section_headings": [
+        "HOW TO USE AND APPLY \nKINESIOLOGY TAPE"
+      ],
+      "figure_captions": [
+        "Figure 1.6 have the same ",
+        "Figure 1.6  Different shapes of kinesiology "
+      ],
+      "surrounding_text": "Kinesiology taping methods have been used in the clinical setting for many years and can be specifically applied to the athlete/patient based upon their therapeutic needs. In turn, these therapeutic needs are based on the outcome of the initial physical examination and dictate the specific requirements for the kinesiology taping application, as well as other alternative treatments or modalities. ("
+    },
+    {
+      "filename": "images/embedded/p026_xref357.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 26,
+      "page_book": 25,
+      "dimensions": "384x245",
+      "section_headings": [
+        "KINESIOLOGY TAPING \nAPPLICATIONS"
+      ],
+      "figure_captions": [
+        "Figure 1.7  Rounding each corner of the "
+      ],
+      "surrounding_text": "Figure 1.7  Rounding each corner of the kinesiology tape using a pair of scissors. While teaching a course on kinesiology taping, I mentioned that there are very few contraindications to the use of kinesiology tape. However, there was an emergency-room nurse on the course who, while at work, witnessed a gentleman with kinesiology tape adhered to his shoulder skin, who was subsequently referred to "
+    },
+    {
+      "filename": "images/embedded/p027_xref365.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 27,
+      "page_book": 26,
+      "dimensions": "389x245",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.8 for the forearm ",
+        "Figure 1.8  Forearm extensors in a “pre-stretch.”"
+      ],
+      "surrounding_text": "Pre-stretch Apply a prepared “I” or “Y” strip to the pre-stretched tissue of the body, with little to no stretch of the tape on first application. This technique will help stabilize the area, as shown with Figures 1.10 and 1.11. There are a few variations to this rule, as described throughout this book (e.g., plantar fasciitis, ankle, and knee). Figure 1.8  Forearm extensors in a “pre-stretch.”"
+    },
+    {
+      "filename": "images/embedded/p027_xref366.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 27,
+      "page_book": 26,
+      "dimensions": "384x244",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.8 for the forearm ",
+        "Figure 1.8  Forearm extensors in a “pre-stretch.”"
+      ],
+      "surrounding_text": "Pre-stretch Apply a prepared “I” or “Y” strip to the pre-stretched tissue of the body, with little to no stretch of the tape on first application. This technique will help stabilize the area, as shown with Figures 1.10 and 1.11. There are a few variations to this rule, as described throughout this book (e.g., plantar fasciitis, ankle, and knee). Figure 1.8  Forearm extensors in a “pre-stretch.”"
+    },
+    {
+      "filename": "images/embedded/p027_xref367.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 27,
+      "page_book": 26,
+      "dimensions": "389x269",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.8 for the forearm ",
+        "Figure 1.8  Forearm extensors in a “pre-stretch.”"
+      ],
+      "surrounding_text": "Pre-stretch Apply a prepared “I” or “Y” strip to the pre-stretched tissue of the body, with little to no stretch of the tape on first application. This technique will help stabilize the area, as shown with Figures 1.10 and 1.11. There are a few variations to this rule, as described throughout this book (e.g., plantar fasciitis, ankle, and knee). Figure 1.8  Forearm extensors in a “pre-stretch.”"
+    },
+    {
+      "filename": "images/embedded/p028_xref375.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 28,
+      "page_book": 27,
+      "dimensions": "389x279",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.11  Kinesiology tape applied by ",
+        "Figure 1.12  The ends of the small “I” strip are "
+      ],
+      "surrounding_text": "Figure 1.11  Kinesiology tape applied by a physical therapist to the forearm, with little to no stretch of the tape. Figure 1.12  The ends of the small “I” strip are folded back like a plaster (and no stretch is applied to the kinesiology tape). Overview of Kinesiology Taping  27"
+    },
+    {
+      "filename": "images/embedded/p028_xref376.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 28,
+      "page_book": 27,
+      "dimensions": "389x279",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.11  Kinesiology tape applied by ",
+        "Figure 1.12  The ends of the small “I” strip are "
+      ],
+      "surrounding_text": "Figure 1.11  Kinesiology tape applied by a physical therapist to the forearm, with little to no stretch of the tape. Figure 1.12  The ends of the small “I” strip are folded back like a plaster (and no stretch is applied to the kinesiology tape). Overview of Kinesiology Taping  27"
+    },
+    {
+      "filename": "images/embedded/p028_xref377.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 28,
+      "page_book": 27,
+      "dimensions": "386x275",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.11  Kinesiology tape applied by ",
+        "Figure 1.12  The ends of the small “I” strip are "
+      ],
+      "surrounding_text": "Figure 1.11  Kinesiology tape applied by a physical therapist to the forearm, with little to no stretch of the tape. Figure 1.12  The ends of the small “I” strip are folded back like a plaster (and no stretch is applied to the kinesiology tape). Overview of Kinesiology Taping  27"
+    },
+    {
+      "filename": "images/embedded/p028_xref378.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 28,
+      "page_book": 27,
+      "dimensions": "387x273",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.11  Kinesiology tape applied by ",
+        "Figure 1.12  The ends of the small “I” strip are "
+      ],
+      "surrounding_text": "Figure 1.11  Kinesiology tape applied by a physical therapist to the forearm, with little to no stretch of the tape. Figure 1.12  The ends of the small “I” strip are folded back like a plaster (and no stretch is applied to the kinesiology tape). Overview of Kinesiology Taping  27"
+    },
+    {
+      "filename": "images/embedded/p029_xref385.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 29,
+      "page_book": 28,
+      "dimensions": "389x272",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.15  The decompression strip is ",
+        "Figure 1.16  Kinesiology tape applied by "
+      ],
+      "surrounding_text": "Figure 1.15  The decompression strip is applied to the area of pain. •\t The tape will need to be removed after a certain amount of time. It is normally left on the skin for between 3 and 5 days, even though it can be removed after the specific event or activity.•\t If the kinesiology tape lifts or peels at the ends then it can be trimmed.•\t On removal, do not rip the tape off as this can irritate t"
+    },
+    {
+      "filename": "images/embedded/p029_xref386.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 29,
+      "page_book": 28,
+      "dimensions": "384x244",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.15  The decompression strip is ",
+        "Figure 1.16  Kinesiology tape applied by "
+      ],
+      "surrounding_text": "Figure 1.15  The decompression strip is applied to the area of pain. •\t The tape will need to be removed after a certain amount of time. It is normally left on the skin for between 3 and 5 days, even though it can be removed after the specific event or activity.•\t If the kinesiology tape lifts or peels at the ends then it can be trimmed.•\t On removal, do not rip the tape off as this can irritate t"
+    },
+    {
+      "filename": "images/embedded/p030_xref398.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 30,
+      "page_book": 29,
+      "dimensions": "162x251",
+      "section_headings": [
+        "TAPING AND FASCIAL TISSUE"
+      ],
+      "figure_captions": [
+        "Figure 1.17  The area of pain as indicated by "
+      ],
+      "surrounding_text": "Applying tape intelligently to address fascial pathologies necessitates some further understanding of the roles performed by this tissue type. Defined as the “soft tissue component of the connective tissue system that permeates the human body,” it includes all fibrous collagenous elements (Schleip et al. 2012). Its roles are to support and hold the organs and cells in place, giving them form and s"
+    },
+    {
+      "filename": "images/embedded/p030_xref399.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 30,
+      "page_book": 29,
+      "dimensions": "258x346",
+      "section_headings": [
+        "TAPING AND FASCIAL TISSUE"
+      ],
+      "figure_captions": [
+        "Figure 1.17  The area of pain as indicated by "
+      ],
+      "surrounding_text": "Applying tape intelligently to address fascial pathologies necessitates some further understanding of the roles performed by this tissue type. Defined as the “soft tissue component of the connective tissue system that permeates the human body,” it includes all fibrous collagenous elements (Schleip et al. 2012). Its roles are to support and hold the organs and cells in place, giving them form and s"
+    },
+    {
+      "filename": "images/embedded/p031_xref407.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 31,
+      "page_book": 30,
+      "dimensions": "384x380",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.18  A modern rendition of the fascial "
+      ],
+      "surrounding_text": "This not only disperses the force but also stimulates the many mechanoreceptors situated within the fascia and forms an important channel for exchange of proprioceptive information. A fine balance must be made between using it enough and going too far too quickly. Unexpected or unusual loads will strain the tissue bonds, leading to injury and inflammation (Myers and Frederick in Schleip et al. 201"
+    },
+    {
+      "filename": "images/embedded/p032_xref415.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 32,
+      "page_book": 31,
+      "dimensions": "188x216",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.19  The Anatomy Trains myofascial "
+      ],
+      "surrounding_text": "Between the layers of dense fascia lies a lubricating layer of areolar tissue. While this  still comprises collagen fibers it contains a higher accumulation of fluid; particularly hyaluronic acid, which binds with water molecules to achieve an effect similar to silicone lubricant—imagine the necessity for the quadriceps, adductors, and hamstrings (Fig. 1.18) to all be moving simultaneously though "
+    },
+    {
+      "filename": "images/embedded/p032_xref416.png",
+      "type": "embedded",
+      "source_chapter": "chapter_01",
+      "page_pdf": 32,
+      "page_book": 31,
+      "dimensions": "256x351",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 1.19  The Anatomy Trains myofascial "
+      ],
+      "surrounding_text": "Between the layers of dense fascia lies a lubricating layer of areolar tissue. While this  still comprises collagen fibers it contains a higher accumulation of fluid; particularly hyaluronic acid, which binds with water molecules to achieve an effect similar to silicone lubricant—imagine the necessity for the quadriceps, adductors, and hamstrings (Fig. 1.18) to all be moving simultaneously though "
+    },
+    {
+      "filename": "images/embedded/p034_xref435.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 34,
+      "page_book": 33,
+      "dimensions": "658x439",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.1  Plantar fascia, showing the site of "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE LOWER LIMBS C H A P T E R  2 PLANTAR FASCIITIS/HEEL  PAIN/FAT PAD SYNDROME"
+    },
+    {
+      "filename": "images/embedded/p034_xref436.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 34,
+      "page_book": 33,
+      "dimensions": "1007x642",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.1  Plantar fascia, showing the site of "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE LOWER LIMBS C H A P T E R  2 PLANTAR FASCIITIS/HEEL  PAIN/FAT PAD SYNDROME"
+    },
+    {
+      "filename": "images/embedded/p035_xref523.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 35,
+      "page_book": 34,
+      "dimensions": "387x500",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.2  First kinesiology taping application ",
+        "Figure 2.3  Second taping application starting "
+      ],
+      "surrounding_text": "Figure 2.3  Second taping application starting from the medial side. Figure 2.2  First kinesiology taping application to the plantar surface of the foot. 3.\t Heat activate the glue by rubbing the"
+    },
+    {
+      "filename": "images/embedded/p035_xref524.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 35,
+      "page_book": 34,
+      "dimensions": "388x506",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.2  First kinesiology taping application ",
+        "Figure 2.3  Second taping application starting "
+      ],
+      "surrounding_text": "Figure 2.3  Second taping application starting from the medial side. Figure 2.2  First kinesiology taping application to the plantar surface of the foot. 3.\t Heat activate the glue by rubbing the"
+    },
+    {
+      "filename": "images/embedded/p036_xref535.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 36,
+      "page_book": 35,
+      "dimensions": "667x445",
+      "section_headings": [
+        "ANKLE INVERSION SPRAIN/\nPERONEAL MUSCLE STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 2.4  Lateral ligaments/peroneal muscles drawn onto an ankle."
+      ],
+      "surrounding_text": "Peroneus longus Calcaneofibular  ligament Peroneus brevis"
+    },
+    {
+      "filename": "images/embedded/p037_xref682.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 37,
+      "page_book": 36,
+      "dimensions": "381x493",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.5  First taping application to stabilize ",
+        "Figure 2.6  Second taping application from "
+      ],
+      "surrounding_text": "Figure 2.6  Second taping application from the medial side. 3.\t Repeat the same technique, but this time apply an “I” strip from the lateral side and, as the tape comes under the plantar surface, apply 50% stretch to the tape and finish on the dorsal surface of the foot. These two strips have a similarity to what is called a “figure 8 lock technique” as shown with Figure 2.7(a, b)."
+    },
+    {
+      "filename": "images/embedded/p037_xref683.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 37,
+      "page_book": 36,
+      "dimensions": "388x477",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.5  First taping application to stabilize ",
+        "Figure 2.6  Second taping application from "
+      ],
+      "surrounding_text": "Figure 2.6  Second taping application from the medial side. 3.\t Repeat the same technique, but this time apply an “I” strip from the lateral side and, as the tape comes under the plantar surface, apply 50% stretch to the tape and finish on the dorsal surface of the foot. These two strips have a similarity to what is called a “figure 8 lock technique” as shown with Figure 2.7(a, b)."
+    },
+    {
+      "filename": "images/embedded/p038_xref690.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 38,
+      "page_book": 37,
+      "dimensions": "387x288",
+      "section_headings": [
+        "ANKLE INVERSION SPRAIN/\nPERONEAL STABILIZATION"
+      ],
+      "figure_captions": [
+        "Figure 2.8  First taping application to stabilize "
+      ],
+      "surrounding_text": "This technique is an alternative to the earlier one demonstrated, as the tape will still stabilize the ankle joint and ligaments; however, because I use a longer “I” strip then the peroneals will also be effectively stabilized. You can vary the tension depending on the severity of the injury; for example, week 1 you can apply 100% stretch to give maximum stability, week 2 reduce to 75%, week 3 red"
+    },
+    {
+      "filename": "images/embedded/p038_xref691.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 38,
+      "page_book": 37,
+      "dimensions": "389x490",
+      "section_headings": [
+        "ANKLE INVERSION SPRAIN/\nPERONEAL STABILIZATION"
+      ],
+      "figure_captions": [
+        "Figure 2.8  First taping application to stabilize "
+      ],
+      "surrounding_text": "This technique is an alternative to the earlier one demonstrated, as the tape will still stabilize the ankle joint and ligaments; however, because I use a longer “I” strip then the peroneals will also be effectively stabilized. You can vary the tension depending on the severity of the injury; for example, week 1 you can apply 100% stretch to give maximum stability, week 2 reduce to 75%, week 3 red"
+    },
+    {
+      "filename": "images/embedded/p038_xref693.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 38,
+      "page_book": 37,
+      "dimensions": "389x230",
+      "section_headings": [
+        "ANKLE INVERSION SPRAIN/\nPERONEAL STABILIZATION"
+      ],
+      "figure_captions": [
+        "Figure 2.8  First taping application to stabilize "
+      ],
+      "surrounding_text": "This technique is an alternative to the earlier one demonstrated, as the tape will still stabilize the ankle joint and ligaments; however, because I use a longer “I” strip then the peroneals will also be effectively stabilized. You can vary the tension depending on the severity of the injury; for example, week 1 you can apply 100% stretch to give maximum stability, week 2 reduce to 75%, week 3 red"
+    },
+    {
+      "filename": "images/embedded/p039_xref701.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 39,
+      "page_book": 38,
+      "dimensions": "387x275",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.9  Second taping application ",
+        "Figure 2.10  Third taping application from the "
+      ],
+      "surrounding_text": "Figure 2.11  The tape is applied in the same direction with an overlap to the third piece of tape. 5.\t Heat activate the glue as explained Figure 2.9  Second taping application overlapping the first piece of tape."
+    },
+    {
+      "filename": "images/embedded/p039_xref702.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 39,
+      "page_book": 38,
+      "dimensions": "387x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.9  Second taping application ",
+        "Figure 2.10  Third taping application from the "
+      ],
+      "surrounding_text": "Figure 2.11  The tape is applied in the same direction with an overlap to the third piece of tape. 5.\t Heat activate the glue as explained Figure 2.9  Second taping application overlapping the first piece of tape."
+    },
+    {
+      "filename": "images/embedded/p039_xref703.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 39,
+      "page_book": 38,
+      "dimensions": "387x270",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.9  Second taping application ",
+        "Figure 2.10  Third taping application from the "
+      ],
+      "surrounding_text": "Figure 2.11  The tape is applied in the same direction with an overlap to the third piece of tape. 5.\t Heat activate the glue as explained Figure 2.9  Second taping application overlapping the first piece of tape."
+    },
+    {
+      "filename": "images/embedded/p040_xref712.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 40,
+      "page_book": 39,
+      "dimensions": "384x243",
+      "section_headings": [
+        "ACHILLES TENDINOPATHY"
+      ],
+      "figure_captions": [
+        "Figure 2.12  First taping application to ",
+        "Figure 2.13  Third and fourth taping "
+      ],
+      "surrounding_text": "Figure 2.13  Third and fourth taping application from the medial side and finishing across and below the lateral malleolus. Figure 2.12  First taping application to stabilize the lateral ligaments and peroneals. Kinesiology Taping Techniques for the Lower Limbs  39"
+    },
+    {
+      "filename": "images/embedded/p040_xref713.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 40,
+      "page_book": 39,
+      "dimensions": "387x262",
+      "section_headings": [
+        "ACHILLES TENDINOPATHY"
+      ],
+      "figure_captions": [
+        "Figure 2.12  First taping application to ",
+        "Figure 2.13  Third and fourth taping "
+      ],
+      "surrounding_text": "Figure 2.13  Third and fourth taping application from the medial side and finishing across and below the lateral malleolus. Figure 2.12  First taping application to stabilize the lateral ligaments and peroneals. Kinesiology Taping Techniques for the Lower Limbs  39"
+    },
+    {
+      "filename": "images/embedded/p040_xref734.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 40,
+      "page_book": 39,
+      "dimensions": "426x284",
+      "section_headings": [
+        "ACHILLES TENDINOPATHY"
+      ],
+      "figure_captions": [
+        "Figure 2.12  First taping application to ",
+        "Figure 2.13  Third and fourth taping "
+      ],
+      "surrounding_text": "Figure 2.13  Third and fourth taping application from the medial side and finishing across and below the lateral malleolus. Figure 2.12  First taping application to stabilize the lateral ligaments and peroneals. Kinesiology Taping Techniques for the Lower Limbs  39"
+    },
+    {
+      "filename": "images/embedded/p041_xref769.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 41,
+      "page_book": 40,
+      "dimensions": "312x380",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.15  First taping application starting ",
+        "Figure 2.16  Second taping application "
+      ],
+      "surrounding_text": "Figure 2.16  Second taping application starting from the calcaneus. Figure 2.15  First taping application starting from the calcaneus and finishing through to the center of the calf muscle. 2.\t Apply the pad of the “Y” strip to the"
+    },
+    {
+      "filename": "images/embedded/p041_xref770.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 41,
+      "page_book": 40,
+      "dimensions": "341x453",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.15  First taping application starting ",
+        "Figure 2.16  Second taping application "
+      ],
+      "surrounding_text": "Figure 2.16  Second taping application starting from the calcaneus. Figure 2.15  First taping application starting from the calcaneus and finishing through to the center of the calf muscle. 2.\t Apply the pad of the “Y” strip to the"
+    },
+    {
+      "filename": "images/embedded/p041_xref771.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 41,
+      "page_book": 40,
+      "dimensions": "312x350",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.15  First taping application starting ",
+        "Figure 2.16  Second taping application "
+      ],
+      "surrounding_text": "Figure 2.16  Second taping application starting from the calcaneus. Figure 2.15  First taping application starting from the calcaneus and finishing through to the center of the calf muscle. 2.\t Apply the pad of the “Y” strip to the"
+    },
+    {
+      "filename": "images/embedded/p042_xref780.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 42,
+      "page_book": 41,
+      "dimensions": "387x443",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.18  First taping application from ",
+        "Figure 2.19  Second taping application from "
+      ],
+      "surrounding_text": "Lastly, the patient is asked to apply the small “I” strip across the painful area of the Achilles tendon, with approximately 50–75% stretch, as in Figure 2.20. Figure 2.19  Second taping application from calcaneus overlapping the first application. Figure 2.18  First taping application from calcaneus along the Achilles tendon."
+    },
+    {
+      "filename": "images/embedded/p042_xref781.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 42,
+      "page_book": 41,
+      "dimensions": "384x512",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.18  First taping application from ",
+        "Figure 2.19  Second taping application from "
+      ],
+      "surrounding_text": "Lastly, the patient is asked to apply the small “I” strip across the painful area of the Achilles tendon, with approximately 50–75% stretch, as in Figure 2.20. Figure 2.19  Second taping application from calcaneus overlapping the first application. Figure 2.18  First taping application from calcaneus along the Achilles tendon."
+    },
+    {
+      "filename": "images/embedded/p042_xref782.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 42,
+      "page_book": 41,
+      "dimensions": "384x306",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.18  First taping application from ",
+        "Figure 2.19  Second taping application from "
+      ],
+      "surrounding_text": "Lastly, the patient is asked to apply the small “I” strip across the painful area of the Achilles tendon, with approximately 50–75% stretch, as in Figure 2.20. Figure 2.19  Second taping application from calcaneus overlapping the first application. Figure 2.18  First taping application from calcaneus along the Achilles tendon."
+    },
+    {
+      "filename": "images/embedded/p043_xref793.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 43,
+      "page_book": 42,
+      "dimensions": "311x372",
+      "section_headings": [
+        "CALF STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 2.22  First taping application starting ",
+        "Figure 2.21  MTJ strain of the gastrocnemius."
+      ],
+      "surrounding_text": "their ankle is placed into dorsiflexion with toes extended. Apply an “I” strip, with no stretch of the tape, from the medial side, over the Achilles and across the area of pain. Finish through to the center of the calf as shown with Figure 2.22. 1.\t The patient adopts a prone position and Figure 2.22  First taping application starting from the medial side of the Achilles and finishing through to t"
+    },
+    {
+      "filename": "images/embedded/p043_xref792.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 43,
+      "page_book": 42,
+      "dimensions": "624x416",
+      "section_headings": [
+        "CALF STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 2.22  First taping application starting ",
+        "Figure 2.21  MTJ strain of the gastrocnemius."
+      ],
+      "surrounding_text": "their ankle is placed into dorsiflexion with toes extended. Apply an “I” strip, with no stretch of the tape, from the medial side, over the Achilles and across the area of pain. Finish through to the center of the calf as shown with Figure 2.22. 1.\t The patient adopts a prone position and Figure 2.22  First taping application starting from the medial side of the Achilles and finishing through to t"
+    },
+    {
+      "filename": "images/embedded/p044_xref967.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 44,
+      "page_book": 43,
+      "dimensions": "300x383",
+      "section_headings": [
+        "MEDIAL TIBIAL STRESS \nSYNDROME/POSTERIOR \nCOMPARTMENT SYNDROME \n(SHIN SPLINTS)"
+      ],
+      "figure_captions": [
+        "Figure 2.23  Second taping application directly ",
+        "Figure 2.24  Periostitis/shin splints of the medial border of the tibia, as well as the associated "
+      ],
+      "surrounding_text": "Figure 2.23  Second taping application directly across the site of pain with a small “I” strip. Calf strain (gastrocnemius/soleus) site with 75–100% stretch of the tape and no stretch at the ends (Figure 2.23)."
+    },
+    {
+      "filename": "images/embedded/p044_xref977.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 44,
+      "page_book": 43,
+      "dimensions": "544x363",
+      "section_headings": [
+        "MEDIAL TIBIAL STRESS \nSYNDROME/POSTERIOR \nCOMPARTMENT SYNDROME \n(SHIN SPLINTS)"
+      ],
+      "figure_captions": [
+        "Figure 2.23  Second taping application directly ",
+        "Figure 2.24  Periostitis/shin splints of the medial border of the tibia, as well as the associated "
+      ],
+      "surrounding_text": "Figure 2.23  Second taping application directly across the site of pain with a small “I” strip. Calf strain (gastrocnemius/soleus) site with 75–100% stretch of the tape and no stretch at the ends (Figure 2.23)."
+    },
+    {
+      "filename": "images/embedded/p045_xref1058.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 45,
+      "page_book": 44,
+      "dimensions": "384x467",
+      "section_headings": [
+        "ANTERIOR TIBIALIS \nTENDINOPATHY/ANTERIOR \nCOMPARTMENT SYNDROME"
+      ],
+      "figure_captions": [
+        "Figure 2.25  First application of the tape starting ",
+        "Figure 2.26  Second application of the tape "
+      ],
+      "surrounding_text": "and is instructed to dorsiflex their ankle and evert their foot to place the tibialis posterior on stretch. Apply an “I” strip from just below the medial malleolus and ideally attach the tape from the navicular bone. Apply the tape with little to no stretch. Follow the medial shin so that the area of pain is covered, as shown with Figure 2.25. 1.\t The patient adopts a long sitting position Figure "
+    },
+    {
+      "filename": "images/embedded/p045_xref1059.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 45,
+      "page_book": 44,
+      "dimensions": "342x201",
+      "section_headings": [
+        "ANTERIOR TIBIALIS \nTENDINOPATHY/ANTERIOR \nCOMPARTMENT SYNDROME"
+      ],
+      "figure_captions": [
+        "Figure 2.25  First application of the tape starting ",
+        "Figure 2.26  Second application of the tape "
+      ],
+      "surrounding_text": "and is instructed to dorsiflex their ankle and evert their foot to place the tibialis posterior on stretch. Apply an “I” strip from just below the medial malleolus and ideally attach the tape from the navicular bone. Apply the tape with little to no stretch. Follow the medial shin so that the area of pain is covered, as shown with Figure 2.25. 1.\t The patient adopts a long sitting position Figure "
+    },
+    {
+      "filename": "images/embedded/p046_xref1073.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 46,
+      "page_book": 45,
+      "dimensions": "672x448",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.27  Anterior shin pain caused by tendinopathy of the tibialis anterior and anterior ",
+        "Figure 2.28  First application of the tape "
+      ],
+      "surrounding_text": "Anterior compartment syndrome Extensor hallucis longus Anterior tibialis tendinopathy"
+    },
+    {
+      "filename": "images/embedded/p046_xref1141.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 46,
+      "page_book": 45,
+      "dimensions": "394x217",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.27  Anterior shin pain caused by tendinopathy of the tibialis anterior and anterior ",
+        "Figure 2.28  First application of the tape "
+      ],
+      "surrounding_text": "Anterior compartment syndrome Extensor hallucis longus Anterior tibialis tendinopathy"
+    },
+    {
+      "filename": "images/embedded/p046_xref1142.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 46,
+      "page_book": 45,
+      "dimensions": "389x246",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.27  Anterior shin pain caused by tendinopathy of the tibialis anterior and anterior ",
+        "Figure 2.28  First application of the tape "
+      ],
+      "surrounding_text": "Anterior compartment syndrome Extensor hallucis longus Anterior tibialis tendinopathy"
+    },
+    {
+      "filename": "images/embedded/p047_xref1261.png",
+      "type": "embedded",
+      "source_chapter": "chapter_02",
+      "page_pdf": 47,
+      "page_book": 46,
+      "dimensions": "389x246",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.30  Third application of the tape "
+      ],
+      "surrounding_text": "Figure 2.30  Third application of the tape using a small “I” strip to form an “X” shape. Anterior shin splints this one, with 75–100% stretch, across the area of the other “I” strip, already located across the pain, so that it looks like an “X” once completed (Fig. 2.30)."
+    },
+    {
+      "filename": "images/embedded/p048_xref1274.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 48,
+      "page_book": 47,
+      "dimensions": "1007x643",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.1  General knee pain/PFPS."
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE KNEE JOINT C H A P T E R  3 GENERAL KNEE PAIN/PATELLOFEMORAL PAIN SYNDROME"
+    },
+    {
+      "filename": "images/embedded/p048_xref1273.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 48,
+      "page_book": 47,
+      "dimensions": "298x447",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.1  General knee pain/PFPS."
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE KNEE JOINT C H A P T E R  3 GENERAL KNEE PAIN/PATELLOFEMORAL PAIN SYNDROME"
+    },
+    {
+      "filename": "images/embedded/p049_xref1413.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 49,
+      "page_book": 48,
+      "dimensions": "387x279",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.2  First application of the “Y” strip ",
+        "Figure 3.3  Second application of the “Y” strip  "
+      ],
+      "surrounding_text": "3.\t Heat activate the glue.4.\t Once the glue has been heat activated, Figure 3.3  Second application of the “Y” strip  starting from the tibial tuberosity and  finishing at the starting point of the first application. lower the limb back down to the couch and observe the “wrinkling” of the tape. This illustrates the effect the kinesiology tape is having on the underlying soft tissues through its u"
+    },
+    {
+      "filename": "images/embedded/p049_xref1414.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 49,
+      "page_book": 48,
+      "dimensions": "387x277",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.2  First application of the “Y” strip ",
+        "Figure 3.3  Second application of the “Y” strip  "
+      ],
+      "surrounding_text": "3.\t Heat activate the glue.4.\t Once the glue has been heat activated, Figure 3.3  Second application of the “Y” strip  starting from the tibial tuberosity and  finishing at the starting point of the first application. lower the limb back down to the couch and observe the “wrinkling” of the tape. This illustrates the effect the kinesiology tape is having on the underlying soft tissues through its u"
+    },
+    {
+      "filename": "images/embedded/p050_xref1427.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 50,
+      "page_book": 49,
+      "dimensions": "384x256",
+      "section_headings": [
+        "FULL KNEE TAPING: PFPS/\nPATELLAR TENDINOPATHY/",
+        "DISEASE/BURSITIS"
+      ],
+      "figure_captions": [
+        "Figure 3.5  Small “I” strip applied across the ",
+        "Figure 3.4  General knee pain/PFPS."
+      ],
+      "surrounding_text": "above, but this time apply an “I” strip from the medial aspect of the thigh, with 25% stretch of the tape, toward the patella. Then apply 50% stretch from the medial side of the patella to the front of the knee, and crossing the tibial tuberosity, with no stretch at the end of the tape (Fig. 3.7). Figure 3.5  Small “I” strip applied across the patellar tendon. position and place their knee into 90"
+    },
+    {
+      "filename": "images/embedded/p050_xref1426.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 50,
+      "page_book": 49,
+      "dimensions": "299x448",
+      "section_headings": [
+        "FULL KNEE TAPING: PFPS/\nPATELLAR TENDINOPATHY/",
+        "DISEASE/BURSITIS"
+      ],
+      "figure_captions": [
+        "Figure 3.5  Small “I” strip applied across the ",
+        "Figure 3.4  General knee pain/PFPS."
+      ],
+      "surrounding_text": "above, but this time apply an “I” strip from the medial aspect of the thigh, with 25% stretch of the tape, toward the patella. Then apply 50% stretch from the medial side of the patella to the front of the knee, and crossing the tibial tuberosity, with no stretch at the end of the tape (Fig. 3.7). Figure 3.5  Small “I” strip applied across the patellar tendon. position and place their knee into 90"
+    },
+    {
+      "filename": "images/embedded/p051_xref1555.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 51,
+      "page_book": 50,
+      "dimensions": "384x249",
+      "section_headings": [
+        "KNEE MALALIGNMENT TAPING \nTECHNIQUE"
+      ],
+      "figure_captions": [
+        "Figure 3.6  An “I” strip is applied from the ",
+        "Figure 3.7  An “I” strip is applied from the "
+      ],
+      "surrounding_text": "Figure 3.7  An “I” strip is applied from the medial aspect of the thigh to the tibial tuberosity. 4.\t Heat activate the glue. Knee pain (patellofemoral syndrome/Osgood- Schlatter’s disease)"
+    },
+    {
+      "filename": "images/embedded/p051_xref1556.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 51,
+      "page_book": 50,
+      "dimensions": "384x512",
+      "section_headings": [
+        "KNEE MALALIGNMENT TAPING \nTECHNIQUE"
+      ],
+      "figure_captions": [
+        "Figure 3.6  An “I” strip is applied from the ",
+        "Figure 3.7  An “I” strip is applied from the "
+      ],
+      "surrounding_text": "Figure 3.7  An “I” strip is applied from the medial aspect of the thigh to the tibial tuberosity. 4.\t Heat activate the glue. Knee pain (patellofemoral syndrome/Osgood- Schlatter’s disease)"
+    },
+    {
+      "filename": "images/embedded/p052_xref1565.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 52,
+      "page_book": 51,
+      "dimensions": "309x206",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.9  The 4-inch tape (Big Daddy) has been ",
+        "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst "
+      ],
+      "surrounding_text": "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst applying pressure to the patella from the thumb. b: Finished position. Kinesiology Taping Techniques for the Knee Joint  51 3.\t Heat activate the glue."
+    },
+    {
+      "filename": "images/embedded/p052_xref1566.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 52,
+      "page_book": 51,
+      "dimensions": "384x482",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.9  The 4-inch tape (Big Daddy) has been ",
+        "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst "
+      ],
+      "surrounding_text": "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst applying pressure to the patella from the thumb. b: Finished position. Kinesiology Taping Techniques for the Knee Joint  51 3.\t Heat activate the glue."
+    },
+    {
+      "filename": "images/embedded/p052_xref1567.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 52,
+      "page_book": 51,
+      "dimensions": "384x482",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.9  The 4-inch tape (Big Daddy) has been ",
+        "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst "
+      ],
+      "surrounding_text": "Figure 3.8  a: Apply the tape (with tension) from the lateral side and finish medially, whilst applying pressure to the patella from the thumb. b: Finished position. Kinesiology Taping Techniques for the Knee Joint  51 3.\t Heat activate the glue."
+    },
+    {
+      "filename": "images/embedded/p053_xref1575.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 53,
+      "page_book": 52,
+      "dimensions": "384x442",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.10  First application of the tape, from ",
+        "Figure 3.11  Tension the superior part of the "
+      ],
+      "surrounding_text": "Figure 3.11  Tension the superior part of the tape with medial glide from the thumb. Figure 3.10  First application of the tape, from the lateral side of the knee. 2.\t With the thumb, apply a medial glide"
+    },
+    {
+      "filename": "images/embedded/p053_xref1576.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 53,
+      "page_book": 52,
+      "dimensions": "384x504",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.10  First application of the tape, from ",
+        "Figure 3.11  Tension the superior part of the "
+      ],
+      "surrounding_text": "Figure 3.11  Tension the superior part of the tape with medial glide from the thumb. Figure 3.10  First application of the tape, from the lateral side of the knee. 2.\t With the thumb, apply a medial glide"
+    },
+    {
+      "filename": "images/embedded/p053_xref1577.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 53,
+      "page_book": 52,
+      "dimensions": "384x516",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.10  First application of the tape, from ",
+        "Figure 3.11  Tension the superior part of the "
+      ],
+      "surrounding_text": "Figure 3.11  Tension the superior part of the tape with medial glide from the thumb. Figure 3.10  First application of the tape, from the lateral side of the knee. 2.\t With the thumb, apply a medial glide"
+    },
+    {
+      "filename": "images/embedded/p054_xref1585.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 54,
+      "page_book": 53,
+      "dimensions": "662x442",
+      "section_headings": [
+        "LATERAL KNEE PAIN: ILIOTIBIAL \nBAND FRICTION SYNDROME/\nLATERAL MENISCUS/LATERAL \nCOLLATERAL LIGAMENT (LCL)"
+      ],
+      "figure_captions": [
+        "Figure 3.13  How it should look after the tape ",
+        "Figure 3.14  ITBFS/lateral meniscus and the LCL."
+      ],
+      "surrounding_text": "It is not within the scope of this book to discuss all causes of lateral knee pain (Fig. 3.14); however, the following kinesiology taping technique will help reduce the patient’s presenting pain. Through this fantastic technique, it is possible to provide enough pain relief to enable the patient/athlete to continue participating in the sport they love, as well as taking part in a physical therapy "
+    },
+    {
+      "filename": "images/embedded/p054_xref1587.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 54,
+      "page_book": 53,
+      "dimensions": "384x576",
+      "section_headings": [
+        "LATERAL KNEE PAIN: ILIOTIBIAL \nBAND FRICTION SYNDROME/\nLATERAL MENISCUS/LATERAL \nCOLLATERAL LIGAMENT (LCL)"
+      ],
+      "figure_captions": [
+        "Figure 3.13  How it should look after the tape ",
+        "Figure 3.14  ITBFS/lateral meniscus and the LCL."
+      ],
+      "surrounding_text": "It is not within the scope of this book to discuss all causes of lateral knee pain (Fig. 3.14); however, the following kinesiology taping technique will help reduce the patient’s presenting pain. Through this fantastic technique, it is possible to provide enough pain relief to enable the patient/athlete to continue participating in the sport they love, as well as taking part in a physical therapy "
+    },
+    {
+      "filename": "images/embedded/p055_xref1712.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 55,
+      "page_book": 54,
+      "dimensions": "383x384",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.15  First application starting ",
+        "Figure 3.16  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 3.16  Second application of the tape using one small “I” strip across the area of pain. Figure 3.15  First application starting from Gerdy’s tubercle and finishing along  the IT band. 2.\t Using one small “I” strip, apply 75–100%"
+    },
+    {
+      "filename": "images/embedded/p055_xref1713.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 55,
+      "page_book": 54,
+      "dimensions": "383x391",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.15  First application starting ",
+        "Figure 3.16  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 3.16  Second application of the tape using one small “I” strip across the area of pain. Figure 3.15  First application starting from Gerdy’s tubercle and finishing along  the IT band. 2.\t Using one small “I” strip, apply 75–100%"
+    },
+    {
+      "filename": "images/embedded/p055_xref1714.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 55,
+      "page_book": 54,
+      "dimensions": "384x411",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.15  First application starting ",
+        "Figure 3.16  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 3.16  Second application of the tape using one small “I” strip across the area of pain. Figure 3.15  First application starting from Gerdy’s tubercle and finishing along  the IT band. 2.\t Using one small “I” strip, apply 75–100%"
+    },
+    {
+      "filename": "images/embedded/p056_xref1724.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 56,
+      "page_book": 55,
+      "dimensions": "375x562",
+      "section_headings": [
+        "MEDIAL KNEE PAIN: MEDIAL \nCOLLATERAL LIGAMENT/ \nMEDIAL MENISCUS"
+      ],
+      "figure_captions": [
+        "Figure 3.18  MCL sprain/medial meniscus tear.",
+        "Figure 3.19  First application to the MCL."
+      ],
+      "surrounding_text": "Medial collateral ligament (MCL) sprains and tears, as well as injuries to the medial meniscus, are considered to be some of the most common injuries, especially in sports and activities like football and skiing. The MCL, in particular, restricts the motion of a movement called “valgus.” This means the knee is restricted from moving inwards, so any excessive force in this plane will often result i"
+    },
+    {
+      "filename": "images/embedded/p056_xref1791.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 56,
+      "page_book": 55,
+      "dimensions": "383x364",
+      "section_headings": [
+        "MEDIAL KNEE PAIN: MEDIAL \nCOLLATERAL LIGAMENT/ \nMEDIAL MENISCUS"
+      ],
+      "figure_captions": [
+        "Figure 3.18  MCL sprain/medial meniscus tear.",
+        "Figure 3.19  First application to the MCL."
+      ],
+      "surrounding_text": "Medial collateral ligament (MCL) sprains and tears, as well as injuries to the medial meniscus, are considered to be some of the most common injuries, especially in sports and activities like football and skiing. The MCL, in particular, restricts the motion of a movement called “valgus.” This means the knee is restricted from moving inwards, so any excessive force in this plane will often result i"
+    },
+    {
+      "filename": "images/embedded/p056_xref1792.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 56,
+      "page_book": 55,
+      "dimensions": "383x361",
+      "section_headings": [
+        "MEDIAL KNEE PAIN: MEDIAL \nCOLLATERAL LIGAMENT/ \nMEDIAL MENISCUS"
+      ],
+      "figure_captions": [
+        "Figure 3.18  MCL sprain/medial meniscus tear.",
+        "Figure 3.19  First application to the MCL."
+      ],
+      "surrounding_text": "Medial collateral ligament (MCL) sprains and tears, as well as injuries to the medial meniscus, are considered to be some of the most common injuries, especially in sports and activities like football and skiing. The MCL, in particular, restricts the motion of a movement called “valgus.” This means the knee is restricted from moving inwards, so any excessive force in this plane will often result i"
+    },
+    {
+      "filename": "images/embedded/p057_xref1816.png",
+      "type": "embedded",
+      "source_chapter": "chapter_03",
+      "page_pdf": 57,
+      "page_book": 56,
+      "dimensions": "383x369",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.21  Third application of the tape "
+      ],
+      "surrounding_text": "Figure 3.21  Third application of the tape using a small “I” strip to form an “X” shape across the MCL. Medial knee pain (MCL sprain/medial meniscus) this one with 75–100% stretch across the area of the other “I” strip, already positioned across the area of pain, so that it looks like an “X” once completed (Fig. 3.21)."
+    },
+    {
+      "filename": "images/embedded/p058_xref1832.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 58,
+      "page_book": 57,
+      "dimensions": "1007x643",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.1  Hamstring muscle group. "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE ANTERIOR/POSTERIOR THIGH C H A P T E R  4 HAMSTRING TIGHTNESS/FATIGUE"
+    },
+    {
+      "filename": "images/embedded/p058_xref1831.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 58,
+      "page_book": 57,
+      "dimensions": "296x444",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.1  Hamstring muscle group. "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE ANTERIOR/POSTERIOR THIGH C H A P T E R  4 HAMSTRING TIGHTNESS/FATIGUE"
+    },
+    {
+      "filename": "images/embedded/p059_xref1970.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 59,
+      "page_book": 58,
+      "dimensions": "384x529",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.2  Medial hamstring (semitendinosus ",
+        "Figure 4.3  Lateral hamstring (biceps femoris) "
+      ],
+      "surrounding_text": "Figure 4.3  Lateral hamstring (biceps femoris) kinesiology taping. 3. \t Heat activate the glue. Figure 4.2  Medial hamstring (semitendinosus and semimembranosus) kinesiology taping."
+    },
+    {
+      "filename": "images/embedded/p059_xref1971.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 59,
+      "page_book": 58,
+      "dimensions": "384x529",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.2  Medial hamstring (semitendinosus ",
+        "Figure 4.3  Lateral hamstring (biceps femoris) "
+      ],
+      "surrounding_text": "Figure 4.3  Lateral hamstring (biceps femoris) kinesiology taping. 3. \t Heat activate the glue. Figure 4.2  Medial hamstring (semitendinosus and semimembranosus) kinesiology taping."
+    },
+    {
+      "filename": "images/embedded/p060_xref2027.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 60,
+      "page_book": 59,
+      "dimensions": "384x449",
+      "section_headings": [
+        "HAMSTRING STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.4  Semitendinosus strain.",
+        "Figure 4.5  First application to the "
+      ],
+      "surrounding_text": "Semitendinosusstrain The next kinesiology taping technique can be applied specifically for the lateral hamstring, called the biceps femoris, or for the medial hamstrings, called the semitendinosus and semimembranosus. Through my experience I have encountered many strains of the biceps femoris and the semitendinosus. Based on this knowledge, the technique of choice is to tape the semitendinosus, as"
+    },
+    {
+      "filename": "images/embedded/p060_xref2028.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 60,
+      "page_book": 59,
+      "dimensions": "384x449",
+      "section_headings": [
+        "HAMSTRING STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.4  Semitendinosus strain.",
+        "Figure 4.5  First application to the "
+      ],
+      "surrounding_text": "Semitendinosusstrain The next kinesiology taping technique can be applied specifically for the lateral hamstring, called the biceps femoris, or for the medial hamstrings, called the semitendinosus and semimembranosus. Through my experience I have encountered many strains of the biceps femoris and the semitendinosus. Based on this knowledge, the technique of choice is to tape the semitendinosus, as"
+    },
+    {
+      "filename": "images/embedded/p061_xref2142.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 61,
+      "page_book": 60,
+      "dimensions": "384x422",
+      "section_headings": [
+        "RECTUS FEMORIS STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.7  Third application of the tape using ",
+        "Figure 4.8 shows "
+      ],
+      "surrounding_text": "Another common site of pain for patients is just below the inferior aspect of the rectus femoris origin attachment at the anterior inferior iliac spine (AIIS) and will be related to the tendon component of the soft tissue, i.e., a tendinopathy. Also, injury to the actual muscle belly or even the point where the muscle joins a tendon, i.e., the musculotendinous junction (MTJ), is regularly experien"
+    },
+    {
+      "filename": "images/embedded/p061_xref2237.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 61,
+      "page_book": 60,
+      "dimensions": "459x688",
+      "section_headings": [
+        "RECTUS FEMORIS STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.7  Third application of the tape using ",
+        "Figure 4.8 shows "
+      ],
+      "surrounding_text": "Another common site of pain for patients is just below the inferior aspect of the rectus femoris origin attachment at the anterior inferior iliac spine (AIIS) and will be related to the tendon component of the soft tissue, i.e., a tendinopathy. Also, injury to the actual muscle belly or even the point where the muscle joins a tendon, i.e., the musculotendinous junction (MTJ), is regularly experien"
+    },
+    {
+      "filename": "images/embedded/p062_xref2362.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 62,
+      "page_book": 61,
+      "dimensions": "384x388",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.9  First application from the insertion ",
+        "Figure 4.10  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 4.10  Second application of the tape using one small “I” strip across the area of pain. Figure 4.9  First application from the insertion to the origin of the femoris muscle at the AIIS. Figure 4.11  Third application of the tape using a small “I” strip to form an “X” shape across the rectus femoris strain."
+    },
+    {
+      "filename": "images/embedded/p062_xref2363.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 62,
+      "page_book": 61,
+      "dimensions": "384x480",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.9  First application from the insertion ",
+        "Figure 4.10  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 4.10  Second application of the tape using one small “I” strip across the area of pain. Figure 4.9  First application from the insertion to the origin of the femoris muscle at the AIIS. Figure 4.11  Third application of the tape using a small “I” strip to form an “X” shape across the rectus femoris strain."
+    },
+    {
+      "filename": "images/embedded/p062_xref2364.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 62,
+      "page_book": 61,
+      "dimensions": "384x378",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.9  First application from the insertion ",
+        "Figure 4.10  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 4.10  Second application of the tape using one small “I” strip across the area of pain. Figure 4.9  First application from the insertion to the origin of the femoris muscle at the AIIS. Figure 4.11  Third application of the tape using a small “I” strip to form an “X” shape across the rectus femoris strain."
+    },
+    {
+      "filename": "images/embedded/p063_xref2375.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "384x232",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2377.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "383x229",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2379.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "226x183",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2410.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "478x319",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2426.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "225x190",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2432.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "164x203",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p063_xref2450.png",
+      "type": "embedded",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dimensions": "166x204",
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor "
+      ],
+      "surrounding_text": "Figure 4.14  Second application of the tape using another “I” strip across the area of pain. 3.\t Heat activate the glue. Figure 4.13  First application to the adductor longus."
+    },
+    {
+      "filename": "images/embedded/p064_xref2496.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 64,
+      "page_book": 63,
+      "dimensions": "426x284",
+      "section_headings": [
+        "AND PELVIS\nGLUTEAL AND PIRIFORMIS PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.1 shows areas of the buttocks that ",
+        "Figure 5.1  Common causes for pain within "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE LOWER BACK, TRUNK, AND PELVIS C H A P T E R  5 Figure 5.1 shows areas of the buttocks that could be responsible for the presenting pain: the piriformis, gluteals, sciatic nerve, or even referred pain from the lumbar spine, just to name a few."
+    },
+    {
+      "filename": "images/embedded/p064_xref2497.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 64,
+      "page_book": 63,
+      "dimensions": "1007x643",
+      "section_headings": [
+        "AND PELVIS\nGLUTEAL AND PIRIFORMIS PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.1 shows areas of the buttocks that ",
+        "Figure 5.1  Common causes for pain within "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE LOWER BACK, TRUNK, AND PELVIS C H A P T E R  5 Figure 5.1 shows areas of the buttocks that could be responsible for the presenting pain: the piriformis, gluteals, sciatic nerve, or even referred pain from the lumbar spine, just to name a few."
+    },
+    {
+      "filename": "images/embedded/p065_xref2602.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 65,
+      "page_book": 64,
+      "dimensions": "386x259",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.2  First application to the piriformis.",
+        "Figure 5.3  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 5.4  Third application of the tape across the area of pain with one “I” strip so that an “X” shape is formed. 4.\t Heat activate the glue. Figure 5.2  First application to the piriformis."
+    },
+    {
+      "filename": "images/embedded/p065_xref2603.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 65,
+      "page_book": 64,
+      "dimensions": "386x259",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.2  First application to the piriformis.",
+        "Figure 5.3  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 5.4  Third application of the tape across the area of pain with one “I” strip so that an “X” shape is formed. 4.\t Heat activate the glue. Figure 5.2  First application to the piriformis."
+    },
+    {
+      "filename": "images/embedded/p065_xref2604.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 65,
+      "page_book": 64,
+      "dimensions": "386x259",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.2  First application to the piriformis.",
+        "Figure 5.3  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 5.4  Third application of the tape across the area of pain with one “I” strip so that an “X” shape is formed. 4.\t Heat activate the glue. Figure 5.2  First application to the piriformis."
+    },
+    {
+      "filename": "images/embedded/p066_xref2618.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 66,
+      "page_book": 65,
+      "dimensions": "438x656",
+      "section_headings": [
+        "LUMBAR SPINE PATHOLOGY"
+      ],
+      "figure_captions": [
+        "Figure 5.5 \nshows some common sites of pain localized ",
+        "Figure 5.5  Common sites of pain to the lower back."
+      ],
+      "surrounding_text": "Erector spinae  strain Facet joint sprainand intervertebral discQuadratus lumborum Iliolumbar ligament"
+    },
+    {
+      "filename": "images/embedded/p067_xref2904.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 67,
+      "page_book": 66,
+      "dimensions": "387x528",
+      "section_headings": [
+        "F\nF\nS\nS"
+      ],
+      "figure_captions": [
+        "Figure 5.6  First application of two “I” strips ",
+        "Figure 5.7  Second application of two “I” "
+      ],
+      "surrounding_text": "Figure 5.7  Second application of two “I” strips up the erector spinae. 3.\t Heat activate the glue. Figure 5.6  First application of two “I” strips across the lower back."
+    },
+    {
+      "filename": "images/embedded/p067_xref2905.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 67,
+      "page_book": 66,
+      "dimensions": "389x593",
+      "section_headings": [
+        "F\nF\nS\nS"
+      ],
+      "figure_captions": [
+        "Figure 5.6  First application of two “I” strips ",
+        "Figure 5.7  Second application of two “I” "
+      ],
+      "surrounding_text": "Figure 5.7  Second application of two “I” strips up the erector spinae. 3.\t Heat activate the glue. Figure 5.6  First application of two “I” strips across the lower back."
+    },
+    {
+      "filename": "images/embedded/p068_xref2916.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 68,
+      "page_book": 67,
+      "dimensions": "387x579",
+      "section_headings": [
+        "SACROILIAC JOINT DYSFUNCTION"
+      ],
+      "figure_captions": [
+        "Figure 5.8  SIJ dysfunction.",
+        "Figure 5.9  First application of an “I” strip "
+      ],
+      "surrounding_text": "The SIJ, as shown by Figure 5.8, can be helped by the following kinesiology taping technique, especially if the pain is very acute and the patient is in too much discomfort for traditional types of treatment: mobilizations and soft-tissue massage. Sacroiliac joint  sprain Pain that is isolated to the inferior lateral aspect of the lower back might be coming from the SIJ. This is a very common area"
+    },
+    {
+      "filename": "images/embedded/p068_xref2999.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 68,
+      "page_book": 67,
+      "dimensions": "389x578",
+      "section_headings": [
+        "SACROILIAC JOINT DYSFUNCTION"
+      ],
+      "figure_captions": [
+        "Figure 5.8  SIJ dysfunction.",
+        "Figure 5.9  First application of an “I” strip "
+      ],
+      "surrounding_text": "The SIJ, as shown by Figure 5.8, can be helped by the following kinesiology taping technique, especially if the pain is very acute and the patient is in too much discomfort for traditional types of treatment: mobilizations and soft-tissue massage. Sacroiliac joint  sprain Pain that is isolated to the inferior lateral aspect of the lower back might be coming from the SIJ. This is a very common area"
+    },
+    {
+      "filename": "images/embedded/p069_xref3023.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 69,
+      "page_book": 68,
+      "dimensions": "386x496",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.12  Big Daddy tape applied to one ",
+        "Figure 5.13 (a&b)."
+      ],
+      "surrounding_text": "Figure 5.10  Second application of another “I” strip across the SIJ. Figure 5.12  Big Daddy tape applied to one side of the body with 50–75% stretch. 2.\t Peel back the other side, tension the"
+    },
+    {
+      "filename": "images/embedded/p069_xref3024.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 69,
+      "page_book": 68,
+      "dimensions": "389x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.12  Big Daddy tape applied to one ",
+        "Figure 5.13 (a&b)."
+      ],
+      "surrounding_text": "Figure 5.10  Second application of another “I” strip across the SIJ. Figure 5.12  Big Daddy tape applied to one side of the body with 50–75% stretch. 2.\t Peel back the other side, tension the"
+    },
+    {
+      "filename": "images/embedded/p069_xref3025.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 69,
+      "page_book": 68,
+      "dimensions": "389x541",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.12  Big Daddy tape applied to one ",
+        "Figure 5.13 (a&b)."
+      ],
+      "surrounding_text": "Figure 5.10  Second application of another “I” strip across the SIJ. Figure 5.12  Big Daddy tape applied to one side of the body with 50–75% stretch. 2.\t Peel back the other side, tension the"
+    },
+    {
+      "filename": "images/embedded/p070_xref3032.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 70,
+      "page_book": 69,
+      "dimensions": "389x283",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.14 (a,b,&c).",
+        "Figure 5.13  a: Big Daddy tape applied to the "
+      ],
+      "surrounding_text": "Kinesiology Taping Techniques for the Lower Back, Trunk, and Pelvis  69 Figure 5.13  a: Big Daddy tape applied to the other side of the body with 50–75% stretch. b: Finished technique. Alternative option"
+    },
+    {
+      "filename": "images/embedded/p070_xref3033.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 70,
+      "page_book": 69,
+      "dimensions": "389x279",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.14 (a,b,&c).",
+        "Figure 5.13  a: Big Daddy tape applied to the "
+      ],
+      "surrounding_text": "Kinesiology Taping Techniques for the Lower Back, Trunk, and Pelvis  69 Figure 5.13  a: Big Daddy tape applied to the other side of the body with 50–75% stretch. b: Finished technique. Alternative option"
+    },
+    {
+      "filename": "images/embedded/p070_xref3034.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 70,
+      "page_book": 69,
+      "dimensions": "389x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.14 (a,b,&c).",
+        "Figure 5.13  a: Big Daddy tape applied to the "
+      ],
+      "surrounding_text": "Kinesiology Taping Techniques for the Lower Back, Trunk, and Pelvis  69 Figure 5.13  a: Big Daddy tape applied to the other side of the body with 50–75% stretch. b: Finished technique. Alternative option"
+    },
+    {
+      "filename": "images/embedded/p070_xref3035.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 70,
+      "page_book": 69,
+      "dimensions": "389x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.14 (a,b,&c).",
+        "Figure 5.13  a: Big Daddy tape applied to the "
+      ],
+      "surrounding_text": "Kinesiology Taping Techniques for the Lower Back, Trunk, and Pelvis  69 Figure 5.13  a: Big Daddy tape applied to the other side of the body with 50–75% stretch. b: Finished technique. Alternative option"
+    },
+    {
+      "filename": "images/embedded/p070_xref3036.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 70,
+      "page_book": 69,
+      "dimensions": "389x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.14 (a,b,&c).",
+        "Figure 5.13  a: Big Daddy tape applied to the "
+      ],
+      "surrounding_text": "Kinesiology Taping Techniques for the Lower Back, Trunk, and Pelvis  69 Figure 5.13  a: Big Daddy tape applied to the other side of the body with 50–75% stretch. b: Finished technique. Alternative option"
+    },
+    {
+      "filename": "images/embedded/p071_xref3044.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 71,
+      "page_book": 70,
+      "dimensions": "389x232",
+      "section_headings": [
+        "QUADRATUS LUMBORUM (QL) \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.15 (a&b).",
+        "Figure 5.15  a: First “I” strip applied laterally "
+      ],
+      "surrounding_text": "Figure 5.15  c: First “I” strip applied from the PSIS laterally across the QL muscle with 50–75% stretch. d: Second “I” strip applied from lumbar spine to lower ribs. e: Finished application. Apply two standard “I” strips, one at a time, starting from the iliac crest and apply laterally toward the lumbar spine and across the QL muscle with 50–75% stretch to each strip, as shown in Figure 5.15 (a&b"
+    },
+    {
+      "filename": "images/embedded/p071_xref3045.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 71,
+      "page_book": 70,
+      "dimensions": "389x261",
+      "section_headings": [
+        "QUADRATUS LUMBORUM (QL) \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.15 (a&b).",
+        "Figure 5.15  a: First “I” strip applied laterally "
+      ],
+      "surrounding_text": "Figure 5.15  c: First “I” strip applied from the PSIS laterally across the QL muscle with 50–75% stretch. d: Second “I” strip applied from lumbar spine to lower ribs. e: Finished application. Apply two standard “I” strips, one at a time, starting from the iliac crest and apply laterally toward the lumbar spine and across the QL muscle with 50–75% stretch to each strip, as shown in Figure 5.15 (a&b"
+    },
+    {
+      "filename": "images/embedded/p071_xref3046.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 71,
+      "page_book": 70,
+      "dimensions": "389x269",
+      "section_headings": [
+        "QUADRATUS LUMBORUM (QL) \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.15 (a&b).",
+        "Figure 5.15  a: First “I” strip applied laterally "
+      ],
+      "surrounding_text": "Figure 5.15  c: First “I” strip applied from the PSIS laterally across the QL muscle with 50–75% stretch. d: Second “I” strip applied from lumbar spine to lower ribs. e: Finished application. Apply two standard “I” strips, one at a time, starting from the iliac crest and apply laterally toward the lumbar spine and across the QL muscle with 50–75% stretch to each strip, as shown in Figure 5.15 (a&b"
+    },
+    {
+      "filename": "images/embedded/p071_xref3047.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 71,
+      "page_book": 70,
+      "dimensions": "387x226",
+      "section_headings": [
+        "QUADRATUS LUMBORUM (QL) \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.15 (a&b).",
+        "Figure 5.15  a: First “I” strip applied laterally "
+      ],
+      "surrounding_text": "Figure 5.15  c: First “I” strip applied from the PSIS laterally across the QL muscle with 50–75% stretch. d: Second “I” strip applied from lumbar spine to lower ribs. e: Finished application. Apply two standard “I” strips, one at a time, starting from the iliac crest and apply laterally toward the lumbar spine and across the QL muscle with 50–75% stretch to each strip, as shown in Figure 5.15 (a&b"
+    },
+    {
+      "filename": "images/embedded/p071_xref3048.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 71,
+      "page_book": 70,
+      "dimensions": "387x234",
+      "section_headings": [
+        "QUADRATUS LUMBORUM (QL) \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.15 (a&b).",
+        "Figure 5.15  a: First “I” strip applied laterally "
+      ],
+      "surrounding_text": "Figure 5.15  c: First “I” strip applied from the PSIS laterally across the QL muscle with 50–75% stretch. d: Second “I” strip applied from lumbar spine to lower ribs. e: Finished application. Apply two standard “I” strips, one at a time, starting from the iliac crest and apply laterally toward the lumbar spine and across the QL muscle with 50–75% stretch to each strip, as shown in Figure 5.15 (a&b"
+    },
+    {
+      "filename": "images/embedded/p072_xref3059.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 72,
+      "page_book": 71,
+      "dimensions": "414x620",
+      "section_headings": [
+        "RIB/INTERCOSTAL PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.16  Common sites of pain localized to ",
+        "Figure 5.17  First application of an “I” strip "
+      ],
+      "surrounding_text": "Intercostal muscle  strain Rib stress fractures are a rare occurrence unless training at least 12–14 sessions per week, like the elite rowing teams, or sustained from a direct blow, as may occur in contact sports such as football. As a physical therapist I have seen many rib stress fractures in my time at Oxford, especially as I have been treating Olympic and elite-level rowers for many years. At "
+    },
+    {
+      "filename": "images/embedded/p072_xref3155.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 72,
+      "page_book": 71,
+      "dimensions": "386x411",
+      "section_headings": [
+        "RIB/INTERCOSTAL PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.16  Common sites of pain localized to ",
+        "Figure 5.17  First application of an “I” strip "
+      ],
+      "surrounding_text": "Intercostal muscle  strain Rib stress fractures are a rare occurrence unless training at least 12–14 sessions per week, like the elite rowing teams, or sustained from a direct blow, as may occur in contact sports such as football. As a physical therapist I have seen many rib stress fractures in my time at Oxford, especially as I have been treating Olympic and elite-level rowers for many years. At "
+    },
+    {
+      "filename": "images/embedded/p073_xref3174.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 73,
+      "page_book": 72,
+      "dimensions": "386x512",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.18  Second application of an “I” strip ",
+        "Figure 5.19  Third application of an “I” strip "
+      ],
+      "surrounding_text": "Figure 5.19  Third application of an “I” strip crossing the area of rib pain. Figure 5.18  Second application of an “I” strip inferior to the area of the rib pain. 72  A Practical Guide to Kinesiology Taping for Injury Prevention and Common Medical Conditions"
+    },
+    {
+      "filename": "images/embedded/p073_xref3175.png",
+      "type": "embedded",
+      "source_chapter": "chapter_05",
+      "page_pdf": 73,
+      "page_book": 72,
+      "dimensions": "389x513",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 5.18  Second application of an “I” strip ",
+        "Figure 5.19  Third application of an “I” strip "
+      ],
+      "surrounding_text": "Figure 5.19  Third application of an “I” strip crossing the area of rib pain. Figure 5.18  Second application of an “I” strip inferior to the area of the rib pain. 72  A Practical Guide to Kinesiology Taping for Injury Prevention and Common Medical Conditions"
+    },
+    {
+      "filename": "images/embedded/p074_xref3200.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 74,
+      "page_book": 73,
+      "dimensions": "1007x642",
+      "section_headings": [
+        "RHOMBOID PAIN",
+        "KINESIOLOGY TAPING FOR THE"
+      ],
+      "figure_captions": [
+        "Figure 6.1  Mid-thoracic muscles (rhomboids "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING FOR THE UPPER BACK, NECK, AND CHEST C H A P T E R  6 MID-THORACIC AND RHOMBOID PAIN"
+    },
+    {
+      "filename": "images/embedded/p074_xref3198.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 74,
+      "page_book": 73,
+      "dimensions": "478x319",
+      "section_headings": [
+        "RHOMBOID PAIN",
+        "KINESIOLOGY TAPING FOR THE"
+      ],
+      "figure_captions": [
+        "Figure 6.1  Mid-thoracic muscles (rhomboids "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING FOR THE UPPER BACK, NECK, AND CHEST C H A P T E R  6 MID-THORACIC AND RHOMBOID PAIN"
+    },
+    {
+      "filename": "images/embedded/p075_xref3538.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 75,
+      "page_book": 74,
+      "dimensions": "384x487",
+      "section_headings": [
+        "S\nS\nF\nF",
+        "S\nS\nF\nF"
+      ],
+      "figure_captions": [
+        "Figure 6.2  First application of two “I” strips ",
+        "Figure 6.3  Second application of two “I” strips "
+      ],
+      "surrounding_text": "Figure 6.3  Second application of two “I” strips between the shoulder blades. 3.\t Heat activate the glue. Thoracic back pain and rhomboids"
+    },
+    {
+      "filename": "images/embedded/p075_xref3539.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 75,
+      "page_book": 74,
+      "dimensions": "384x437",
+      "section_headings": [
+        "S\nS\nF\nF",
+        "S\nS\nF\nF"
+      ],
+      "figure_captions": [
+        "Figure 6.2  First application of two “I” strips ",
+        "Figure 6.3  Second application of two “I” strips "
+      ],
+      "surrounding_text": "Figure 6.3  Second application of two “I” strips between the shoulder blades. 3.\t Heat activate the glue. Thoracic back pain and rhomboids"
+    },
+    {
+      "filename": "images/embedded/p076_xref3614.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 76,
+      "page_book": 75,
+      "dimensions": "384x419",
+      "section_headings": [
+        "POSTERIOR CERVICAL PAIN",
+        "F\nF\nS\nS"
+      ],
+      "figure_captions": [
+        "Figure 6.4  Posterior cervical muscles.",
+        "Figure 6.5  First application of two “I” strips to "
+      ],
+      "surrounding_text": "Levator scapulae Semispinalis Area of pain"
+    },
+    {
+      "filename": "images/embedded/p076_xref3616.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 76,
+      "page_book": 75,
+      "dimensions": "384x419",
+      "section_headings": [
+        "POSTERIOR CERVICAL PAIN",
+        "F\nF\nS\nS"
+      ],
+      "figure_captions": [
+        "Figure 6.4  Posterior cervical muscles.",
+        "Figure 6.5  First application of two “I” strips to "
+      ],
+      "surrounding_text": "Levator scapulae Semispinalis Area of pain"
+    },
+    {
+      "filename": "images/embedded/p077_xref3749.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 77,
+      "page_book": 76,
+      "dimensions": "319x479",
+      "section_headings": [
+        "CERVICAL SPINE: LEVATOR \nSCAPULAE/UPPER TRAPEZIUS \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.7  Pain located to the superior angle ",
+        "Figure 6.8  First application to the levator "
+      ],
+      "surrounding_text": "Levator scapulae strain Trapezius strain At the superior angle of the scapula is the attachment of the levator scapulae muscle; therefore, one might presume when a patient presents with pain to this area that the muscle is the problem. I agree that this muscle might be part of the whole picture of the patient’s symptoms, but one must also consider what other structures may"
+    },
+    {
+      "filename": "images/embedded/p077_xref5722.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 77,
+      "page_book": 76,
+      "dimensions": "384x452",
+      "section_headings": [
+        "CERVICAL SPINE: LEVATOR \nSCAPULAE/UPPER TRAPEZIUS \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.7  Pain located to the superior angle ",
+        "Figure 6.8  First application to the levator "
+      ],
+      "surrounding_text": "Levator scapulae strain Trapezius strain At the superior angle of the scapula is the attachment of the levator scapulae muscle; therefore, one might presume when a patient presents with pain to this area that the muscle is the problem. I agree that this muscle might be part of the whole picture of the patient’s symptoms, but one must also consider what other structures may"
+    },
+    {
+      "filename": "images/embedded/p078_xref6695.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 78,
+      "page_book": 77,
+      "dimensions": "388x491",
+      "section_headings": [
+        "POSTURAL TAPING"
+      ],
+      "figure_captions": [
+        "Figure 6.9  Second application to the ",
+        "Figure 6.10  Therapist applies the Big Daddy "
+      ],
+      "surrounding_text": "to retract their shoulders slightly to activate their rhomboids. The therapist splits the tape in the middle and peels some of the tape back and then applies the Big Daddy tape to the center of the patient’s back. The therapist locks the center of the tape and then increases the tension to 75% and lays it down across the scapula, as shown in Figure 6.10. 1.\t The patient is sitting and they are ask"
+    },
+    {
+      "filename": "images/embedded/p078_xref6696.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 78,
+      "page_book": 77,
+      "dimensions": "389x420",
+      "section_headings": [
+        "POSTURAL TAPING"
+      ],
+      "figure_captions": [
+        "Figure 6.9  Second application to the ",
+        "Figure 6.10  Therapist applies the Big Daddy "
+      ],
+      "surrounding_text": "to retract their shoulders slightly to activate their rhomboids. The therapist splits the tape in the middle and peels some of the tape back and then applies the Big Daddy tape to the center of the patient’s back. The therapist locks the center of the tape and then increases the tension to 75% and lays it down across the scapula, as shown in Figure 6.10. 1.\t The patient is sitting and they are ask"
+    },
+    {
+      "filename": "images/embedded/p079_xref6703.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 79,
+      "page_book": 78,
+      "dimensions": "388x455",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.11  a: Therapist applies the Big ",
+        "Figure 6.12  Therapist applies the postural strip "
+      ],
+      "surrounding_text": "1.\t The therapist cuts two longer “I” strips and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist then increases the tension to 75% and lays the tape down toward their lower back, as shown in Figure 6.12. The following technique is a continuation of the above. You have a "
+    },
+    {
+      "filename": "images/embedded/p079_xref6704.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 79,
+      "page_book": 78,
+      "dimensions": "387x392",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.11  a: Therapist applies the Big ",
+        "Figure 6.12  Therapist applies the postural strip "
+      ],
+      "surrounding_text": "1.\t The therapist cuts two longer “I” strips and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist then increases the tension to 75% and lays the tape down toward their lower back, as shown in Figure 6.12. The following technique is a continuation of the above. You have a "
+    },
+    {
+      "filename": "images/embedded/p079_xref6705.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 79,
+      "page_book": 78,
+      "dimensions": "388x448",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.11  a: Therapist applies the Big ",
+        "Figure 6.12  Therapist applies the postural strip "
+      ],
+      "surrounding_text": "1.\t The therapist cuts two longer “I” strips and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist then increases the tension to 75% and lays the tape down toward their lower back, as shown in Figure 6.12. The following technique is a continuation of the above. You have a "
+    },
+    {
+      "filename": "images/embedded/p080_xref6713.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 80,
+      "page_book": 79,
+      "dimensions": "389x405",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.13  a: Therapist applies the postural ",
+        "Figure 6.14  Therapist applies the postural "
+      ],
+      "surrounding_text": "and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist increases the tension to 75% and lays it down across the middle part of their back and toward the opposite lumbar spine. The same is repeated on the other side, as shown in Figure 6.14. 1.\t The therapist cuts two longer"
+    },
+    {
+      "filename": "images/embedded/p080_xref6714.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 80,
+      "page_book": 79,
+      "dimensions": "389x466",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.13  a: Therapist applies the postural ",
+        "Figure 6.14  Therapist applies the postural "
+      ],
+      "surrounding_text": "and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist increases the tension to 75% and lays it down across the middle part of their back and toward the opposite lumbar spine. The same is repeated on the other side, as shown in Figure 6.14. 1.\t The therapist cuts two longer"
+    },
+    {
+      "filename": "images/embedded/p080_xref6716.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 80,
+      "page_book": 79,
+      "dimensions": "389x378",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 6.13  a: Therapist applies the postural ",
+        "Figure 6.14  Therapist applies the postural "
+      ],
+      "surrounding_text": "and applies the first one from the supraclavicular fossa (above the clavicle). The patient is asked to pull their shoulders back and down to promote a better posture. The therapist increases the tension to 75% and lays it down across the middle part of their back and toward the opposite lumbar spine. The same is repeated on the other side, as shown in Figure 6.14. 1.\t The therapist cuts two longer"
+    },
+    {
+      "filename": "images/embedded/p081_xref6723.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 81,
+      "page_book": 80,
+      "dimensions": "388x261",
+      "section_headings": [
+        "PECTORAL STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.15  Therapist applies the first strip ",
+        "Figure 6.16 (a&b)."
+      ],
+      "surrounding_text": "Figure 6.15  Therapist applies the first strip with no stretch from the sternal fibers to the insertion point. Figure 6.16a  Therapist applies the first strip with no stretch from the clavicular fibers to the insertion point. Figure 6.16b  Finished technique."
+    },
+    {
+      "filename": "images/embedded/p081_xref6724.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 81,
+      "page_book": 80,
+      "dimensions": "389x280",
+      "section_headings": [
+        "PECTORAL STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.15  Therapist applies the first strip ",
+        "Figure 6.16 (a&b)."
+      ],
+      "surrounding_text": "Figure 6.15  Therapist applies the first strip with no stretch from the sternal fibers to the insertion point. Figure 6.16a  Therapist applies the first strip with no stretch from the clavicular fibers to the insertion point. Figure 6.16b  Finished technique."
+    },
+    {
+      "filename": "images/embedded/p081_xref6725.png",
+      "type": "embedded",
+      "source_chapter": "chapter_06",
+      "page_pdf": 81,
+      "page_book": 80,
+      "dimensions": "389x261",
+      "section_headings": [
+        "PECTORAL STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.15  Therapist applies the first strip ",
+        "Figure 6.16 (a&b)."
+      ],
+      "surrounding_text": "Figure 6.15  Therapist applies the first strip with no stretch from the sternal fibers to the insertion point. Figure 6.16a  Therapist applies the first strip with no stretch from the clavicular fibers to the insertion point. Figure 6.16b  Finished technique."
+    },
+    {
+      "filename": "images/embedded/p082_xref6735.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 82,
+      "page_book": 81,
+      "dimensions": "369x313",
+      "section_headings": [
+        "INFRASPINATUS PAIN"
+      ],
+      "figure_captions": [
+        "Figure 7.1 shows the three potential areas "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE UPPER LIMBS C H A P T E R  7 ROTATOR CUFF TENDINOPATHY: SUPRASPINATUS, BURSITIS, AND INFRASPINATUS PAIN"
+    },
+    {
+      "filename": "images/embedded/p082_xref6736.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 82,
+      "page_book": 81,
+      "dimensions": "671x428",
+      "section_headings": [
+        "INFRASPINATUS PAIN"
+      ],
+      "figure_captions": [
+        "Figure 7.1 shows the three potential areas "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE UPPER LIMBS C H A P T E R  7 ROTATOR CUFF TENDINOPATHY: SUPRASPINATUS, BURSITIS, AND INFRASPINATUS PAIN"
+    },
+    {
+      "filename": "images/embedded/p083_xref6750.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 83,
+      "page_book": 82,
+      "dimensions": "383x532",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.2  First application is used to offload ",
+        "Figure 7.1  Three painful areas that can be responsible for a patient’s pain."
+      ],
+      "surrounding_text": "their lower back, as this will stretch the supraspinatus and the infraspinatus muscles. Apply a “Y” strip from the area of pain: start at the anterior aspect of the shoulder to cover the supraspinatus, the inferior aspect of the acromion for the bursa, and the posterior aspect of the greater tubercle of the humerus for the infraspinatus (Fig. 7.3). Each tail of the tape offload the deltoid muscle."
+    },
+    {
+      "filename": "images/embedded/p083_xref6749.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 83,
+      "page_book": 82,
+      "dimensions": "342x513",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.2  First application is used to offload ",
+        "Figure 7.1  Three painful areas that can be responsible for a patient’s pain."
+      ],
+      "surrounding_text": "their lower back, as this will stretch the supraspinatus and the infraspinatus muscles. Apply a “Y” strip from the area of pain: start at the anterior aspect of the shoulder to cover the supraspinatus, the inferior aspect of the acromion for the bursa, and the posterior aspect of the greater tubercle of the humerus for the infraspinatus (Fig. 7.3). Each tail of the tape offload the deltoid muscle."
+    },
+    {
+      "filename": "images/embedded/p084_xref6894.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 84,
+      "page_book": 83,
+      "dimensions": "383x366",
+      "section_headings": [
+        "ACROMIOCLAVICULAR  \nJOINT SPRAIN"
+      ],
+      "figure_captions": [
+        "Figure 7.3  Second application to cover the ",
+        "Figure 7.4  ACJ sprain. "
+      ],
+      "surrounding_text": "Figure 7.3  Second application to cover the specific area of pain. Shoulder pain/rotator cuff and bursitis ACROMIOCLAVICULAR  JOINT SPRAIN"
+    },
+    {
+      "filename": "images/embedded/p084_xref6905.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 84,
+      "page_book": 83,
+      "dimensions": "233x349",
+      "section_headings": [
+        "ACROMIOCLAVICULAR  \nJOINT SPRAIN"
+      ],
+      "figure_captions": [
+        "Figure 7.3  Second application to cover the ",
+        "Figure 7.4  ACJ sprain. "
+      ],
+      "surrounding_text": "Figure 7.3  Second application to cover the specific area of pain. Shoulder pain/rotator cuff and bursitis ACROMIOCLAVICULAR  JOINT SPRAIN"
+    },
+    {
+      "filename": "images/embedded/p085_xref6940.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 85,
+      "page_book": 84,
+      "dimensions": "384x384",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.5  First application of an “I” strip ",
+        "Figure 7.6  Second application of an “I” strip "
+      ],
+      "surrounding_text": "Figure 7.7  Third application of an “I” strip across the ACJ. 4.\t Heat activate the glue. Figure 7.5  First application of an “I” strip across the ACJ."
+    },
+    {
+      "filename": "images/embedded/p085_xref6941.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 85,
+      "page_book": 84,
+      "dimensions": "384x384",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.5  First application of an “I” strip ",
+        "Figure 7.6  Second application of an “I” strip "
+      ],
+      "surrounding_text": "Figure 7.7  Third application of an “I” strip across the ACJ. 4.\t Heat activate the glue. Figure 7.5  First application of an “I” strip across the ACJ."
+    },
+    {
+      "filename": "images/embedded/p085_xref6942.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 85,
+      "page_book": 84,
+      "dimensions": "384x384",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.5  First application of an “I” strip ",
+        "Figure 7.6  Second application of an “I” strip "
+      ],
+      "surrounding_text": "Figure 7.7  Third application of an “I” strip across the ACJ. 4.\t Heat activate the glue. Figure 7.5  First application of an “I” strip across the ACJ."
+    },
+    {
+      "filename": "images/embedded/p086_xref6955.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 86,
+      "page_book": 85,
+      "dimensions": "267x400",
+      "section_headings": [
+        "BICEPS: LONG HEAD AND \nSHORT HEAD"
+      ],
+      "figure_captions": [
+        "Figure 7.8  Bicipital tendinopathy of the long ",
+        "Figure 7.9  First application of a “Y” strip "
+      ],
+      "surrounding_text": "Pain at the anterior aspect of the shoulder, as mentioned earlier, could be coming from the supraspinatus tendon. However, it could also be a tendinopathy of the long head of the biceps as this structure originates from the supraglenoid tubercle, penetrates through the shoulder structures, continues through the bicipital groove, and finally attaches to the radius and the bicipital aponeurosis (Fig"
+    },
+    {
+      "filename": "images/embedded/p086_xref7023.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 86,
+      "page_book": 85,
+      "dimensions": "383x481",
+      "section_headings": [
+        "BICEPS: LONG HEAD AND \nSHORT HEAD"
+      ],
+      "figure_captions": [
+        "Figure 7.8  Bicipital tendinopathy of the long ",
+        "Figure 7.9  First application of a “Y” strip "
+      ],
+      "surrounding_text": "Pain at the anterior aspect of the shoulder, as mentioned earlier, could be coming from the supraspinatus tendon. However, it could also be a tendinopathy of the long head of the biceps as this structure originates from the supraglenoid tubercle, penetrates through the shoulder structures, continues through the bicipital groove, and finally attaches to the radius and the bicipital aponeurosis (Fig"
+    },
+    {
+      "filename": "images/embedded/p087_xref7038.png",
+      "type": "embedded",
+      "source_chapter": "chapter_07",
+      "page_pdf": 87,
+      "page_book": 86,
+      "dimensions": "383x526",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.10  Second application of a small “I” "
+      ],
+      "surrounding_text": "Shoulder and  biceps pain 3.\t Heat activate the glue. Figure 7.10  Second application of a small “I” strip across the area of pain."
+    },
+    {
+      "filename": "images/embedded/p088_xref7047.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 88,
+      "page_book": 87,
+      "dimensions": "448x299",
+      "section_headings": [
+        "LATERAL EPICONDYLITIS: \nTENNIS ELBOW",
+        "AND WRIST"
+      ],
+      "figure_captions": [
+        "Figure 8.1 \nshows the ECRB.",
+        "Figure 8.1  Most common muscle responsible "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE FOREARM, HAND, AND WRIST C H A P T E R  8 LATERAL EPICONDYLITIS: TENNIS ELBOW"
+    },
+    {
+      "filename": "images/embedded/p088_xref7048.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 88,
+      "page_book": 87,
+      "dimensions": "1007x642",
+      "section_headings": [
+        "LATERAL EPICONDYLITIS: \nTENNIS ELBOW",
+        "AND WRIST"
+      ],
+      "figure_captions": [
+        "Figure 8.1 \nshows the ECRB.",
+        "Figure 8.1  Most common muscle responsible "
+      ],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES FOR THE FOREARM, HAND, AND WRIST C H A P T E R  8 LATERAL EPICONDYLITIS: TENNIS ELBOW"
+    },
+    {
+      "filename": "images/embedded/p089_xref7122.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 89,
+      "page_book": 88,
+      "dimensions": "385x264",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.4  Second application of a “Y” strip.",
+        "Figure 8.2  Two “kite”-shaped cutouts."
+      ],
+      "surrounding_text": "Figure 8.2  Two “kite”-shaped cutouts. 2.\t Insert the index and middle finger of the patient’s hand through the two cutouts. Then place the elbow into pronation and extension with the wrist placed into flexion. Apply the tape along the length of the ECRB tendon to the attachment on the lateral epicondyle, with little to no stretch (Fig. 8.3)."
+    },
+    {
+      "filename": "images/embedded/p089_xref7123.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 89,
+      "page_book": 88,
+      "dimensions": "389x282",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.4  Second application of a “Y” strip.",
+        "Figure 8.2  Two “kite”-shaped cutouts."
+      ],
+      "surrounding_text": "Figure 8.2  Two “kite”-shaped cutouts. 2.\t Insert the index and middle finger of the patient’s hand through the two cutouts. Then place the elbow into pronation and extension with the wrist placed into flexion. Apply the tape along the length of the ECRB tendon to the attachment on the lateral epicondyle, with little to no stretch (Fig. 8.3)."
+    },
+    {
+      "filename": "images/embedded/p089_xref7124.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 89,
+      "page_book": 88,
+      "dimensions": "389x280",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.4  Second application of a “Y” strip.",
+        "Figure 8.2  Two “kite”-shaped cutouts."
+      ],
+      "surrounding_text": "Figure 8.2  Two “kite”-shaped cutouts. 2.\t Insert the index and middle finger of the patient’s hand through the two cutouts. Then place the elbow into pronation and extension with the wrist placed into flexion. Apply the tape along the length of the ECRB tendon to the attachment on the lateral epicondyle, with little to no stretch (Fig. 8.3)."
+    },
+    {
+      "filename": "images/embedded/p090_xref7134.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 90,
+      "page_book": 89,
+      "dimensions": "459x306",
+      "section_headings": [
+        "MEDIAL EPICONDYLITIS AND"
+      ],
+      "figure_captions": [
+        "Figure 8.5  Pronator teres and its relationship ",
+        "Figure 8.6  First application of an “I” strip to "
+      ],
+      "surrounding_text": "Figure 8.5  Pronator teres and its relationship to the ulnar nerve. Pronator teres Ulnar nerve"
+    },
+    {
+      "filename": "images/embedded/p090_xref7210.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 90,
+      "page_book": 89,
+      "dimensions": "386x247",
+      "section_headings": [
+        "MEDIAL EPICONDYLITIS AND"
+      ],
+      "figure_captions": [
+        "Figure 8.5  Pronator teres and its relationship ",
+        "Figure 8.6  First application of an “I” strip to "
+      ],
+      "surrounding_text": "Figure 8.5  Pronator teres and its relationship to the ulnar nerve. Pronator teres Ulnar nerve"
+    },
+    {
+      "filename": "images/embedded/p090_xref7211.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 90,
+      "page_book": 89,
+      "dimensions": "388x260",
+      "section_headings": [
+        "MEDIAL EPICONDYLITIS AND"
+      ],
+      "figure_captions": [
+        "Figure 8.5  Pronator teres and its relationship ",
+        "Figure 8.6  First application of an “I” strip to "
+      ],
+      "surrounding_text": "Figure 8.5  Pronator teres and its relationship to the ulnar nerve. Pronator teres Ulnar nerve"
+    },
+    {
+      "filename": "images/embedded/p091_xref7241.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 91,
+      "page_book": 90,
+      "dimensions": "426x284",
+      "section_headings": [
+        "CARPAL TUNNEL SYNDROME",
+        "S\nF\nF\nS"
+      ],
+      "figure_captions": [
+        "Figure 8.8  Carpal tunnel syndrome.",
+        "Figure 8.9  Application of the tape to reduce "
+      ],
+      "surrounding_text": "Median nerve Carpal tunnel Figure 8.8  Carpal tunnel syndrome."
+    },
+    {
+      "filename": "images/embedded/p091_xref7260.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 91,
+      "page_book": 90,
+      "dimensions": "389x202",
+      "section_headings": [
+        "CARPAL TUNNEL SYNDROME",
+        "S\nF\nF\nS"
+      ],
+      "figure_captions": [
+        "Figure 8.8  Carpal tunnel syndrome.",
+        "Figure 8.9  Application of the tape to reduce "
+      ],
+      "surrounding_text": "Median nerve Carpal tunnel Figure 8.8  Carpal tunnel syndrome."
+    },
+    {
+      "filename": "images/embedded/p092_xref7401.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 92,
+      "page_book": 91,
+      "dimensions": "387x218",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.11  First application of an “I” strip ",
+        "Figure 8.12  Second application across the "
+      ],
+      "surrounding_text": "3.\t Heat activate the glue. Tendinitis of wrist and forearm Figure 8.12  Second application across the area of pain to provide decompression."
+    },
+    {
+      "filename": "images/embedded/p092_xref7400.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 92,
+      "page_book": 91,
+      "dimensions": "387x229",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.11  First application of an “I” strip ",
+        "Figure 8.12  Second application across the "
+      ],
+      "surrounding_text": "3.\t Heat activate the glue. Tendinitis of wrist and forearm Figure 8.12  Second application across the area of pain to provide decompression."
+    },
+    {
+      "filename": "images/embedded/p092_xref7468.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 92,
+      "page_book": 91,
+      "dimensions": "438x656",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.11  First application of an “I” strip ",
+        "Figure 8.12  Second application across the "
+      ],
+      "surrounding_text": "3.\t Heat activate the glue. Tendinitis of wrist and forearm Figure 8.12  Second application across the area of pain to provide decompression."
+    },
+    {
+      "filename": "images/embedded/p093_xref7573.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 93,
+      "page_book": 92,
+      "dimensions": "389x249",
+      "section_headings": [
+        "OSTEOARTHRITIS (OA) OF THE \nFIRST CARPOMETACARPAL \n(CMC) JOINT"
+      ],
+      "figure_captions": [
+        "Figure 8.13  Osteoarthritis of the first ",
+        "Figure 8.14  Three small “I” strips, one cut "
+      ],
+      "surrounding_text": "Perhaps surprisingly, it is the base of the thumb that is considered to be the first joint in the body that will suffer with arthritis, and potentially 30–40% of all men and women between the ages of 50 and 60 years old will suffer with this condition. I often ask massage therapists to be careful during treatments as too much use of the thumb might lead to early degenerative changes. OSTEOARTHRITI"
+    },
+    {
+      "filename": "images/embedded/p093_xref7574.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 93,
+      "page_book": 92,
+      "dimensions": "423x204",
+      "section_headings": [
+        "OSTEOARTHRITIS (OA) OF THE \nFIRST CARPOMETACARPAL \n(CMC) JOINT"
+      ],
+      "figure_captions": [
+        "Figure 8.13  Osteoarthritis of the first ",
+        "Figure 8.14  Three small “I” strips, one cut "
+      ],
+      "surrounding_text": "Perhaps surprisingly, it is the base of the thumb that is considered to be the first joint in the body that will suffer with arthritis, and potentially 30–40% of all men and women between the ages of 50 and 60 years old will suffer with this condition. I often ask massage therapists to be careful during treatments as too much use of the thumb might lead to early degenerative changes. OSTEOARTHRITI"
+    },
+    {
+      "filename": "images/embedded/p093_xref7575.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 93,
+      "page_book": 92,
+      "dimensions": "384x219",
+      "section_headings": [
+        "OSTEOARTHRITIS (OA) OF THE \nFIRST CARPOMETACARPAL \n(CMC) JOINT"
+      ],
+      "figure_captions": [
+        "Figure 8.13  Osteoarthritis of the first ",
+        "Figure 8.14  Three small “I” strips, one cut "
+      ],
+      "surrounding_text": "Perhaps surprisingly, it is the base of the thumb that is considered to be the first joint in the body that will suffer with arthritis, and potentially 30–40% of all men and women between the ages of 50 and 60 years old will suffer with this condition. I often ask massage therapists to be careful during treatments as too much use of the thumb might lead to early degenerative changes. OSTEOARTHRITI"
+    },
+    {
+      "filename": "images/embedded/p094_xref7584.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 94,
+      "page_book": 93,
+      "dimensions": "384x256",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.16  Apply another small “I” strip.",
+        "Figure 8.17  Apply another small “I” strip."
+      ],
+      "surrounding_text": "Once you have applied the three “I” small strips then the finished result should look like Figure 8.18. 4.\t Heat activate the glue. Figure 8.16  Apply another small “I” strip."
+    },
+    {
+      "filename": "images/embedded/p094_xref7585.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 94,
+      "page_book": 93,
+      "dimensions": "384x256",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.16  Apply another small “I” strip.",
+        "Figure 8.17  Apply another small “I” strip."
+      ],
+      "surrounding_text": "Once you have applied the three “I” small strips then the finished result should look like Figure 8.18. 4.\t Heat activate the glue. Figure 8.16  Apply another small “I” strip."
+    },
+    {
+      "filename": "images/embedded/p094_xref7586.png",
+      "type": "embedded",
+      "source_chapter": "chapter_08",
+      "page_pdf": 94,
+      "page_book": 93,
+      "dimensions": "384x256",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.16  Apply another small “I” strip.",
+        "Figure 8.17  Apply another small “I” strip."
+      ],
+      "surrounding_text": "Once you have applied the three “I” small strips then the finished result should look like Figure 8.18. 4.\t Heat activate the glue. Figure 8.16  Apply another small “I” strip."
+    },
+    {
+      "filename": "images/embedded/p096_xref7602.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 96,
+      "page_book": 95,
+      "dimensions": "671x428",
+      "section_headings": [],
+      "figure_captions": [],
+      "surrounding_text": "KINESIOLOGY TAPING TECHNIQUES TO CONTROL EDEMA (SWELLING) C H A P T E R  9 LYMPHATIC SYSTEM"
+    },
+    {
+      "filename": "images/embedded/p098_xref7620.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 98,
+      "page_book": 97,
+      "dimensions": "384x247",
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 9.2  An “I” strip being cut into the "
+      ],
+      "surrounding_text": "I have been known to say to my students, during kinesiology taping lectures, that once these techniques are learnt they will completely change their lives for the better, especially in terms of treating their athletes and patients. I have also mentioned time and time again during classes that I spent 5 years of my life, and a serious amount of money, becoming an osteopath, and yet I have had bette"
+    },
+    {
+      "filename": "images/embedded/p099_xref7628.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 99,
+      "page_book": 98,
+      "dimensions": "382x238",
+      "section_headings": [
+        "ANKLE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.3  A common swelling of the ankle joint.",
+        "Figure 9.5  Second application of the kinesiology "
+      ],
+      "surrounding_text": "Figure 9.3  A common swelling of the ankle joint. ANKLE EDEMA 3.\t Apply the second kinesiology “fan” tape"
+    },
+    {
+      "filename": "images/embedded/p099_xref7629.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 99,
+      "page_book": 98,
+      "dimensions": "632x422",
+      "section_headings": [
+        "ANKLE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.3  A common swelling of the ankle joint.",
+        "Figure 9.5  Second application of the kinesiology "
+      ],
+      "surrounding_text": "Figure 9.3  A common swelling of the ankle joint. ANKLE EDEMA 3.\t Apply the second kinesiology “fan” tape"
+    },
+    {
+      "filename": "images/embedded/p099_xref7631.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 99,
+      "page_book": 98,
+      "dimensions": "387x230",
+      "section_headings": [
+        "ANKLE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.3  A common swelling of the ankle joint.",
+        "Figure 9.5  Second application of the kinesiology "
+      ],
+      "surrounding_text": "Figure 9.3  A common swelling of the ankle joint. ANKLE EDEMA 3.\t Apply the second kinesiology “fan” tape"
+    },
+    {
+      "filename": "images/embedded/p100_xref7639.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 100,
+      "page_book": 99,
+      "dimensions": "391x411",
+      "section_headings": [
+        "KNEE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.6  Swelling of the knee joint.",
+        "Figure 9.7  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.6  Swelling of the knee joint. 1.\t Place the knee into flexion and apply the 2.\t Repeat the same technique, but this time"
+    },
+    {
+      "filename": "images/embedded/p100_xref7640.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 100,
+      "page_book": 99,
+      "dimensions": "473x709",
+      "section_headings": [
+        "KNEE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.6  Swelling of the knee joint.",
+        "Figure 9.7  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.6  Swelling of the knee joint. 1.\t Place the knee into flexion and apply the 2.\t Repeat the same technique, but this time"
+    },
+    {
+      "filename": "images/embedded/p100_xref7641.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 100,
+      "page_book": 99,
+      "dimensions": "384x256",
+      "section_headings": [
+        "KNEE EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.6  Swelling of the knee joint.",
+        "Figure 9.7  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.6  Swelling of the knee joint. 1.\t Place the knee into flexion and apply the 2.\t Repeat the same technique, but this time"
+    },
+    {
+      "filename": "images/embedded/p101_xref7650.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 101,
+      "page_book": 100,
+      "dimensions": "382x203",
+      "section_headings": [
+        "HEMATOMA/EDEMA OF THE THIGH"
+      ],
+      "figure_captions": [
+        "Figure 9.9  Shows a hematoma/bruising of ",
+        "Figure 9.10  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.9  Shows a hematoma/bruising of the anterior/lateral thigh. What you might consider to be a simple bruise or what an athlete may describe as a “dead leg” can actually be an “intramuscular hematoma” (i.e., bleeding within the muscle compartment) edema (Fig. 9.9). If left untreated, or indeed if treatment is over enthusiastic, this could lead to a more complicated condition called a “myosit"
+    },
+    {
+      "filename": "images/embedded/p101_xref7651.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 101,
+      "page_book": 100,
+      "dimensions": "427x285",
+      "section_headings": [
+        "HEMATOMA/EDEMA OF THE THIGH"
+      ],
+      "figure_captions": [
+        "Figure 9.9  Shows a hematoma/bruising of ",
+        "Figure 9.10  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.9  Shows a hematoma/bruising of the anterior/lateral thigh. What you might consider to be a simple bruise or what an athlete may describe as a “dead leg” can actually be an “intramuscular hematoma” (i.e., bleeding within the muscle compartment) edema (Fig. 9.9). If left untreated, or indeed if treatment is over enthusiastic, this could lead to a more complicated condition called a “myosit"
+    },
+    {
+      "filename": "images/embedded/p101_xref7652.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 101,
+      "page_book": 100,
+      "dimensions": "382x235",
+      "section_headings": [
+        "HEMATOMA/EDEMA OF THE THIGH"
+      ],
+      "figure_captions": [
+        "Figure 9.9  Shows a hematoma/bruising of ",
+        "Figure 9.10  First application of the “fan” "
+      ],
+      "surrounding_text": "Figure 9.9  Shows a hematoma/bruising of the anterior/lateral thigh. What you might consider to be a simple bruise or what an athlete may describe as a “dead leg” can actually be an “intramuscular hematoma” (i.e., bleeding within the muscle compartment) edema (Fig. 9.9). If left untreated, or indeed if treatment is over enthusiastic, this could lead to a more complicated condition called a “myosit"
+    },
+    {
+      "filename": "images/embedded/p102_xref7661.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 102,
+      "page_book": 101,
+      "dimensions": "386x207",
+      "section_headings": [
+        "FOREARM EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.12  Swelling/compartment syndrome ",
+        "Figure 9.13  First application of the “fan” "
+      ],
+      "surrounding_text": "I was first shown this technique by a student who was on my kinesiology course in Ireland. She was a professional motorcyclist and demonstrated a technique used by a physiotherapist, before every event, as a preventative measure for a condition called “muscular pump” of the forearms. I have now used this technique numerous times with the rowers at Oxford, as it also helps reduce the possibility of"
+    },
+    {
+      "filename": "images/embedded/p102_xref7662.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 102,
+      "page_book": 101,
+      "dimensions": "427x285",
+      "section_headings": [
+        "FOREARM EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.12  Swelling/compartment syndrome ",
+        "Figure 9.13  First application of the “fan” "
+      ],
+      "surrounding_text": "I was first shown this technique by a student who was on my kinesiology course in Ireland. She was a professional motorcyclist and demonstrated a technique used by a physiotherapist, before every event, as a preventative measure for a condition called “muscular pump” of the forearms. I have now used this technique numerous times with the rowers at Oxford, as it also helps reduce the possibility of"
+    },
+    {
+      "filename": "images/embedded/p102_xref7663.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 102,
+      "page_book": 101,
+      "dimensions": "382x254",
+      "section_headings": [
+        "FOREARM EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.12  Swelling/compartment syndrome ",
+        "Figure 9.13  First application of the “fan” "
+      ],
+      "surrounding_text": "I was first shown this technique by a student who was on my kinesiology course in Ireland. She was a professional motorcyclist and demonstrated a technique used by a physiotherapist, before every event, as a preventative measure for a condition called “muscular pump” of the forearms. I have now used this technique numerous times with the rowers at Oxford, as it also helps reduce the possibility of"
+    },
+    {
+      "filename": "images/embedded/p103_xref7672.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 103,
+      "page_book": 102,
+      "dimensions": "384x330",
+      "section_headings": [
+        "SHOULDER EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.15  General swelling of the shoulder ",
+        "Figure 9.16  First application of the “fan” "
+      ],
+      "surrounding_text": "Swelling of the shoulder is quite rare to see by comparison to the ankle joint, where swelling is a bit more obvious. If a patient has pain all over the shoulder joint, i.e., not localized to one area, then this next technique will work very well to help reduce the swelling and pain (Fig. 9.15). Patients who have “capsulitis,” more commonly known as a “frozen shoulder,” will have pain affecting th"
+    },
+    {
+      "filename": "images/embedded/p103_xref7673.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 103,
+      "page_book": 102,
+      "dimensions": "385x576",
+      "section_headings": [
+        "SHOULDER EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.15  General swelling of the shoulder ",
+        "Figure 9.16  First application of the “fan” "
+      ],
+      "surrounding_text": "Swelling of the shoulder is quite rare to see by comparison to the ankle joint, where swelling is a bit more obvious. If a patient has pain all over the shoulder joint, i.e., not localized to one area, then this next technique will work very well to help reduce the swelling and pain (Fig. 9.15). Patients who have “capsulitis,” more commonly known as a “frozen shoulder,” will have pain affecting th"
+    },
+    {
+      "filename": "images/embedded/p103_xref7674.png",
+      "type": "embedded",
+      "source_chapter": "chapter_09",
+      "page_pdf": 103,
+      "page_book": 102,
+      "dimensions": "384x350",
+      "section_headings": [
+        "SHOULDER EDEMA"
+      ],
+      "figure_captions": [
+        "Figure 9.15  General swelling of the shoulder ",
+        "Figure 9.16  First application of the “fan” "
+      ],
+      "surrounding_text": "Swelling of the shoulder is quite rare to see by comparison to the ankle joint, where swelling is a bit more obvious. If a patient has pain all over the shoulder joint, i.e., not localized to one area, then this next technique will work very well to help reduce the swelling and pain (Fig. 9.15). Patients who have “capsulitis,” more commonly known as a “frozen shoulder,” will have pain affecting th"
+    },
+    {
+      "filename": "images/pages/anatomy_p034-034.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 34,
+      "page_book": 33,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.1  Plantar fascia, showing the site of "
+      ],
+      "surrounding_text": "C H A P T E R  2\nKINESIOLOGY TAPING TECHNIQUES \nFOR THE LOWER LIMBS\nPLANTAR FASCIITIS/HEEL  \nPAIN/FAT PAD SYNDROME\nThe plantar fascia is a thick fibrous band of \nconnective tissue that links the calcaneus \n(heel bone) to the metatarsals. Pain tends \nto present itself at the attachment to the \ncalcaneus (Fig. 2.1) and it has been known \nto lead to a heel spur if left untreated. This \ncondition is quite common and can be \ndifficult to treat as the pain is on the plantar \n(underneath) surface of th"
+    },
+    {
+      "filename": "images/pages/anatomy_p036-036.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 36,
+      "page_book": 35,
+      "dpi": 200,
+      "section_headings": [
+        "ANKLE INVERSION SPRAIN/\nPERONEAL MUSCLE STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 2.4  Lateral ligaments/peroneal muscles drawn onto an ankle."
+      ],
+      "surrounding_text": "ANKLE INVERSION SPRAIN/\nPERONEAL MUSCLE STRAIN\nThousands of people per day twist their ankle \nby a motion known as an inversion sprain. \nThis mechanism can stretch and even tear \nthe lateral ligaments as well as the muscles \nand accounts for approximately 85% of all \nankle injuries. The common ligaments to be \ninjured are the anterior talofibular ligament \n(ATFL) and the calcaneofibular ligament \n(CFL), as shown in Figure 2.4. The muscle \ngroup that tends to be strained due to the \ninjury mechan"
+    },
+    {
+      "filename": "images/pages/anatomy_p040-040.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 40,
+      "page_book": 39,
+      "dpi": 200,
+      "section_headings": [
+        "ACHILLES TENDINOPATHY"
+      ],
+      "figure_captions": [
+        "Figure 2.12  First taping application to ",
+        "Figure 2.13  Third and fourth taping ",
+        "Figure 2.14  Achilles tendinitis/tendinosis."
+      ],
+      "surrounding_text": "Figure 2.12  First taping application to \nstabilize the lateral ligaments and peroneals.\nThe patient then applies a second “I” strip \nand overlaps the first strip, as shown in \nearlier figures. Next the patient applies two \nsmaller “I” strips in a transverse direction, \nas shown in Figure 2.13.\nFigure 2.13  Third and fourth taping \napplication from the medial side and finishing \nacross and below the lateral malleolus.\nAnkle inversion \nsprain self-taping\nACHILLES TENDINOPATHY\nThis is one of my fa"
+    },
+    {
+      "filename": "images/pages/anatomy_p043-043.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 43,
+      "page_book": 42,
+      "dpi": 200,
+      "section_headings": [
+        "CALF STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 2.22  First taping application starting ",
+        "Figure 2.21  MTJ strain of the gastrocnemius."
+      ],
+      "surrounding_text": "CALF STRAIN\nThe calf consists of a group of muscles \ncollectively called the triceps surae and \nindividually referred to as the gastrocnemius \nand soleus muscles. Strains of this muscle \ngroup are very common with athletes and \npain is frequently associated with either \nthe musculotendinous junction (MTJ) \ncomponent, as shown with Figure 2.21, or \na muscular strain/tear in the actual belly of \nthe gastrocnemius or soleus muscle. The \ntechnique I will demonstrate works very \nwell on both soft-tis"
+    },
+    {
+      "filename": "images/pages/anatomy_p044-044.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 44,
+      "page_book": 43,
+      "dpi": 200,
+      "section_headings": [
+        "MEDIAL TIBIAL STRESS \nSYNDROME/POSTERIOR \nCOMPARTMENT SYNDROME \n(SHIN SPLINTS)"
+      ],
+      "figure_captions": [
+        "Figure 2.23  Second taping application directly ",
+        "Figure 2.24  Periostitis/shin splints of the medial border of the tibia, as well as the associated "
+      ],
+      "surrounding_text": "2.\t Apply a smaller “I” strip across the painful \nsite with 75–100% stretch of the tape and \nno stretch at the ends (Figure 2.23).\nS\nF\nFigure 2.23  Second taping application directly \nacross the site of pain with a small “I” strip.\n3.\t Heat activate the glue.\nCalf strain \n(gastrocnemius/\nsoleus)\nFigure 2.24  Periostitis/shin splints of the medial border of the tibia, as well as the associated \nmuscles.\nTibialis anterior\nTom\nDick\nHarry\nTibialis posterior\nFlexor digitorum\nlongus\nFlexor hallucis\nlo"
+    },
+    {
+      "filename": "images/pages/anatomy_p046-046.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_02",
+      "page_pdf": 46,
+      "page_book": 45,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 2.27  Anterior shin pain caused by tendinopathy of the tibialis anterior and anterior ",
+        "Figure 2.28  First application of the tape ",
+        "Figure 2.29  Second application of the tape "
+      ],
+      "surrounding_text": "Figure 2.27  Anterior shin pain caused by tendinopathy of the tibialis anterior and anterior \ncompartment syndrome.\nAnterior tibialis \ntendinopathy\nExtensor digitorum longus\nAnterior compartment \nsyndrome\nExtensor hallucis longus\n1.\t Ask the patient to adopt a long sitting \nposition and to place their ankle into a \nplantar-flexed position. Evert their foot \nso that the tibialis anterior muscle is \non stretch. Apply an “I” strip from the \nmedial side of their foot onto the medial \ncuneiform bone "
+    },
+    {
+      "filename": "images/pages/anatomy_p048-048.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_03",
+      "page_pdf": 48,
+      "page_book": 47,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 3.1  General knee pain/PFPS."
+      ],
+      "surrounding_text": "C H A P T E R  3\nKINESIOLOGY TAPING TECHNIQUES \nFOR THE KNEE JOINT\nGENERAL KNEE PAIN/\nPATELLOFEMORAL PAIN \nSYNDROME\nPatellofemoral pain syndrome (PFPS) is a \npainful condition that can relate to a type \nof mal-tracking of the kneecap (patella) \n(see Fig. 3.1). There are many causes for \nthis condition, such as an over-pronation \nof the subtalar joint (STJ) of the ankle \nand poor foot biomechanics. Weakness \nof the inner quadriceps muscle (called \nthe vastus medialis) can also contribute \nto PFPS"
+    },
+    {
+      "filename": "images/pages/anatomy_p050-050.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_03",
+      "page_pdf": 50,
+      "page_book": 49,
+      "dpi": 200,
+      "section_headings": [
+        "FULL KNEE TAPING: PFPS/\nPATELLAR TENDINOPATHY/",
+        "DISEASE/BURSITIS"
+      ],
+      "figure_captions": [
+        "Figure 3.5  Small “I” strip applied across the ",
+        "Figure 3.4  General knee pain/PFPS."
+      ],
+      "surrounding_text": "FULL KNEE TAPING: PFPS/\nPATELLAR TENDINOPATHY/\nOSGOOD-SCHLATTER’S  \nDISEASE/BURSITIS\nAny athlete who presents with pain inferior \nto the patella may also have pain in other soft \ntissues, such as the soft-tissue structure known \nas the patellar tendon. However, the pain \ncould be due to other associated structures \nthat sit on top of the tibial plateau, e.g., fat pad, \ninfrapatellar bursa, and even the meniscus. \nIf, for example, a basketball player \npresents with pain to this area then it can \n"
+    },
+    {
+      "filename": "images/pages/anatomy_p054-054.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_03",
+      "page_pdf": 54,
+      "page_book": 53,
+      "dpi": 200,
+      "section_headings": [
+        "LATERAL KNEE PAIN: ILIOTIBIAL \nBAND FRICTION SYNDROME/\nLATERAL MENISCUS/LATERAL \nCOLLATERAL LIGAMENT (LCL)"
+      ],
+      "figure_captions": [
+        "Figure 3.13  How it should look after the tape ",
+        "Figure 3.14  ITBFS/lateral meniscus and the LCL."
+      ],
+      "surrounding_text": "Once you have applied the tape then the \nknee should look like Figure 3.13.\nFigure 3.13  How it should look after the tape \nhas been applied.\n4.\t Heat activate the glue.\nLATERAL KNEE PAIN: ILIOTIBIAL \nBAND FRICTION SYNDROME/\nLATERAL MENISCUS/LATERAL \nCOLLATERAL LIGAMENT (LCL)\nI personally believe that everyone who \nenjoys running, whether competitively or \nrecreationally, will, at some stage in their \nlife, experience one of these conditions \nto the lateral side of their knee to varying \ndegrees"
+    },
+    {
+      "filename": "images/pages/anatomy_p056-056.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_03",
+      "page_pdf": 56,
+      "page_book": 55,
+      "dpi": 200,
+      "section_headings": [
+        "MEDIAL KNEE PAIN: MEDIAL \nCOLLATERAL LIGAMENT/ \nMEDIAL MENISCUS"
+      ],
+      "figure_captions": [
+        "Figure 3.18  MCL sprain/medial meniscus tear.",
+        "Figure 3.19  First application to the MCL.",
+        "Figure 3.20  Second application of the  "
+      ],
+      "surrounding_text": "MEDIAL KNEE PAIN: MEDIAL \nCOLLATERAL LIGAMENT/ \nMEDIAL MENISCUS\nMedial collateral ligament (MCL) sprains \nand tears, as well as injuries to the medial \nmeniscus, are considered to be some of the \nmost common injuries, especially in sports \nand activities like football and skiing. The \nMCL, in particular, restricts the motion of \na movement called “valgus.” This means the \nknee is restricted from moving inwards, so \nany excessive force in this plane will often \nresult in the ligament becoming str"
+    },
+    {
+      "filename": "images/pages/anatomy_p058-058.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_04",
+      "page_pdf": 58,
+      "page_book": 57,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 4.1  Hamstring muscle group. "
+      ],
+      "surrounding_text": "C H A P T E R  4\nKINESIOLOGY TAPING TECHNIQUES \nFOR THE ANTERIOR/POSTERIOR THIGH\nHAMSTRING TIGHTNESS/FATIGUE\nI treat a lot of endurance athletes, and it \nhas been mentioned to me many times by \nmy patients that their hamstrings (Fig. 4.1) \nare a constant source of pain and perceived \ntightness, or even fatigue, especially after a \nfew hours of sustained exercising.\nRecently I have had good success from \napplying kinesiology taping to the \nhamstrings, as this helps reduce the pain \nand even the f"
+    },
+    {
+      "filename": "images/pages/anatomy_p060-060.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_04",
+      "page_pdf": 60,
+      "page_book": 59,
+      "dpi": 200,
+      "section_headings": [
+        "HAMSTRING STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.4  Semitendinosus strain.",
+        "Figure 4.5  First application to the ",
+        "Figure 4.6  Second application of the tape "
+      ],
+      "surrounding_text": "HAMSTRING STRAIN\nThe next kinesiology taping technique \ncan be applied specifically for the lateral \nhamstring, called the biceps femoris, \nor for the medial hamstrings, called the \nsemitendinosus and semimembranosus. \nThrough my experience I have encountered \nmany strains of the biceps femoris and the \nsemitendinosus. Based on this knowledge, \nthe technique of choice is to tape the \nsemitendinosus, as shown with Figure 4.4. \nIf the muscular strain is on the lateral side \n(biceps femoris) of the"
+    },
+    {
+      "filename": "images/pages/anatomy_p061-061.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_04",
+      "page_pdf": 61,
+      "page_book": 60,
+      "dpi": 200,
+      "section_headings": [
+        "RECTUS FEMORIS STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.7  Third application of the tape using ",
+        "Figure 4.8 shows ",
+        "Figure 4.8  Common sites of injury for the "
+      ],
+      "surrounding_text": "3.\t Using another small “I” strip, place \nthis one with 75–100% stretch across \nthe area of the other “I” strip, already \npositioned across the pain, so that \nit looks like an “X” once completed \n(Fig. 4.7).\nFigure 4.7  Third application of the tape using \na small “I” strip to form an “X” shape across \nthe hamstring strain.\n4.\t Heat activate the glue.\nHamstring strain\nRECTUS FEMORIS STRAIN\nThe rectus femoris muscle is often injured \nin sports that involve sprinting and \nkicking, e.g., football a"
+    },
+    {
+      "filename": "images/pages/anatomy_p063-063.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_04",
+      "page_pdf": 63,
+      "page_book": 62,
+      "dpi": 200,
+      "section_headings": [
+        "ADDUCTOR STRAIN"
+      ],
+      "figure_captions": [
+        "Figure 4.12 shows a muscular strain of the ",
+        "Figure 4.13  First application to the adductor ",
+        "Figure 4.14  Second application of the tape "
+      ],
+      "surrounding_text": "ADDUCTOR STRAIN\nPhysical therapists who treat football \nand rugby players in particular must \nsee adductor strains all the time, and I \npersonally have had my fair share of this \ntype of muscular strain. Just bear in mind \nthat groin pain can relate to underlying \npathological changes to the hip joint, as well \nas a multitude of other conditions. However, \nif the pain is due to a muscular strain of the \nadductors, then kinesiology taping will help. \nFigure 4.12 shows a muscular strain of the \nad"
+    },
+    {
+      "filename": "images/pages/anatomy_p064-064.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_05",
+      "page_pdf": 64,
+      "page_book": 63,
+      "dpi": 200,
+      "section_headings": [
+        "AND PELVIS\nGLUTEAL AND PIRIFORMIS PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.1 shows areas of the buttocks that ",
+        "Figure 5.1  Common causes for pain within "
+      ],
+      "surrounding_text": "C H A P T E R  5\nKINESIOLOGY TAPING TECHNIQUES \nFOR THE LOWER BACK, TRUNK, \nAND PELVIS\nGLUTEAL AND PIRIFORMIS PAIN\nI have lost count of how many patients have \npresented to my clinic with pain located to \nthe central aspect of their buttocks. Physical \ntherapists will have their own hypotheses \non what is causing the patient’s presenting \npain: perhaps the pain is coming from an \narea of the lumbar spine, such as a facet \njoint, or perhaps it could even be coming \nfrom a lumbar spine disc pathol"
+    },
+    {
+      "filename": "images/pages/anatomy_p066-066.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_05",
+      "page_pdf": 66,
+      "page_book": 65,
+      "dpi": 200,
+      "section_headings": [
+        "LUMBAR SPINE PATHOLOGY"
+      ],
+      "figure_captions": [
+        "Figure 5.5 \nshows some common sites of pain localized ",
+        "Figure 5.5  Common sites of pain to the lower back."
+      ],
+      "surrounding_text": "LUMBAR SPINE PATHOLOGY\nMany of the athletes and patients who visit \nmy clinic have pain located to the lower \nback, sacroiliac joint (SIJ), or neck (cervical \narea). Therefore, the lower back is one of \nthe commonest areas that I treat, and, as \nfour out of five patients will have back pain \nat some point in their lives, it is a good idea \nfor physical therapists to become familiar \nwith assessing and treating this region. \nKinesiology taping, in my experience, works \nvery well for stabilizing t"
+    },
+    {
+      "filename": "images/pages/anatomy_p068-068.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_05",
+      "page_pdf": 68,
+      "page_book": 67,
+      "dpi": 200,
+      "section_headings": [
+        "SACROILIAC JOINT DYSFUNCTION"
+      ],
+      "figure_captions": [
+        "Figure 5.8  SIJ dysfunction.",
+        "Figure 5.9  First application of an “I” strip "
+      ],
+      "surrounding_text": "SACROILIAC JOINT DYSFUNCTION\nPain that is isolated to the inferior lateral \naspect of the lower back might be coming \nfrom the SIJ. This is a very common area of \npain with all types of patients, not just those \nwho are active.\nThe SIJ, as shown by Figure 5.8, can be \nhelped by the following kinesiology taping \ntechnique, especially if the pain is very acute \nand the patient is in too much discomfort \nfor traditional types of treatment: \nmobilizations and soft-tissue massage.\nFigure 5.8  SIJ dys"
+    },
+    {
+      "filename": "images/pages/anatomy_p072-072.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_05",
+      "page_pdf": 72,
+      "page_book": 71,
+      "dpi": 200,
+      "section_headings": [
+        "RIB/INTERCOSTAL PAIN"
+      ],
+      "figure_captions": [
+        "Figure 5.16  Common sites of pain localized to ",
+        "Figure 5.17  First application of an “I” strip "
+      ],
+      "surrounding_text": "RIB/INTERCOSTAL PAIN\nRib stress fractures are a rare occurrence \nunless training at least 12–14 sessions \nper week, like the elite rowing teams, or \nsustained from a direct blow, as may occur \nin contact sports such as football. As a \nphysical therapist I have seen many rib stress \nfractures in my time at Oxford, especially as \nI have been treating Olympic and elite-level \nrowers for many years. At the end of the day, \nif a bone scan confirms the diagnosis of a \nstress fracture, nature is by far"
+    },
+    {
+      "filename": "images/pages/anatomy_p074-074.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_06",
+      "page_pdf": 74,
+      "page_book": 73,
+      "dpi": 200,
+      "section_headings": [
+        "RHOMBOID PAIN",
+        "KINESIOLOGY TAPING FOR THE"
+      ],
+      "figure_captions": [
+        "Figure 6.1  Mid-thoracic muscles (rhomboids "
+      ],
+      "surrounding_text": "MID-THORACIC AND \nRHOMBOID PAIN\nKaratas et al. (2012) found, through their \nstudy of surgeons who presented with \nmusculoskeletal pain, that Kinesio Taping \nmade a significant improvement to the range \nof motion (ROM) of the cervical spine as \nwell as providing a reduction in pain. They \nconcluded that Kinesio Taping would be \nan effective method for reducing neck and \nlower back pain and improving cervical and \nlumbar ROM and functional performance. \nPain that presents itself to the mid-\nthorac"
+    },
+    {
+      "filename": "images/pages/anatomy_p076-076.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_06",
+      "page_pdf": 76,
+      "page_book": 75,
+      "dpi": 200,
+      "section_headings": [
+        "POSTERIOR CERVICAL PAIN",
+        "F\nF\nS\nS"
+      ],
+      "figure_captions": [
+        "Figure 6.4  Posterior cervical muscles.",
+        "Figure 6.5  First application of two “I” strips to ",
+        "Figure 6.6  Second application of one “I” strip "
+      ],
+      "surrounding_text": "POSTERIOR CERVICAL PAIN\nThe following technique is fantastic for \nhelping to reduce pain to the area posterior \nto the neck. If a patient complains of pain to \nthe base of the neck, and it is on both sides, \nthen the following technique is perfect as it \ncan really help reduce their symptoms. There \nare a multitude of causes for this type of pain. \nMany of my patients have muscle pain or a \nperceived muscular tightness, which is often \ndue to habitual movements/lifestyle and is a \nroutine source"
+    },
+    {
+      "filename": "images/pages/anatomy_p077-077.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_06",
+      "page_pdf": 77,
+      "page_book": 76,
+      "dpi": 200,
+      "section_headings": [
+        "CERVICAL SPINE: LEVATOR \nSCAPULAE/UPPER TRAPEZIUS \nSTRAIN"
+      ],
+      "figure_captions": [
+        "Figure 6.7  Pain located to the superior angle ",
+        "Figure 6.8  First application to the levator "
+      ],
+      "surrounding_text": "CERVICAL SPINE: LEVATOR \nSCAPULAE/UPPER TRAPEZIUS \nSTRAIN\nGonzález-Iglesias et al. (2009) conducted \nthe study “Short-term effects of cervical \nKinesio Taping on pain and cervical ROM \nin patients with acute whiplash injury.” They \nconcluded that when patients presented \nwith acute whiplash-associated conditions, \nkinesiology taping exhibited statistically \nsignificant improvements immediately \nfollowing application and at a 24-hour \nfollow-up. \nAt the superior angle of the scapula is the \nattac"
+    },
+    {
+      "filename": "images/pages/anatomy_p083-083.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_07",
+      "page_pdf": 83,
+      "page_book": 82,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 7.2  First application is used to offload ",
+        "Figure 7.1  Three painful areas that can be responsible for a patient’s pain."
+      ],
+      "surrounding_text": "1.\t The first technique is applied to help \noffload the deltoid muscle. If any \nshoulder issues are present then this \ntechnique is generally done first. Apply \na “Y” strip from the deltoid tuberosity, \nplace the anterior deltoid into a \nstretched position and apply one tail of \nthe tape to the anterior deltoid. Then \nplace the posterior deltoid into a stretch \nand apply the second tail of the tape to \nthe posterior deltoid, with little to no \nstretch (Fig. 7.2).\n2.\t Ask the patient to place the"
+    },
+    {
+      "filename": "images/pages/anatomy_p084-084.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_07",
+      "page_pdf": 84,
+      "page_book": 83,
+      "dpi": 200,
+      "section_headings": [
+        "ACROMIOCLAVICULAR  \nJOINT SPRAIN"
+      ],
+      "figure_captions": [
+        "Figure 7.3  Second application to cover the ",
+        "Figure 7.4  ACJ sprain. "
+      ],
+      "surrounding_text": "is applied with a 75% stretch. You can also \nask the patient to retract their shoulder \nslightly as this will enhance its position \nprior to the application of the tape.\nFigure 7.3  Second application to cover the \nspecific area of pain.\nF\nF\nS\n3.\t Heat activate the glue.\nShoulder pain/rotator \ncuff and bursitis\nACROMIOCLAVICULAR  \nJOINT SPRAIN\nWhen I was a physical therapist working \nwith a rugby team, sprains of the \nacromioclavicular joint (ACJ) were a \nregular occurrence, almost to the point "
+    },
+    {
+      "filename": "images/pages/anatomy_p086-086.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_07",
+      "page_pdf": 86,
+      "page_book": 85,
+      "dpi": 200,
+      "section_headings": [
+        "BICEPS: LONG HEAD AND \nSHORT HEAD"
+      ],
+      "figure_captions": [
+        "Figure 7.8  Bicipital tendinopathy of the long ",
+        "Figure 7.9  First application of a “Y” strip "
+      ],
+      "surrounding_text": "BICEPS: LONG HEAD AND \nSHORT HEAD\nFratocchi et al. (2012) conducted a study \nto see if Kinesio Taping applied over the \nbiceps brachii influenced isokinetic elbow \npeak torque. They concluded that there was \nindeed an increase in the concentric elbow \npeak torque for a group of healthy subjects.\nPain at the anterior aspect of the shoulder, \nas mentioned earlier, could be coming from \nthe supraspinatus tendon. However, it could \nalso be a tendinopathy of the long head \nof the biceps as this struc"
+    },
+    {
+      "filename": "images/pages/anatomy_p088-088.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_08",
+      "page_pdf": 88,
+      "page_book": 87,
+      "dpi": 200,
+      "section_headings": [
+        "LATERAL EPICONDYLITIS: \nTENNIS ELBOW",
+        "AND WRIST"
+      ],
+      "figure_captions": [
+        "Figure 8.1 \nshows the ECRB.",
+        "Figure 8.1  Most common muscle responsible "
+      ],
+      "surrounding_text": "LATERAL EPICONDYLITIS: \nTENNIS ELBOW\nElbow pain, especially on the lateral side, \ncan be very intense and debilitating for \npatients. Sometimes even just lifting a coffee \ncup can cause excruciating pain. When \napplying kinesiology tape to this area of \npain, ensure that it is not a referred pattern \nof pain coming from the cervical spine (C6/\nC7) rather than directly from the elbow. \nOne simple test I ask my patients to do, \nto confirm that it is a muscular issue and \nnot a referred pain, is to"
+    },
+    {
+      "filename": "images/pages/anatomy_p090-090.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_08",
+      "page_pdf": 90,
+      "page_book": 89,
+      "dpi": 200,
+      "section_headings": [
+        "MEDIAL EPICONDYLITIS AND"
+      ],
+      "figure_captions": [
+        "Figure 8.5  Pronator teres and its relationship ",
+        "Figure 8.6  First application of an “I” strip to ",
+        "Figure 8.7  Second application of a smaller "
+      ],
+      "surrounding_text": "MEDIAL EPICONDYLITIS AND \nULNAR NERVE: GOLFER’S ELBOW\nWhen I was a physical trainer with the \narmy I liked climbing ropes as I found \nthis exercise very effective for building my \nstrength. However, over time I would feel \npain to the inside aspect of my elbow and \nI was told I had golfer’s elbow, even though \nI did not play golf. This condition can \nbasically affect anybody, and it is normally \ncaused by one particular muscle, pronator \nteres (Fig. 8.5). This muscle originates at the \nmedial ep"
+    },
+    {
+      "filename": "images/pages/anatomy_p091-091.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_08",
+      "page_pdf": 91,
+      "page_book": 90,
+      "dpi": 200,
+      "section_headings": [
+        "CARPAL TUNNEL SYNDROME",
+        "S\nF\nF\nS",
+        "INTERSECTION SYNDROME AND"
+      ],
+      "figure_captions": [
+        "Figure 8.8  Carpal tunnel syndrome.",
+        "Figure 8.9  Application of the tape to reduce ",
+        "Figure 8.10 shows these two conditions of "
+      ],
+      "surrounding_text": "CARPAL TUNNEL SYNDROME\nThe carpal tunnel is located between the \nfour palpable bones in the wrist, called the \npisiform, hamate, scaphoid, and trapezium. \nThrough this tunnel pass the median \nnerve and the superficial and deep flexor \nfinger tendons. Carpal tunnel syndrome \nis basically a compression of the median \nnerve, and one particular cause of this \nsyndrome is an overuse condition called \n“tenosynovitis” of the flexor tendons. The \ntendons become inflamed and subsequently \ncause a compres"
+    },
+    {
+      "filename": "images/pages/anatomy_p092-092.jpg",
+      "type": "page_raster",
+      "source_chapter": "chapter_08",
+      "page_pdf": 92,
+      "page_book": 91,
+      "dpi": 200,
+      "section_headings": [],
+      "figure_captions": [
+        "Figure 8.11  First application of an “I” strip ",
+        "Figure 8.12  Second application across the ",
+        "Figure 8.10  De Quervain’s tendinosis and intersection syndrome."
+      ],
+      "surrounding_text": "1.\t Ask the patient to gently place their \nwrist into ulnar deviation as this will \nplace the thumb tendons on stretch. \nApply a small “I” strip starting from the \nfirst metacarpophalangeal (MCP) joint \nand continue toward the thumb tendons \nand the area of pain, with little to no \nstretch (Fig. 8.11).\nS\nF\nFigure 8.11  First application of an “I” strip \nalong the thumb tendons.\n2.\t Apply another small “I” strip across the \narea of pain with 75–100% stretch of the \ntape (Fig. 8.12).\nS\nF\nFigure 8."
+    }
+  ]
+}
