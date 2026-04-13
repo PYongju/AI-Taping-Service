@@ -1,0 +1,965 @@
+[
+  {
+    "image": "9781612435824.jpg",
+    "chapter_file": "cover",
+    "chapter_index": 0,
+    "chapter_title": "Cover",
+    "section_context": "",
+    "alt_text": "Cover: Kinesiology Taping for Rehab and Injury Prevention, by Aliana Kim",
+    "caption": ""
+  },
+  {
+    "image": "title.jpg",
+    "chapter_file": "title",
+    "chapter_index": 1,
+    "chapter_title": "Title Page",
+    "section_context": "",
+    "alt_text": "Kinesiology Taping for Rehab and Injury Prevention, by Aliana Kim, Ulysses Press",
+    "caption": ""
+  },
+  {
+    "image": "f0013-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Supine position"
+  },
+  {
+    "image": "f0013-02.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Prone position"
+  },
+  {
+    "image": "f0013-03.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Planes of motion"
+  },
+  {
+    "image": "f0013-04.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Directions and positions"
+  },
+  {
+    "image": "f0014-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Extension"
+  },
+  {
+    "image": "f0014-02.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Flexion"
+  },
+  {
+    "image": "f0015-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Adduction/Abduction"
+  },
+  {
+    "image": "f0015-02.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Rotation"
+  },
+  {
+    "image": "f0015-03.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Supination"
+  },
+  {
+    "image": "f0015-04.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Pronation"
+  },
+  {
+    "image": "f0015-05.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Dorsiflexion (left) and plantar flexion (right)."
+  },
+  {
+    "image": "f0017-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0017-02.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0018-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0020-01.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Anchor"
+  },
+  {
+    "image": "f0020-02.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Base"
+  },
+  {
+    "image": "f0020-03.jpg",
+    "chapter_file": "ch01",
+    "chapter_index": 4,
+    "chapter_title": "CHAPTER 1BASIC TERMS",
+    "section_context": "ANATOMICAL TERMS",
+    "alt_text": "Image",
+    "caption": "Tails"
+  },
+  {
+    "image": "f0024-01.jpg",
+    "chapter_file": "ch03",
+    "chapter_index": 6,
+    "chapter_title": "CHAPTER 3BASIC KINESIOLOGY TECHNIQUES",
+    "section_context": "I STRIP TECHNIQUE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0025-01.jpg",
+    "chapter_file": "ch03",
+    "chapter_index": 6,
+    "chapter_title": "CHAPTER 3BASIC KINESIOLOGY TECHNIQUES",
+    "section_context": "I STRIP TECHNIQUE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0025-02.jpg",
+    "chapter_file": "ch03",
+    "chapter_index": 6,
+    "chapter_title": "CHAPTER 3BASIC KINESIOLOGY TECHNIQUES",
+    "section_context": "I STRIP TECHNIQUE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0026-01.jpg",
+    "chapter_file": "ch03",
+    "chapter_index": 6,
+    "chapter_title": "CHAPTER 3BASIC KINESIOLOGY TECHNIQUES",
+    "section_context": "I STRIP TECHNIQUE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0027-01.jpg",
+    "chapter_file": "ch03",
+    "chapter_index": 6,
+    "chapter_title": "CHAPTER 3BASIC KINESIOLOGY TECHNIQUES",
+    "section_context": "I STRIP TECHNIQUE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0030-01.jpg",
+    "chapter_file": "ch04_sub01",
+    "chapter_index": 8,
+    "chapter_title": "HEADACHES",
+    "section_context": "HEADACHES",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0031-01.jpg",
+    "chapter_file": "ch04_sub02",
+    "chapter_index": 9,
+    "chapter_title": "JAW PAIN",
+    "section_context": "JAW PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0032-01.jpg",
+    "chapter_file": "ch04_sub03",
+    "chapter_index": 10,
+    "chapter_title": "NASAL CONGESTION",
+    "section_context": "NASAL CONGESTION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0032-02.jpg",
+    "chapter_file": "ch04_sub03",
+    "chapter_index": 10,
+    "chapter_title": "NASAL CONGESTION",
+    "section_context": "NASAL CONGESTION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0033-01.jpg",
+    "chapter_file": "ch04_sub04",
+    "chapter_index": 11,
+    "chapter_title": "NECK PAIN",
+    "section_context": "NECK PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0034-01.jpg",
+    "chapter_file": "ch04_sub04",
+    "chapter_index": 11,
+    "chapter_title": "NECK PAIN",
+    "section_context": "NECK PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0036-01.jpg",
+    "chapter_file": "ch05_sub01",
+    "chapter_index": 13,
+    "chapter_title": "FROZEN SHOULDER",
+    "section_context": "FROZEN SHOULDER",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0036-02.jpg",
+    "chapter_file": "ch05_sub01",
+    "chapter_index": 13,
+    "chapter_title": "FROZEN SHOULDER",
+    "section_context": "FROZEN SHOULDER",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0038-01.jpg",
+    "chapter_file": "ch05_sub02",
+    "chapter_index": 14,
+    "chapter_title": "ROTATOR CUFF IMPINGEMENT",
+    "section_context": "ROTATOR CUFF IMPINGEMENT",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0038-02.jpg",
+    "chapter_file": "ch05_sub02",
+    "chapter_index": 14,
+    "chapter_title": "ROTATOR CUFF IMPINGEMENT",
+    "section_context": "ROTATOR CUFF IMPINGEMENT",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0039-01.jpg",
+    "chapter_file": "ch05_sub03",
+    "chapter_index": 15,
+    "chapter_title": "SHOULDER INSTABILITY",
+    "section_context": "SHOULDER INSTABILITY",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0040-01.jpg",
+    "chapter_file": "ch05_sub04",
+    "chapter_index": 16,
+    "chapter_title": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "section_context": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0040-02.jpg",
+    "chapter_file": "ch05_sub04",
+    "chapter_index": 16,
+    "chapter_title": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "section_context": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0041-01.jpg",
+    "chapter_file": "ch05_sub04",
+    "chapter_index": 16,
+    "chapter_title": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "section_context": "UPPER SHOULDER SPRAIN(ACROMIOCLAVICULAR JOINT)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0042-01.jpg",
+    "chapter_file": "ch05_sub05",
+    "chapter_index": 17,
+    "chapter_title": "TIGHT PECTORALIS MAJOR MUSCLE",
+    "section_context": "TIGHT PECTORALIS MAJOR MUSCLE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0042-02.jpg",
+    "chapter_file": "ch05_sub05",
+    "chapter_index": 17,
+    "chapter_title": "TIGHT PECTORALIS MAJOR MUSCLE",
+    "section_context": "TIGHT PECTORALIS MAJOR MUSCLE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0045-01.jpg",
+    "chapter_file": "ch06_sub01",
+    "chapter_index": 19,
+    "chapter_title": "BACK SPRAIN(Erector Spinae Muscle Strain)",
+    "section_context": "BACK SPRAIN(Erector Spinae Muscle Strain)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0045-02.jpg",
+    "chapter_file": "ch06_sub01",
+    "chapter_index": 19,
+    "chapter_title": "BACK SPRAIN(Erector Spinae Muscle Strain)",
+    "section_context": "BACK SPRAIN(Erector Spinae Muscle Strain)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0046-01.jpg",
+    "chapter_file": "ch06_sub02",
+    "chapter_index": 20,
+    "chapter_title": "LOWER BACK SACROILIAC PAIN",
+    "section_context": "LOWER BACK SACROILIAC PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0046-02.jpg",
+    "chapter_file": "ch06_sub02",
+    "chapter_index": 20,
+    "chapter_title": "LOWER BACK SACROILIAC PAIN",
+    "section_context": "LOWER BACK SACROILIAC PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0046-03.jpg",
+    "chapter_file": "ch06_sub02",
+    "chapter_index": 20,
+    "chapter_title": "LOWER BACK SACROILIAC PAIN",
+    "section_context": "LOWER BACK SACROILIAC PAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0047-01.jpg",
+    "chapter_file": "ch06_sub03",
+    "chapter_index": 21,
+    "chapter_title": "RIB CAGE SPRAIN(Costochondral)",
+    "section_context": "RIB CAGE SPRAIN(Costochondral)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0047-02.jpg",
+    "chapter_file": "ch06_sub03",
+    "chapter_index": 21,
+    "chapter_title": "RIB CAGE SPRAIN(Costochondral)",
+    "section_context": "RIB CAGE SPRAIN(Costochondral)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0047-03.jpg",
+    "chapter_file": "ch06_sub03",
+    "chapter_index": 21,
+    "chapter_title": "RIB CAGE SPRAIN(Costochondral)",
+    "section_context": "RIB CAGE SPRAIN(Costochondral)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0049-01.jpg",
+    "chapter_file": "ch06_sub04",
+    "chapter_index": 22,
+    "chapter_title": "POSTURAL CORRECTION(Rectus Abdominis)",
+    "section_context": "POSTURAL CORRECTION(Rectus Abdominis)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0049-02.jpg",
+    "chapter_file": "ch06_sub04",
+    "chapter_index": 22,
+    "chapter_title": "POSTURAL CORRECTION(Rectus Abdominis)",
+    "section_context": "POSTURAL CORRECTION(Rectus Abdominis)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0050-01.jpg",
+    "chapter_file": "ch06_sub05",
+    "chapter_index": 23,
+    "chapter_title": "HIP POINTER INJURY",
+    "section_context": "HIP POINTER INJURY",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0051-01.jpg",
+    "chapter_file": "ch06_sub06",
+    "chapter_index": 24,
+    "chapter_title": "MENSTRUAL CRAMPS",
+    "section_context": "MENSTRUAL CRAMPS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0051-02.jpg",
+    "chapter_file": "ch06_sub06",
+    "chapter_index": 24,
+    "chapter_title": "MENSTRUAL CRAMPS",
+    "section_context": "MENSTRUAL CRAMPS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0052-01.jpg",
+    "chapter_file": "ch06_sub06",
+    "chapter_index": 24,
+    "chapter_title": "MENSTRUAL CRAMPS",
+    "section_context": "MENSTRUAL CRAMPS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0054-01.jpg",
+    "chapter_file": "ch07_sub01",
+    "chapter_index": 26,
+    "chapter_title": "WRIST SPRAIN",
+    "section_context": "WRIST SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0054-02.jpg",
+    "chapter_file": "ch07_sub01",
+    "chapter_index": 26,
+    "chapter_title": "WRIST SPRAIN",
+    "section_context": "WRIST SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0055-01.jpg",
+    "chapter_file": "ch07_sub01",
+    "chapter_index": 26,
+    "chapter_title": "WRIST SPRAIN",
+    "section_context": "WRIST SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0055-02.jpg",
+    "chapter_file": "ch07_sub01",
+    "chapter_index": 26,
+    "chapter_title": "WRIST SPRAIN",
+    "section_context": "WRIST SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0056-01.jpg",
+    "chapter_file": "ch07_sub02",
+    "chapter_index": 27,
+    "chapter_title": "CARPAL TUNNEL SYNDROME",
+    "section_context": "CARPAL TUNNEL SYNDROME",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0058-01.jpg",
+    "chapter_file": "ch07_sub03",
+    "chapter_index": 28,
+    "chapter_title": "LAXITY OF THE ELBOW",
+    "section_context": "LAXITY OF THE ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0059-01.jpg",
+    "chapter_file": "ch07_sub04",
+    "chapter_index": 29,
+    "chapter_title": "GOLFER’S ELBOW",
+    "section_context": "GOLFER’S ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0059-02.jpg",
+    "chapter_file": "ch07_sub04",
+    "chapter_index": 29,
+    "chapter_title": "GOLFER’S ELBOW",
+    "section_context": "GOLFER’S ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0060-01.jpg",
+    "chapter_file": "ch07_sub05",
+    "chapter_index": 30,
+    "chapter_title": "BICIPITAL TENDINOSIS",
+    "section_context": "BICIPITAL TENDINOSIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0062-01.jpg",
+    "chapter_file": "ch07_sub06",
+    "chapter_index": 31,
+    "chapter_title": "BRACHIAL PLEXUS NUMBNESS(Due to Impingement)",
+    "section_context": "BRACHIAL PLEXUS NUMBNESS(Due to Impingement)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0063-01.jpg",
+    "chapter_file": "ch07_sub07",
+    "chapter_index": 32,
+    "chapter_title": "TRICEPS STRAIN",
+    "section_context": "TRICEPS STRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0063-02.jpg",
+    "chapter_file": "ch07_sub07",
+    "chapter_index": 32,
+    "chapter_title": "TRICEPS STRAIN",
+    "section_context": "TRICEPS STRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0065-01.jpg",
+    "chapter_file": "ch07_sub08",
+    "chapter_index": 33,
+    "chapter_title": "TENNIS ELBOW",
+    "section_context": "TENNIS ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0065-02.jpg",
+    "chapter_file": "ch07_sub08",
+    "chapter_index": 33,
+    "chapter_title": "TENNIS ELBOW",
+    "section_context": "TENNIS ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0066-01.jpg",
+    "chapter_file": "ch07_sub08",
+    "chapter_index": 33,
+    "chapter_title": "TENNIS ELBOW",
+    "section_context": "TENNIS ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0066-02.jpg",
+    "chapter_file": "ch07_sub08",
+    "chapter_index": 33,
+    "chapter_title": "TENNIS ELBOW",
+    "section_context": "TENNIS ELBOW",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0067-01.jpg",
+    "chapter_file": "ch07_sub09",
+    "chapter_index": 34,
+    "chapter_title": "BURSA",
+    "section_context": "BURSA",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0068-01.jpg",
+    "chapter_file": "ch07_sub09",
+    "chapter_index": 34,
+    "chapter_title": "BURSA",
+    "section_context": "BURSA",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0070-01.jpg",
+    "chapter_file": "ch08_sub01",
+    "chapter_index": 36,
+    "chapter_title": "PATELLAR TENDINITIS",
+    "section_context": "PATELLAR TENDINITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0072-01.jpg",
+    "chapter_file": "ch08_sub02",
+    "chapter_index": 37,
+    "chapter_title": "ANTERIOR CRUCIATE LIGAMENT SPRAIN/DISCOMFORT",
+    "section_context": "ANTERIOR CRUCIATE LIGAMENT SPRAIN/DISCOMFORT",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0073-01.jpg",
+    "chapter_file": "ch08_sub02",
+    "chapter_index": 37,
+    "chapter_title": "ANTERIOR CRUCIATE LIGAMENT SPRAIN/DISCOMFORT",
+    "section_context": "ANTERIOR CRUCIATE LIGAMENT SPRAIN/DISCOMFORT",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0074-01.jpg",
+    "chapter_file": "ch08_sub03",
+    "chapter_index": 38,
+    "chapter_title": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "section_context": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0074-02.jpg",
+    "chapter_file": "ch08_sub03",
+    "chapter_index": 38,
+    "chapter_title": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "section_context": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0075-01.jpg",
+    "chapter_file": "ch08_sub03",
+    "chapter_index": 38,
+    "chapter_title": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "section_context": "MEDIAL COLLATERAL LIGAMENT SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0076-01.jpg",
+    "chapter_file": "ch08_sub04",
+    "chapter_index": 39,
+    "chapter_title": "HAMSTRING TIGHTNESS",
+    "section_context": "HAMSTRING TIGHTNESS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0078-01.jpg",
+    "chapter_file": "ch08_sub05",
+    "chapter_index": 40,
+    "chapter_title": "CHARLEY HORSE",
+    "section_context": "CHARLEY HORSE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0078-02.jpg",
+    "chapter_file": "ch08_sub05",
+    "chapter_index": 40,
+    "chapter_title": "CHARLEY HORSE",
+    "section_context": "CHARLEY HORSE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0079-01.jpg",
+    "chapter_file": "ch08_sub05",
+    "chapter_index": 40,
+    "chapter_title": "CHARLEY HORSE",
+    "section_context": "CHARLEY HORSE",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0080-01.jpg",
+    "chapter_file": "ch08_sub06",
+    "chapter_index": 41,
+    "chapter_title": "GROIN STRAIN(Adductor Pain)",
+    "section_context": "GROIN STRAIN(Adductor Pain)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0080-02.jpg",
+    "chapter_file": "ch08_sub06",
+    "chapter_index": 41,
+    "chapter_title": "GROIN STRAIN(Adductor Pain)",
+    "section_context": "GROIN STRAIN(Adductor Pain)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0081-01.jpg",
+    "chapter_file": "ch08_sub06",
+    "chapter_index": 41,
+    "chapter_title": "GROIN STRAIN(Adductor Pain)",
+    "section_context": "GROIN STRAIN(Adductor Pain)",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0082-01.jpg",
+    "chapter_file": "ch08_sub07",
+    "chapter_index": 42,
+    "chapter_title": "TIGHT ILIOTIBIAL BAND WITH ADHESIONS & TRIGGER POINTS",
+    "section_context": "TIGHT ILIOTIBIAL BAND WITH ADHESIONS & TRIGGER POINTS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0083-01.jpg",
+    "chapter_file": "ch08_sub07",
+    "chapter_index": 42,
+    "chapter_title": "TIGHT ILIOTIBIAL BAND WITH ADHESIONS & TRIGGER POINTS",
+    "section_context": "TIGHT ILIOTIBIAL BAND WITH ADHESIONS & TRIGGER POINTS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0084-01.jpg",
+    "chapter_file": "ch08_sub08",
+    "chapter_index": 43,
+    "chapter_title": "TIGHT PIRIFORMIS",
+    "section_context": "TIGHT PIRIFORMIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0084-02.jpg",
+    "chapter_file": "ch08_sub08",
+    "chapter_index": 43,
+    "chapter_title": "TIGHT PIRIFORMIS",
+    "section_context": "TIGHT PIRIFORMIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0086-01.jpg",
+    "chapter_file": "ch08_sub09",
+    "chapter_index": 44,
+    "chapter_title": "SCIATICA",
+    "section_context": "SCIATICA",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0087-01.jpg",
+    "chapter_file": "ch08_sub10",
+    "chapter_index": 45,
+    "chapter_title": "QUADRICEPS CONTUSION",
+    "section_context": "QUADRICEPS CONTUSION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0088-01.jpg",
+    "chapter_file": "ch08_sub11",
+    "chapter_index": 46,
+    "chapter_title": "KNEE HYPEREXTENSION",
+    "section_context": "KNEE HYPEREXTENSION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0088-02.jpg",
+    "chapter_file": "ch08_sub11",
+    "chapter_index": 46,
+    "chapter_title": "KNEE HYPEREXTENSION",
+    "section_context": "KNEE HYPEREXTENSION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0088-03.jpg",
+    "chapter_file": "ch08_sub11",
+    "chapter_index": 46,
+    "chapter_title": "KNEE HYPEREXTENSION",
+    "section_context": "KNEE HYPEREXTENSION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0090-01.jpg",
+    "chapter_file": "ch09_sub01",
+    "chapter_index": 48,
+    "chapter_title": "ACHILLES TENDINITIS",
+    "section_context": "ACHILLES TENDINITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0091-01.jpg",
+    "chapter_file": "ch09_sub02",
+    "chapter_index": 49,
+    "chapter_title": "PLANTAR FASCIITIS",
+    "section_context": "PLANTAR FASCIITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0091-02.jpg",
+    "chapter_file": "ch09_sub02",
+    "chapter_index": 49,
+    "chapter_title": "PLANTAR FASCIITIS",
+    "section_context": "PLANTAR FASCIITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0091-03.jpg",
+    "chapter_file": "ch09_sub02",
+    "chapter_index": 49,
+    "chapter_title": "PLANTAR FASCIITIS",
+    "section_context": "PLANTAR FASCIITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0091-04.jpg",
+    "chapter_file": "ch09_sub02",
+    "chapter_index": 49,
+    "chapter_title": "PLANTAR FASCIITIS",
+    "section_context": "PLANTAR FASCIITIS",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0092-01.jpg",
+    "chapter_file": "ch09_sub03",
+    "chapter_index": 50,
+    "chapter_title": "BUNION",
+    "section_context": "BUNION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0092-02.jpg",
+    "chapter_file": "ch09_sub03",
+    "chapter_index": 50,
+    "chapter_title": "BUNION",
+    "section_context": "BUNION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0093-01.jpg",
+    "chapter_file": "ch09_sub03",
+    "chapter_index": 50,
+    "chapter_title": "BUNION",
+    "section_context": "BUNION",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0094-01.jpg",
+    "chapter_file": "ch09_sub04",
+    "chapter_index": 51,
+    "chapter_title": "LATERAL ANKLE SPRAIN",
+    "section_context": "LATERAL ANKLE SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0095-01.jpg",
+    "chapter_file": "ch09_sub05",
+    "chapter_index": 52,
+    "chapter_title": "MEDIAL ANKLE SPRAIN",
+    "section_context": "MEDIAL ANKLE SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0095-02.jpg",
+    "chapter_file": "ch09_sub05",
+    "chapter_index": 52,
+    "chapter_title": "MEDIAL ANKLE SPRAIN",
+    "section_context": "MEDIAL ANKLE SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0096-01.jpg",
+    "chapter_file": "ch09_sub05",
+    "chapter_index": 52,
+    "chapter_title": "MEDIAL ANKLE SPRAIN",
+    "section_context": "MEDIAL ANKLE SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  },
+  {
+    "image": "f0096-02.jpg",
+    "chapter_file": "ch09_sub05",
+    "chapter_index": 52,
+    "chapter_title": "MEDIAL ANKLE SPRAIN",
+    "section_context": "MEDIAL ANKLE SPRAIN",
+    "alt_text": "Image",
+    "caption": ""
+  }
+]
