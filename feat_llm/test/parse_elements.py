@@ -1,7 +1,7 @@
 """
 parse_elements.py — STEP 1: element-type 파싱 (txt 기반)
 
-Input:  data/raw/*.txt  (fetch_raw_data.py로 다운로드한 파일)
+Input:  data/raw_text/*.txt  (fetch_raw_data.py로 다운로드한 파일)
 Output: data/processed/<book>/<stem>_elements.json
         book1_gibbons / book2_kim 은 파일명 prefix로 자동 결정
 
@@ -65,8 +65,10 @@ def _is_noise(line: str) -> bool:
 
 
 def _is_all_caps(line: str) -> bool:
-    """section_header 판별: 소문자 없고 알파벳 포함, 2자 이상"""
+    """section_header 판별: 소문자 없고 알파벳 포함, 2자 이상, 괄호 약어 제외"""
     s = line.strip()
+    if s.startswith("("):  # (PFPS) 같은 괄호 약어는 헤더가 아님
+        return False
     return bool(s) and s == s.upper() and any(c.isalpha() for c in s) and len(s) >= 2
 
 
@@ -289,8 +291,8 @@ def parse_txt(txt_path: str) -> list[dict]:
 def main() -> None:
     script_dir   = Path(__file__).parent
     feat_llm_dir = script_dir.parent
-    raw_dir       = feat_llm_dir / "data" / "raw"
-    processed_dir = feat_llm_dir / "data" / "processed"
+    raw_dir       = feat_llm_dir / "data" / "raw_text"
+    processed_dir = feat_llm_dir / "data" / "processed_element"
 
     txt_files = sorted(raw_dir.glob("*.txt"))
     if not txt_files:
