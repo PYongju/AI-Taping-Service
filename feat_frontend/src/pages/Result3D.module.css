@@ -1,0 +1,83 @@
+.container {
+  max-width: 390px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tabRow {
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  flex: 1;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--color-surface);
+  color: var(--color-caption);
+  border: none;
+  border-radius: var(--radius-sm);
+}
+
+.tabActive {
+  flex: 1;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+}
+
+.viewer {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+}
+
+.viewerText {
+  font-size: 13px;
+  color: var(--color-placeholder);
+  text-align: center;
+  padding: 0 16px;
+}
+
+.coachText {
+  font-size: 14px;
+  color: var(--color-body);
+  line-height: 1.57;
+}
+
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--color-error);
+  background: #fff5f5;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+
+.btnPrimary {
+  width: 100%;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  margin-top: auto;
+}
