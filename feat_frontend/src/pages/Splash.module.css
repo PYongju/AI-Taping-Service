@@ -1,0 +1,85 @@
+.container {
+	max-width: 375px;
+	min-height: 100dvh;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 48px 20px;
+	box-sizing: border-box;
+}
+
+.logo {
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.33;
+	letter-spacing: 0.06em;
+	color: var(--color-heading);
+	margin-bottom: 28px;
+}
+
+.headline {
+	font-size: 22px;
+	font-weight: 700;
+	line-height: 1.36;
+	text-align: center;
+	white-space: pre-line;
+	color: var(--color-heading);
+	margin-bottom: 12px;
+}
+
+.trust {
+	font-size: 13px;
+	color: var(--color-caption);
+	text-align: center;
+	line-height: 1.54;
+	margin-bottom: 44px;
+}
+
+.buttonGroup {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.btnPrimary {
+	width: 100%;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 600;
+	background: var(--color-primary);
+	color: #fff;
+	border: none;
+	border-radius: var(--radius-md);
+	cursor: pointer;
+}
+
+.btnPrimary:active {
+	opacity: 0.88;
+}
+
+.btnSecondary {
+	width: 100%;
+	height: 56px;
+	font-size: 16px;
+	font-weight: 600;
+	background: var(--color-surface);
+	color: var(--color-heading);
+	border: none;
+	border-radius: var(--radius-md);
+	cursor: pointer;
+}
+
+.btnSecondary:active {
+	opacity: 0.88;
+}
+
+.logoImage {
+	width: 48px;
+	height: 48px;
+	object-fit: contain;
+	display: block;
+	margin: 0 auto;
+}
