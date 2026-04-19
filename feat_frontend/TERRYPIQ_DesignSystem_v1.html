@@ -1,0 +1,2083 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TERRYPIQ Design System v1.0</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			/* =============================================
+       CSS VARIABLES — 디자인 토큰
+       이 섹션을 수정하면 전체 색상/폰트가 바뀝니다
+    ============================================= */
+			:root {
+				/* Brand Colors */
+				--color-primary: #ff7a00;
+				--color-secondary: #2563e8;
+				--color-info: #38bdf8;
+				--color-neutral-beige: #fff3e0;
+				--color-accent-pink: #ff6bb1;
+
+				/* Gray Scale */
+				--gray-900: #111827;
+				--gray-700: #374151;
+				--gray-500: #6b7280;
+				--gray-300: #d1d5db;
+				--gray-100: #f3f4f6;
+				--white: #ffffff;
+
+				/* Semantic Colors */
+				--color-success: #16a34a;
+				--color-warning: #f59e0b;
+				--color-error: #ef4444;
+
+				/* Typography */
+				--font-base: "Pretendard", -apple-system, sans-serif;
+
+				/* Spacing (8pt Grid) */
+				--sp-1: 8px;
+				--sp-2: 16px;
+				--sp-3: 24px;
+				--sp-4: 32px;
+				--sp-5: 40px;
+				--sp-6: 48px;
+
+				/* Radius */
+				--radius-sm: 8px;
+				--radius-md: 12px;
+				--radius-lg: 16px;
+				--radius-xl: 24px;
+				--radius-full: 9999px;
+
+				/* Elevation */
+				--shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+				--shadow-2: 0 4px 12px rgba(0, 0, 0, 0.1);
+				--shadow-3: 0 8px 24px rgba(0, 0, 0, 0.14);
+			}
+
+			/* =============================================
+       BASE RESET
+    ============================================= */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: var(--font-base);
+				background: #f8f9fa;
+				color: var(--gray-900);
+				line-height: 1.6;
+			}
+
+			/* =============================================
+       LAYOUT
+    ============================================= */
+			.ds-page {
+				display: flex;
+				min-height: 100vh;
+			}
+
+			/* Sidebar Nav */
+			.ds-nav {
+				width: 220px;
+				min-width: 220px;
+				background: var(--white);
+				border-right: 1px solid var(--gray-300);
+				padding: var(--sp-3) var(--sp-2);
+				position: sticky;
+				top: 0;
+				height: 100vh;
+				overflow-y: auto;
+			}
+			.ds-nav .logo {
+				font-size: 18px;
+				font-weight: 700;
+				color: var(--color-primary);
+				letter-spacing: -0.5px;
+				margin-bottom: var(--sp-1);
+			}
+			.ds-nav .tagline {
+				font-size: 11px;
+				color: var(--gray-500);
+				margin-bottom: var(--sp-3);
+			}
+			.ds-nav ul {
+				list-style: none;
+			}
+			.ds-nav li a {
+				display: block;
+				font-size: 13px;
+				color: var(--gray-700);
+				text-decoration: none;
+				padding: 6px var(--sp-1);
+				border-radius: var(--radius-sm);
+				transition: background 0.15s;
+			}
+			.ds-nav li a:hover {
+				background: var(--gray-100);
+				color: var(--color-primary);
+			}
+			.ds-nav .nav-section {
+				font-size: 11px;
+				font-weight: 600;
+				color: var(--gray-500);
+				text-transform: uppercase;
+				letter-spacing: 0.8px;
+				margin: var(--sp-2) 0 4px;
+			}
+
+			/* Main Content */
+			.ds-main {
+				flex: 1;
+				padding: var(--sp-5) var(--sp-5);
+				max-width: 960px;
+			}
+
+			/* Section */
+			.ds-section {
+				margin-bottom: var(--sp-6);
+				scroll-margin-top: var(--sp-3);
+			}
+			.ds-section-title {
+				font-size: 26px;
+				font-weight: 700;
+				color: var(--gray-900);
+				border-bottom: 2px solid var(--color-primary);
+				padding-bottom: var(--sp-1);
+				margin-bottom: var(--sp-3);
+			}
+			.ds-sub-title {
+				font-size: 17px;
+				font-weight: 600;
+				color: var(--gray-700);
+				margin: var(--sp-3) 0 var(--sp-2);
+			}
+			.ds-sub-sub-title {
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--gray-500);
+				margin: var(--sp-2) 0 var(--sp-1);
+			}
+
+			/* =============================================
+       INTRO / BRAND BOX
+    ============================================= */
+			.brand-header {
+				background: linear-gradient(
+					135deg,
+					var(--color-primary) 0%,
+					#ff9a3c 100%
+				);
+				border-radius: var(--radius-lg);
+				padding: var(--sp-4);
+				color: var(--white);
+				margin-bottom: var(--sp-4);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.brand-header h1 {
+				font-size: 36px;
+				font-weight: 700;
+				letter-spacing: -1px;
+			}
+			.brand-header .sub {
+				font-size: 13px;
+				opacity: 0.85;
+				margin-top: 4px;
+			}
+			.brand-header .version {
+				font-size: 12px;
+				background: rgba(255, 255, 255, 0.2);
+				padding: 4px 10px;
+				border-radius: var(--radius-full);
+			}
+
+			.brand-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 14px;
+			}
+			.brand-table td {
+				padding: 10px 14px;
+				border-bottom: 1px solid var(--gray-100);
+			}
+			.brand-table td:first-child {
+				font-weight: 600;
+				color: var(--gray-500);
+				width: 140px;
+			}
+
+			.principles-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: var(--sp-2);
+				margin-top: var(--sp-2);
+			}
+			.principle-card {
+				background: var(--white);
+				border-radius: var(--radius-md);
+				padding: var(--sp-2);
+				text-align: center;
+				box-shadow: var(--shadow-1);
+			}
+			.principle-card .icon {
+				font-size: 28px;
+				margin-bottom: 8px;
+			}
+			.principle-card .name {
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.principle-card .desc {
+				font-size: 12px;
+				color: var(--gray-500);
+				margin-top: 4px;
+			}
+
+			/* =============================================
+       COLOR
+    ============================================= */
+			.color-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--sp-2);
+			}
+			.color-chip {
+				text-align: center;
+				width: 90px;
+			}
+			.color-swatch {
+				width: 90px;
+				height: 56px;
+				border-radius: var(--radius-md);
+				border: 1px solid rgba(0, 0, 0, 0.07);
+				margin-bottom: 6px;
+			}
+			.color-chip .name {
+				font-size: 12px;
+				font-weight: 600;
+			}
+			.color-chip .hex {
+				font-size: 11px;
+				color: var(--gray-500);
+				font-family: monospace;
+			}
+
+			/* =============================================
+       TYPOGRAPHY
+    ============================================= */
+			.type-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 14px;
+			}
+			.type-table th {
+				text-align: left;
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.6px;
+				color: var(--gray-500);
+				padding: 8px 12px;
+				background: var(--gray-100);
+			}
+			.type-table td {
+				padding: 12px;
+				border-bottom: 1px solid var(--gray-100);
+			}
+			.type-demo-display {
+				font-size: 28px;
+				font-weight: 700;
+				line-height: 1.3;
+			}
+			.type-demo-h1 {
+				font-size: 22px;
+				font-weight: 700;
+				line-height: 1.36;
+			}
+			.type-demo-h2 {
+				font-size: 18px;
+				font-weight: 600;
+				line-height: 1.44;
+			}
+			.type-demo-body1 {
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 1.5;
+			}
+			.type-demo-body2 {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 1.43;
+			}
+			.type-demo-caption {
+				font-size: 12px;
+				font-weight: 500;
+				line-height: 1.5;
+			}
+
+			/* =============================================
+       SPACING
+    ============================================= */
+			.spacing-grid {
+				display: flex;
+				gap: 16px;
+				align-items: flex-end;
+				flex-wrap: wrap;
+			}
+			.spacing-item {
+				text-align: center;
+			}
+			.spacing-bar {
+				background: var(--color-secondary);
+				opacity: 0.7;
+				border-radius: 3px;
+				margin: 0 auto 4px;
+				width: 24px;
+			}
+			.spacing-item span {
+				font-size: 11px;
+				color: var(--gray-500);
+			}
+
+			/* =============================================
+       RADIUS
+    ============================================= */
+			.radius-grid {
+				display: flex;
+				gap: var(--sp-2);
+				flex-wrap: wrap;
+			}
+			.radius-item {
+				text-align: center;
+			}
+			.radius-box {
+				width: 64px;
+				height: 40px;
+				background: var(--color-primary);
+				margin-bottom: 6px;
+			}
+			.radius-item span {
+				font-size: 12px;
+				color: var(--gray-500);
+				display: block;
+			}
+
+			/* =============================================
+       ELEVATION
+    ============================================= */
+			.elevation-grid {
+				display: flex;
+				gap: var(--sp-3);
+			}
+			.elevation-card {
+				width: 100px;
+				height: 60px;
+				background: var(--white);
+				border-radius: var(--radius-md);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				color: var(--gray-500);
+			}
+
+			/* =============================================
+       COMPONENTS
+    ============================================= */
+			.component-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--sp-2);
+				align-items: flex-start;
+				margin-bottom: var(--sp-2);
+			}
+			.component-label {
+				font-size: 11px;
+				color: var(--gray-500);
+				margin-bottom: 6px;
+			}
+			.component-group {
+			}
+
+			/* --- Button --- */
+			.btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				font-family: var(--font-base);
+				font-size: 15px;
+				font-weight: 600;
+				padding: 12px 24px;
+				border-radius: var(--radius-full);
+				border: none;
+				cursor: pointer;
+				transition:
+					opacity 0.15s,
+					transform 0.1s;
+			}
+			.btn:active {
+				transform: scale(0.97);
+			}
+			.btn-primary {
+				background: var(--color-primary);
+				color: var(--white);
+			}
+			.btn-secondary {
+				background: var(--gray-100);
+				color: var(--gray-700);
+				border: 1px solid var(--gray-300);
+			}
+			.btn-text {
+				background: transparent;
+				color: var(--gray-700);
+				padding: 12px 16px;
+			}
+			.btn-disabled {
+				background: var(--gray-100);
+				color: var(--gray-300);
+				cursor: not-allowed;
+			}
+			.btn-loading {
+				background: var(--color-primary);
+				color: var(--white);
+				opacity: 0.7;
+			}
+			.btn-sm {
+				font-size: 13px;
+				padding: 8px 16px;
+			}
+
+			/* --- Quick Reply --- */
+			.quick-reply-wrap {
+				display: flex;
+				gap: 8px;
+				flex-wrap: wrap;
+			}
+			.qr-chip {
+				padding: 8px 16px;
+				border-radius: var(--radius-full);
+				border: 1.5px solid var(--gray-300);
+				background: var(--white);
+				font-size: 14px;
+				font-family: var(--font-base);
+				cursor: pointer;
+				transition:
+					border-color 0.15s,
+					background 0.15s;
+			}
+			.qr-chip.selected {
+				border-color: var(--color-primary);
+				background: #fff3e0;
+				color: var(--color-primary);
+				font-weight: 600;
+			}
+			.qr-chip.disabled {
+				color: var(--gray-300);
+				border-color: var(--gray-100);
+				cursor: not-allowed;
+			}
+
+			/* --- Chat Bubble --- */
+			.chat-wrap {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.bubble-row {
+				display: flex;
+				align-items: flex-end;
+				gap: 8px;
+			}
+			.bubble-row.user {
+				flex-direction: row-reverse;
+			}
+			.bubble {
+				max-width: 240px;
+				padding: 12px 16px;
+				border-radius: var(--radius-lg);
+				font-size: 14px;
+				line-height: 1.5;
+			}
+			.bubble.bot {
+				background: var(--gray-100);
+				border-bottom-left-radius: 4px;
+			}
+			.bubble.user {
+				background: var(--color-secondary);
+				color: var(--white);
+				border-bottom-right-radius: 4px;
+			}
+			.bubble.system {
+				background: var(--gray-100);
+				color: var(--gray-500);
+				font-size: 13px;
+				border-radius: var(--radius-md);
+			}
+			.avatar {
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				background: var(--color-primary);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				flex-shrink: 0;
+			}
+
+			/* --- Text Input --- */
+			.input-demo {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				max-width: 280px;
+			}
+			.text-input-wrap {
+				display: flex;
+				align-items: center;
+				border: 1.5px solid var(--gray-300);
+				border-radius: var(--radius-full);
+				background: var(--white);
+				padding: 10px 16px;
+				gap: 8px;
+			}
+			.text-input-wrap.focused {
+				border-color: var(--color-primary);
+			}
+			.text-input-wrap.disabled {
+				background: var(--gray-100);
+			}
+			.text-input-wrap input {
+				border: none;
+				outline: none;
+				flex: 1;
+				font-size: 14px;
+				font-family: var(--font-base);
+				background: transparent;
+				color: var(--gray-900);
+			}
+			.text-input-wrap input::placeholder {
+				color: var(--gray-300);
+			}
+			.text-input-wrap .send-btn {
+				width: 28px;
+				height: 28px;
+				background: var(--color-primary);
+				border-radius: 50%;
+				border: none;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				color: var(--white);
+			}
+
+			/* --- Loading / Stepper --- */
+			.stepper-list {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.stepper-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+			}
+			.stepper-dot {
+				width: 28px;
+				height: 28px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.stepper-dot.done {
+				background: var(--color-primary);
+				color: var(--white);
+			}
+			.stepper-dot.active {
+				background: var(--color-secondary);
+				color: var(--white);
+			}
+			.stepper-dot.pending {
+				background: var(--gray-100);
+				color: var(--gray-300);
+			}
+			.stepper-label {
+				font-size: 14px;
+			}
+			.stepper-label.pending {
+				color: var(--gray-300);
+			}
+
+			/* Spinner */
+			.spinner {
+				width: 36px;
+				height: 36px;
+				border: 3px solid var(--gray-100);
+				border-top-color: var(--color-primary);
+				border-radius: 50%;
+				animation: spin 0.8s linear infinite;
+			}
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			/* --- Card --- */
+			.card {
+				background: var(--white);
+				border-radius: var(--radius-lg);
+				box-shadow: var(--shadow-2);
+				padding: var(--sp-2);
+				max-width: 220px;
+			}
+			.card-badge {
+				display: inline-block;
+				background: var(--color-primary);
+				color: var(--white);
+				font-size: 11px;
+				font-weight: 700;
+				padding: 2px 8px;
+				border-radius: var(--radius-full);
+				margin-bottom: 8px;
+			}
+			.card-title {
+				font-size: 15px;
+				font-weight: 700;
+			}
+			.card-body {
+				font-size: 13px;
+				color: var(--gray-500);
+				margin-top: 4px;
+			}
+			.card-meta {
+				display: flex;
+				gap: 12px;
+				margin-top: 10px;
+				font-size: 12px;
+				color: var(--gray-500);
+			}
+
+			/* --- Toast --- */
+			.toast-list {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+			.toast {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				background: var(--white);
+				border-radius: var(--radius-md);
+				padding: 12px 16px;
+				font-size: 14px;
+				box-shadow: var(--shadow-2);
+				max-width: 280px;
+			}
+			.toast.success {
+				border-left: 3px solid var(--color-success);
+			}
+			.toast.warning {
+				border-left: 3px solid var(--color-warning);
+			}
+			.toast.error {
+				border-left: 3px solid var(--color-error);
+			}
+
+			/* --- Bottom Sheet --- */
+			.bottom-sheet {
+				background: var(--white);
+				border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+				padding: var(--sp-3) var(--sp-2);
+				max-width: 320px;
+				box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.12);
+			}
+			.bs-handle {
+				width: 40px;
+				height: 4px;
+				background: var(--gray-300);
+				border-radius: 2px;
+				margin: 0 auto var(--sp-2);
+			}
+			.bs-option {
+				padding: 14px 0;
+				border-bottom: 1px solid var(--gray-100);
+				font-size: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			/* =============================================
+       ICONOGRAPHY
+    ============================================= */
+			.icon-grid {
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--sp-2);
+			}
+			.icon-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 6px;
+				width: 56px;
+			}
+			.icon-box {
+				width: 40px;
+				height: 40px;
+				border: 1.5px solid var(--gray-300);
+				border-radius: var(--radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+			}
+			.icon-item span {
+				font-size: 11px;
+				color: var(--gray-500);
+				text-align: center;
+			}
+
+			/* =============================================
+       PATTERNS
+    ============================================= */
+			.pattern-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: var(--sp-2);
+			}
+			.pattern-card {
+				background: var(--white);
+				border-radius: var(--radius-lg);
+				padding: var(--sp-2);
+				box-shadow: var(--shadow-1);
+			}
+			.pattern-card .p-icon {
+				font-size: 24px;
+				margin-bottom: 8px;
+			}
+			.pattern-card .p-title {
+				font-size: 14px;
+				font-weight: 700;
+				margin-bottom: 4px;
+			}
+			.pattern-card .p-desc {
+				font-size: 13px;
+				color: var(--gray-500);
+			}
+
+			/* =============================================
+       TERRY CHARACTER
+    ============================================= */
+			.terry-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: var(--sp-2);
+			}
+			.terry-card {
+				background: var(--white);
+				border-radius: var(--radius-lg);
+				padding: var(--sp-2);
+				text-align: center;
+				box-shadow: var(--shadow-1);
+			}
+			.terry-emoji {
+				font-size: 40px;
+				margin-bottom: 8px;
+			}
+			.terry-emoji img {
+				width: auto;
+				height: 50px;
+				object-fit: contain; /* 비율 유지하면서 크기 맞춤 */
+			}
+			.terry-card .scene {
+				font-size: 11px;
+				color: var(--color-primary);
+				font-weight: 600;
+				margin-bottom: 4px;
+			}
+			.terry-card .pose {
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.terry-card .desc {
+				font-size: 12px;
+				color: var(--gray-500);
+				margin-top: 4px;
+			}
+
+			.do-dont {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: var(--sp-2);
+			}
+			.do-box,
+			.dont-box {
+				border-radius: var(--radius-md);
+				padding: var(--sp-2);
+				font-size: 13px;
+			}
+			.do-box {
+				background: #f0fdf4;
+				border-left: 3px solid var(--color-success);
+			}
+			.dont-box {
+				background: #fef2f2;
+				border-left: 3px solid var(--color-error);
+			}
+			.do-box .label {
+				font-weight: 700;
+				color: var(--color-success);
+				margin-bottom: 6px;
+			}
+			.dont-box .label {
+				font-weight: 700;
+				color: var(--color-error);
+				margin-bottom: 6px;
+			}
+
+			/* =============================================
+       WRITING GUIDE
+    ============================================= */
+			.writing-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 13px;
+			}
+			.writing-table th {
+				background: var(--gray-100);
+				padding: 8px 12px;
+				text-align: left;
+				font-size: 11px;
+				font-weight: 600;
+				color: var(--gray-500);
+				text-transform: uppercase;
+			}
+			.writing-table td {
+				padding: 10px 12px;
+				border-bottom: 1px solid var(--gray-100);
+				vertical-align: top;
+			}
+			.writing-table .bad {
+				color: var(--color-error);
+			}
+			.writing-table .good {
+				color: var(--color-success);
+			}
+			.badge-bad {
+				display: inline-block;
+				background: #fee2e2;
+				color: var(--color-error);
+				font-size: 11px;
+				font-weight: 600;
+				padding: 2px 6px;
+				border-radius: 4px;
+				margin-bottom: 4px;
+			}
+			.badge-good {
+				display: inline-block;
+				background: #dcfce7;
+				color: var(--color-success);
+				font-size: 11px;
+				font-weight: 600;
+				padding: 2px 6px;
+				border-radius: 4px;
+				margin-bottom: 4px;
+			}
+
+			/* =============================================
+       FOOTER
+    ============================================= */
+			.ds-footer {
+				margin-top: var(--sp-6);
+				padding-top: var(--sp-3);
+				border-top: 1px solid var(--gray-300);
+				font-size: 12px;
+				color: var(--gray-500);
+				display: flex;
+				justify-content: space-between;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ds-page">
+			<!-- ========== SIDEBAR NAV ========== -->
+			<nav class="ds-nav">
+				<div class="logo">TERRYPIQ</div>
+				<div class="tagline">Design System v1.0.0</div>
+				<ul>
+					<li class="nav-section">Introduction</li>
+					<li><a href="#intro">1.1 Overview</a></li>
+					<li><a href="#principles">1.2 Principles</a></li>
+					<li><a href="#brand">1.3 Brand</a></li>
+					<li><a href="#terry">1.4 Terry</a></li>
+
+					<li class="nav-section">Foundations</li>
+					<li><a href="#color">2.1 Color</a></li>
+					<li><a href="#typography">2.2 Typography</a></li>
+					<li><a href="#spacing">2.3 Spacing</a></li>
+					<li><a href="#radius">2.4 Radius</a></li>
+					<li><a href="#elevation">2.5 Elevation</a></li>
+					<li><a href="#iconography">2.6 Iconography</a></li>
+
+					<li class="nav-section">Components</li>
+					<li><a href="#button">3.1 Button</a></li>
+					<li><a href="#quickreply">3.2 Quick Reply</a></li>
+					<li><a href="#chatbubble">3.3 Chat Bubble</a></li>
+					<li><a href="#textinput">3.4 Text Input</a></li>
+					<li><a href="#loading">3.5 Loading</a></li>
+					<li><a href="#card">3.6 Card</a></li>
+					<li><a href="#toast">3.7 Toast</a></li>
+					<li><a href="#bottomsheet">3.8 Bottom Sheet</a></li>
+
+					<li class="nav-section">Patterns</li>
+					<li><a href="#patterns">4. Patterns</a></li>
+
+					<li class="nav-section">Terry</li>
+					<li><a href="#terry-usage">5. Character Usage</a></li>
+
+					<li class="nav-section">Writing</li>
+					<li><a href="#writing">6. Writing Guide</a></li>
+				</ul>
+			</nav>
+
+			<!-- ========== MAIN CONTENT ========== -->
+			<main class="ds-main">
+				<!-- ======== 1. INTRODUCTION ======== -->
+				<section class="ds-section" id="intro">
+					<div class="brand-header">
+						<div>
+							<h1>TERRYPIQ</h1>
+							<div class="sub">
+								AI Care, Personalized for You.
+							</div>
+						</div>
+						<div class="version">
+							Design System v1.0.0 · 최종 업데이트: 2026-04-19
+						</div>
+					</div>
+
+					<h2 class="ds-section-title">1. Introduction</h2>
+
+					<h3 class="ds-sub-title" id="overview">1.1 Overview</h3>
+					<p
+						style="
+							font-size: 15px;
+							color: var(--gray-700);
+							line-height: 1.7;
+							max-width: 640px;
+						"
+					>
+						TERRYPIQ 디자인 시스템은 무릎 테이핑 추천 서비스를
+						일관되고 신뢰감 있게 제공하기 위한 기준입니다. 모든
+						화면과 컴포넌트는 사용자의 빠른 행동을 돕고, 안심하고
+						사용할 수 있는 경험을 만드는 것을 목표로 합니다.
+					</p>
+
+					<h3 class="ds-sub-title" id="principles">1.2 Principles</h3>
+					<div class="principles-grid">
+						<div class="principle-card">
+							<div class="icon">🎯</div>
+							<div class="name">Guided</div>
+							<div class="desc">선택 중심의 가이딩 경험</div>
+						</div>
+						<div class="principle-card">
+							<div class="icon">🛡️</div>
+							<div class="name">Trustworthy</div>
+							<div class="desc">정확하고 안전한 정보 제공</div>
+						</div>
+						<div class="principle-card">
+							<div class="icon">⚡</div>
+							<div class="name">Efficient</div>
+							<div class="desc">최소 입력으로 최대 결과 도출</div>
+						</div>
+						<div class="principle-card">
+							<div class="icon">💗</div>
+							<div class="name">Caring</div>
+							<div class="desc">
+								사용자 불안을 줄이고 동행하는 서비스
+							</div>
+						</div>
+					</div>
+
+					<h3 class="ds-sub-title" id="brand">1.3 Brand</h3>
+					<table class="brand-table">
+						<tr>
+							<td>Brand</td>
+							<td><strong>TERRYPIQ</strong></td>
+						</tr>
+						<tr>
+							<td>Category</td>
+							<td>AI 기반 맞춤 테이핑 가이드</td>
+						</tr>
+						<tr>
+							<td>Mission</td>
+							<td><em>AI Care. Personalized for You.</em></td>
+						</tr>
+						<tr>
+							<td>Core Value</td>
+							<td>정확성, 신뢰, 효율, 배려</td>
+						</tr>
+					</table>
+				</section>
+
+				<!-- ======== 2. FOUNDATIONS ======== -->
+				<section class="ds-section" id="color">
+					<h2 class="ds-section-title">2. Foundations</h2>
+
+					<h3 class="ds-sub-title">2.1 Color</h3>
+
+					<h4 class="ds-sub-sub-title">Brand</h4>
+					<div class="color-grid">
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #ff7a00"
+							></div>
+							<div class="name">Primary</div>
+							<div class="hex">#FF7A00</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #2563e8"
+							></div>
+							<div class="name">Secondary</div>
+							<div class="hex">#2563E8</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #38bdf8"
+							></div>
+							<div class="name">Info</div>
+							<div class="hex">#38BDF8</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="
+									background: #fff3e0;
+									border: 1px solid #e5e7eb;
+								"
+							></div>
+							<div class="name">Neutral Beige</div>
+							<div class="hex">#FFF3E0</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #ff6bb1"
+							></div>
+							<div class="name">Accent Pink</div>
+							<div class="hex">#FF6BB1</div>
+						</div>
+					</div>
+
+					<h4
+						class="ds-sub-sub-title"
+						style="margin-top: var(--sp-2)"
+					>
+						Gray Scale
+					</h4>
+					<div class="color-grid">
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #111827"
+							></div>
+							<div class="name">Gray 900</div>
+							<div class="hex">#111827</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #374151"
+							></div>
+							<div class="name">Gray 700</div>
+							<div class="hex">#374151</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #6b7280"
+							></div>
+							<div class="name">Gray 500</div>
+							<div class="hex">#6B7280</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #d1d5db"
+							></div>
+							<div class="name">Gray 300</div>
+							<div class="hex">#D1D5DB</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="
+									background: #f3f4f6;
+									border: 1px solid #e5e7eb;
+								"
+							></div>
+							<div class="name">Gray 100</div>
+							<div class="hex">#F3F4F6</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="
+									background: #ffffff;
+									border: 1px solid #e5e7eb;
+								"
+							></div>
+							<div class="name">White</div>
+							<div class="hex">#FFFFFF</div>
+						</div>
+					</div>
+
+					<h4
+						class="ds-sub-sub-title"
+						style="margin-top: var(--sp-2)"
+					>
+						Semantic
+					</h4>
+					<div class="color-grid">
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #16a34a"
+							></div>
+							<div class="name">Success</div>
+							<div class="hex">#16A34A</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #f59e0b"
+							></div>
+							<div class="name">Warning</div>
+							<div class="hex">#F59E0B</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #ef4444"
+							></div>
+							<div class="name">Error</div>
+							<div class="hex">#EF4444</div>
+						</div>
+						<div class="color-chip">
+							<div
+								class="color-swatch"
+								style="background: #0ea5e9"
+							></div>
+							<div class="name">Info</div>
+							<div class="hex">#0EA5E9</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Typography -->
+				<section class="ds-section" id="typography">
+					<h3 class="ds-sub-title">2.2 Typography</h3>
+					<p
+						style="
+							font-size: 13px;
+							color: var(--gray-500);
+							margin-bottom: var(--sp-2);
+						"
+					>
+						Font: <strong>Pretendard</strong> · Line height 기준
+						Size/LH
+					</p>
+					<table class="type-table">
+						<thead>
+							<tr>
+								<th>Style</th>
+								<th>Font</th>
+								<th>Size / Line</th>
+								<th>Weight</th>
+								<th>Usage</th>
+								<th>Preview</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Display</td>
+								<td>Pretendard</td>
+								<td>28 / 36</td>
+								<td>Bold</td>
+								<td>메인 타이틀</td>
+								<td>
+									<span class="type-demo-display"
+										>테이핑</span
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>H1</td>
+								<td>Pretendard</td>
+								<td>22 / 30</td>
+								<td>Bold</td>
+								<td>섹션 제목</td>
+								<td>
+									<span class="type-demo-h1">섹션 제목</span>
+								</td>
+							</tr>
+							<tr>
+								<td>H2</td>
+								<td>Pretendard</td>
+								<td>18 / 26</td>
+								<td>SemiBold</td>
+								<td>카드 제목</td>
+								<td>
+									<span class="type-demo-h2">카드 제목</span>
+								</td>
+							</tr>
+							<tr>
+								<td>Body 1</td>
+								<td>Pretendard</td>
+								<td>16 / 24</td>
+								<td>Regular</td>
+								<td>본문</td>
+								<td>
+									<span class="type-demo-body1"
+										>본문 텍스트예요</span
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Body 2</td>
+								<td>Pretendard</td>
+								<td>14 / 20</td>
+								<td>Regular</td>
+								<td>보조 설명</td>
+								<td>
+									<span class="type-demo-body2"
+										>보조 설명 텍스트예요</span
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Caption</td>
+								<td>Pretendard</td>
+								<td>12 / 18</td>
+								<td>Medium</td>
+								<td>캡션 / 라벨</td>
+								<td>
+									<span class="type-demo-caption"
+										>캡션 텍스트</span
+									>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- Spacing -->
+				<section class="ds-section" id="spacing">
+					<h3 class="ds-sub-title">2.3 Spacing — 8pt Grid</h3>
+					<p
+						style="
+							font-size: 13px;
+							color: var(--gray-500);
+							margin-bottom: var(--sp-2);
+						"
+					>
+						모든 여백과 간격은 8의 배수로 정의합니다.
+					</p>
+					<div class="spacing-grid">
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 8px"></div>
+							<span>8</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 16px"></div>
+							<span>16</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 24px"></div>
+							<span>24</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 32px"></div>
+							<span>32</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 40px"></div>
+							<span>40</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 48px"></div>
+							<span>48</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 56px"></div>
+							<span>56</span>
+						</div>
+						<div class="spacing-item">
+							<div class="spacing-bar" style="height: 64px"></div>
+							<span>64</span>
+						</div>
+					</div>
+				</section>
+
+				<!-- Radius -->
+				<section class="ds-section" id="radius">
+					<h3 class="ds-sub-title">2.4 Radius</h3>
+					<div class="radius-grid">
+						<div class="radius-item">
+							<div
+								class="radius-box"
+								style="border-radius: 8px"
+							></div>
+							<span>sm</span
+							><span
+								style="font-size: 11px; color: var(--gray-500)"
+								>8px</span
+							>
+						</div>
+						<div class="radius-item">
+							<div
+								class="radius-box"
+								style="border-radius: 12px"
+							></div>
+							<span>md</span
+							><span
+								style="font-size: 11px; color: var(--gray-500)"
+								>12px</span
+							>
+						</div>
+						<div class="radius-item">
+							<div
+								class="radius-box"
+								style="border-radius: 16px"
+							></div>
+							<span>lg</span
+							><span
+								style="font-size: 11px; color: var(--gray-500)"
+								>16px</span
+							>
+						</div>
+						<div class="radius-item">
+							<div
+								class="radius-box"
+								style="border-radius: 24px"
+							></div>
+							<span>xl</span
+							><span
+								style="font-size: 11px; color: var(--gray-500)"
+								>24px</span
+							>
+						</div>
+						<div class="radius-item">
+							<div
+								class="radius-box"
+								style="border-radius: 9999px"
+							></div>
+							<span>full</span
+							><span
+								style="font-size: 11px; color: var(--gray-500)"
+								>9999px</span
+							>
+						</div>
+					</div>
+				</section>
+
+				<!-- Elevation -->
+				<section class="ds-section" id="elevation">
+					<h3 class="ds-sub-title">2.5 Elevation</h3>
+					<div class="elevation-grid">
+						<div style="text-align: center">
+							<div
+								class="elevation-card"
+								style="box-shadow: var(--shadow-1)"
+							>
+								elevation 1
+							</div>
+							<div
+								style="
+									font-size: 12px;
+									color: var(--gray-500);
+									margin-top: 6px;
+								"
+							>
+								0 1px 3px
+							</div>
+						</div>
+						<div style="text-align: center">
+							<div
+								class="elevation-card"
+								style="box-shadow: var(--shadow-2)"
+							>
+								elevation 2
+							</div>
+							<div
+								style="
+									font-size: 12px;
+									color: var(--gray-500);
+									margin-top: 6px;
+								"
+							>
+								0 4px 12px
+							</div>
+						</div>
+						<div style="text-align: center">
+							<div
+								class="elevation-card"
+								style="box-shadow: var(--shadow-3)"
+							>
+								elevation 3
+							</div>
+							<div
+								style="
+									font-size: 12px;
+									color: var(--gray-500);
+									margin-top: 6px;
+								"
+							>
+								0 8px 24px
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Iconography -->
+				<section class="ds-section" id="iconography">
+					<h3 class="ds-sub-title">2.6 Iconography</h3>
+					<p
+						style="
+							font-size: 13px;
+							color: var(--gray-500);
+							margin-bottom: var(--sp-2);
+						"
+					>
+						Material Symbols Rounded 기반 · stroke: 2px · corner:
+						round
+					</p>
+					<div class="icon-grid">
+						<div class="icon-item">
+							<div class="icon-box">🏠</div>
+							<span>home</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">❓</div>
+							<span>help</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">✅</div>
+							<span>check</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">ℹ️</div>
+							<span>info</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">📤</div>
+							<span>share</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">📷</div>
+							<span>camera</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">⚠️</div>
+							<span>warning</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">🔒</div>
+							<span>lock</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">💬</div>
+							<span>chat</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">↩️</div>
+							<span>restart</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">🎉</div>
+							<span>complete</span>
+						</div>
+						<div class="icon-item">
+							<div class="icon-box">▶️</div>
+							<span>play</span>
+						</div>
+					</div>
+				</section>
+
+				<!-- ======== 3. COMPONENTS ======== -->
+				<section class="ds-section" id="button">
+					<h2 class="ds-section-title">3. Components</h2>
+
+					<h3 class="ds-sub-title">3.1 Button</h3>
+					<h4 class="ds-sub-sub-title">Variants</h4>
+					<div class="component-row">
+						<div class="component-group">
+							<div class="component-label">Primary</div>
+							<button class="btn btn-primary">주요 버튼</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Secondary</div>
+							<button class="btn btn-secondary">보조 버튼</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Tertiary (Text)</div>
+							<button class="btn btn-text">텍스트 버튼</button>
+						</div>
+					</div>
+
+					<h4 class="ds-sub-sub-title">States</h4>
+					<div class="component-row">
+						<div class="component-group">
+							<div class="component-label">Default</div>
+							<button class="btn btn-primary btn-sm">버튼</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Hover</div>
+							<button
+								class="btn btn-primary btn-sm"
+								style="opacity: 0.85"
+							>
+								버튼
+							</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Pressed</div>
+							<button
+								class="btn btn-primary btn-sm"
+								style="transform: scale(0.97)"
+							>
+								버튼
+							</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Disabled</div>
+							<button class="btn btn-disabled btn-sm" disabled>
+								버튼
+							</button>
+						</div>
+						<div class="component-group">
+							<div class="component-label">Loading</div>
+							<button class="btn btn-loading btn-sm">
+								⏳ 로딩 중
+							</button>
+						</div>
+					</div>
+
+					<div
+						style="
+							background: var(--gray-100);
+							border-radius: var(--radius-md);
+							padding: var(--sp-2);
+							margin-top: var(--sp-2);
+							font-size: 13px;
+							color: var(--gray-700);
+						"
+					>
+						<strong>Component Usage</strong><br />
+						• 일관된 컴포넌트 사용으로 학습 비용을 줄여요.<br />
+						• 모든 상태(기본/활성/비활성/로딩)를 반드시 사용해요.<br />
+						• 텍스트는 UX Writing Guide를 따라 작성해요.<br />
+						• 컴포넌트는 8pt Grid와 Radius 규칙을 준수해요.
+					</div>
+				</section>
+
+				<!-- Quick Reply -->
+				<section class="ds-section" id="quickreply">
+					<h3 class="ds-sub-title">3.2 Quick Reply</h3>
+					<h4 class="ds-sub-sub-title">Default</h4>
+					<div class="quick-reply-wrap">
+						<button class="qr-chip">운동 후</button>
+						<button class="qr-chip">일상에서</button>
+						<button class="qr-chip">기타</button>
+					</div>
+					<h4 class="ds-sub-sub-title">Selected</h4>
+					<div class="quick-reply-wrap">
+						<button class="qr-chip selected">운동 후</button>
+						<button class="qr-chip">일상에서</button>
+						<button class="qr-chip">기타</button>
+					</div>
+					<h4 class="ds-sub-sub-title">Disabled</h4>
+					<div class="quick-reply-wrap">
+						<button class="qr-chip disabled">운동 후</button>
+						<button class="qr-chip disabled">일상에서</button>
+						<button class="qr-chip disabled">기타</button>
+					</div>
+				</section>
+
+				<!-- Chat Bubble -->
+				<section class="ds-section" id="chatbubble">
+					<h3 class="ds-sub-title">3.3 Chat Bubble</h3>
+					<div class="chat-wrap" style="max-width: 300px">
+						<div class="bubble-row">
+							<div class="avatar">🐭</div>
+							<div class="bubble bot">어디가 불편하세요?</div>
+						</div>
+						<div class="bubble-row user">
+							<div class="bubble user">무릎이 불편해요.</div>
+						</div>
+						<div style="text-align: center">
+							<div class="bubble system">분석하고 있어요 ···</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Text Input -->
+				<section class="ds-section" id="textinput">
+					<h3 class="ds-sub-title">3.4 Text Input</h3>
+					<div class="input-demo">
+						<div>
+							<div class="component-label">Default</div>
+							<div class="text-input-wrap">
+								<input
+									type="text"
+									placeholder="내용을 입력해주세요"
+								/>
+								<button class="send-btn">→</button>
+							</div>
+						</div>
+						<div>
+							<div class="component-label">Focused</div>
+							<div class="text-input-wrap focused">
+								<input
+									type="text"
+									value="달리기 후 바깥쪽이 뻣뻣해요"
+								/>
+								<button class="send-btn">→</button>
+							</div>
+						</div>
+						<div>
+							<div class="component-label">Disabled</div>
+							<div class="text-input-wrap disabled">
+								<input
+									type="text"
+									placeholder="내용을 입력해주세요"
+									disabled
+								/>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Loading -->
+				<section class="ds-section" id="loading">
+					<h3 class="ds-sub-title">3.5 Loading</h3>
+					<div
+						class="component-row"
+						style="align-items: flex-start; gap: var(--sp-4)"
+					>
+						<div>
+							<div class="component-label">Spinner</div>
+							<div class="spinner"></div>
+						</div>
+						<div>
+							<div class="component-label">
+								Terry Loading (Recommended)
+							</div>
+							<div class="stepper-list">
+								<div class="stepper-item">
+									<div class="stepper-dot done">✓</div>
+									<div class="stepper-label">
+										체형 계산 중이에요
+									</div>
+								</div>
+								<div class="stepper-item">
+									<div class="stepper-dot active">2</div>
+									<div
+										class="stepper-label"
+										style="color: var(--color-secondary)"
+									>
+										테이핑 방법을 찾고 있어요
+									</div>
+								</div>
+								<div class="stepper-item">
+									<div class="stepper-dot pending">3</div>
+									<div class="stepper-label pending">
+										곧 결과를 보여드릴게요
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Card -->
+				<section class="ds-section" id="card">
+					<h3 class="ds-sub-title">3.6 Card — Y-Strip 테이핑</h3>
+					<div class="card">
+						<div class="card-badge">많이 선택해요</div>
+						<div class="card-title">Y-Strip 테이핑</div>
+						<div class="card-body">
+							무릎 외측 통증 완화에 도움이 되는 테이핑이에요.
+						</div>
+						<div class="card-meta">
+							<span>📏 선폭 20~30%</span>
+							<span>🎯 난이도 쉬움</span>
+						</div>
+					</div>
+				</section>
+
+				<!-- Toast -->
+				<section class="ds-section" id="toast">
+					<h3 class="ds-sub-title">3.7 Toast / Alert</h3>
+					<div class="toast-list">
+						<div class="toast success">✅ 저장했어요.</div>
+						<div class="toast warning">⚠️ 정보를 입력해주세요.</div>
+						<div class="toast error">❌ 연결이 끊겼어요.</div>
+					</div>
+				</section>
+
+				<!-- Bottom Sheet -->
+				<section class="ds-section" id="bottomsheet">
+					<h3 class="ds-sub-title">3.8 Bottom Sheet</h3>
+					<div class="bottom-sheet">
+						<div class="bs-handle"></div>
+						<div
+							style="
+								font-size: 15px;
+								font-weight: 700;
+								margin-bottom: var(--sp-2);
+							"
+						>
+							옵션을 선택하세요
+						</div>
+						<div class="bs-option">
+							결과 저장하기 <span>›</span>
+						</div>
+						<div class="bs-option">
+							이미지 저장하기 <span>›</span>
+						</div>
+						<div class="bs-option" style="border: none">
+							링크 공유하기 <span>✓</span>
+						</div>
+					</div>
+				</section>
+
+				<!-- ======== 4. PATTERNS ======== -->
+				<section class="ds-section" id="patterns">
+					<h2 class="ds-section-title">4. Patterns</h2>
+					<div class="pattern-grid">
+						<div class="pattern-card">
+							<div class="p-icon">💬</div>
+							<div class="p-title">4.1 Conversational Flow</div>
+							<div class="p-desc">
+								입력→선택→로딩→결과의 단방향 대화 플로우를
+								사용해요.
+							</div>
+						</div>
+						<div class="pattern-card">
+							<div class="p-icon">📦</div>
+							<div class="p-title">4.2 Empty State</div>
+							<div class="p-desc">
+								데이터가 없을 때 Terry 일러스트 + 행동 유도
+								CTA를 표시해요.
+							</div>
+						</div>
+						<div class="pattern-card">
+							<div class="p-icon">⚠️</div>
+							<div class="p-title">4.3 Error State</div>
+							<div class="p-desc">
+								문제 상황에서 "문제 → 해결 방법" 구조의 안내
+								문구를 사용해요.
+							</div>
+						</div>
+						<div class="pattern-card">
+							<div class="p-icon">🔒</div>
+							<div class="p-title">4.4 Permission / Privacy</div>
+							<div class="p-desc">
+								개인 정보 수집 전 목적을 명확히 안내하고,
+								건너뛰기를 항상 제공해요.
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ======== 5. TERRY ======== -->
+				<section class="ds-section" id="terry">
+					<h2 class="ds-section-title">
+						5. Terry (Character System)
+					</h2>
+					<p
+						style="
+							font-size: 15px;
+							color: var(--gray-700);
+							margin-bottom: var(--sp-2);
+							line-height: 1.7;
+						"
+					>
+						Terry는 TERRYPIQ의 브랜드 마스코트입니다. 테이프 롤을
+						모자처럼 쓴 작은 쥐 캐릭터로, 오렌지 단일 배색을
+						사용해요. <strong>Terry는 말하지 않습니다</strong> —
+						감성과 브랜드 친밀감은 비주얼과 포즈로만 전달하고,
+						시스템 문구는 UX Writing Guide 보이스톤을 따릅니다.
+					</p>
+
+					<h3 class="ds-sub-title" id="terry-usage">
+						5.1 Character Usage by Scene
+					</h3>
+					<div class="terry-grid">
+						<div class="terry-card">
+							<div class="terry-emoji">
+								<img src="src/assets/logo.png" alt="terry" />
+							</div>
+							<div class="scene">SC-00 스플래시</div>
+							<div class="pose">등장 포즈</div>
+							<div class="desc">
+								브랜드 앰버서더. 앱의 첫인상.
+							</div>
+						</div>
+						<div class="terry-card">
+							<div class="terry-emoji">
+								<img src="src/assets/loading.png" alt="terry" />
+							</div>
+							<div class="scene">SC-04</div>
+							<div class="pose">로딩 화면</div>
+							<div class="desc">체형 분석 로딩 중 화면 등장</div>
+						</div>
+						<div class="terry-card" style="opacity: 0.4">
+							<div class="terry-emoji">🚫</div>
+							<div class="scene">SC-01~SC-3,SC-05~SC-06</div>
+							<div class="pose">미등장</div>
+							<div class="desc">
+								로딩 외 증상 입력 ~ 3D 가이드 화면 미등장
+							</div>
+						</div>
+						<div class="terry-card">
+							<div class="terry-emoji">
+								<img src="src/assets/done.png" alt="terry" />
+							</div>
+							<div class="scene">SC-07 완료</div>
+							<div class="pose">환호 포즈</div>
+							<div class="desc">완료 축하 아이콘 역할</div>
+						</div>
+						<div class="terry-card">
+							<div class="terry-emoji">
+								<img src="src/assets/fab.png" alt="terry" />
+							</div>
+							<div class="scene">SC-CB FAB 아이콘</div>
+							<div class="pose">정면 대기 포즈</div>
+							<div class="desc">챗봇 FAB 버튼 아이콘 역할만</div>
+						</div>
+						<div class="terry-card">
+							<div class="terry-emoji">
+								<img src="src/assets/empty.png" alt="terry" />
+							</div>
+							<div class="scene">SC-08 히스토리</div>
+							<div class="pose">선택적 등장</div>
+							<div class="desc">
+								빈 상태(empty state) 일러스트
+							</div>
+						</div>
+					</div>
+
+					<h3 class="ds-sub-title">5.2 Do / Don't</h3>
+					<div class="do-dont">
+						<div class="do-box">
+							<div class="label">✅ DO</div>
+							이제, 나도 선수들처럼<br />나만을 위한 맞춤
+							테이핑<br /><br />
+							테이핑을 완료했어요 🎉<br /><br />
+							궁금한 게 있으면 물어보세요
+						</div>
+						<div class="dont-box">
+							<div class="label">❌ DON'T</div>
+							"안녕! 나는 테리야! 같이 해볼까?"<br />
+							<small>(마케팅 톤 금지)</small><br /><br />
+							"참 잘했어요! 테리도 깜짝 놀랐는걸요?"<br />
+							<small>(과다감정표현 금지)</small><br /><br />
+							"괜찮아요, 테리도 가끔은 실수한답니다"<br />
+							<small>("괜찮아요" 패턴 금지)</small>
+						</div>
+					</div>
+				</section>
+
+				<!-- ======== 6. WRITING GUIDE ======== -->
+				<section class="ds-section" id="writing">
+					<h2 class="ds-section-title">6. Writing Guide</h2>
+
+					<h3 class="ds-sub-title">6.1 Voice & Tone 원칙</h3>
+					<table class="writing-table">
+						<thead>
+							<tr>
+								<th>규칙</th>
+								<th>❌ 금지</th>
+								<th>✅ 사용</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>해요체</strong> 강제</td>
+								<td class="bad">
+									분석 완료되었습니다<br />정보를 입력하세요
+								</td>
+								<td class="good">
+									분석을 마쳤어요<br />정보를 입력해주세요
+								</td>
+							</tr>
+							<tr>
+								<td><strong>능동형</strong> (수동형 금지)</td>
+								<td class="bad">
+									추천이 제공됩니다<br />모델이 매칭되었어요
+								</td>
+								<td class="good">
+									추천 결과를 찾았어요<br />체형에 맞는 모델을
+									찾았어요
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>캐주얼 경어</strong> (과경어 금지)
+								</td>
+								<td class="bad">
+									어디가 불편하신가요?<br />키를
+									입력해주시겠어요?
+								</td>
+								<td class="good">
+									어디가 불편하세요?<br />키를 알려주세요
+								</td>
+							</tr>
+							<tr>
+								<td><strong>AI 주어 금지</strong></td>
+								<td class="bad">
+									AI가 증상을 분석해 테이핑 방법을 찾을게요
+								</td>
+								<td class="good">
+									증상에 맞는 방법을 찾을게요
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 class="ds-sub-title">6.2 Do / Don't</h3>
+					<div class="do-dont">
+						<div class="do-box">
+							<div class="label">✅ DO</div>
+							• 해요체를 사용해요<br />
+							• 능동형 문장을 써요<br />
+							• 행동 → 이유 순서를 지켜요<br />
+							• 한 줄 = 하나의 행동<br />
+							• 1줄 = 1행동형 원칙
+						</div>
+						<div class="dont-box">
+							<div class="label">❌ DON'T</div>
+							• 의료 진단 표현 금지<br />
+							• 확정 표현 금지 ("가장 좋은 방법입니다")<br />
+							• 책임 회피 표현 금지<br />
+							• 과다감정표현 금지 ("괜찮아요")<br />
+							• 수동형 금지 (~됩니다, ~되었어요)
+						</div>
+					</div>
+
+					<h3 class="ds-sub-title">6.3 CTA 규칙</h3>
+					<table class="writing-table">
+						<thead>
+							<tr>
+								<th>규칙</th>
+								<th>❌ 명사형</th>
+								<th>✅ 동사형</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>동사형 강제</td>
+								<td class="bad">다음 / 완료 / 확인</td>
+								<td class="good">
+									다음으로 넘어갈게요 / 완료했어요 /
+									확인할게요
+								</td>
+							</tr>
+							<tr>
+								<td>결과 명확화</td>
+								<td class="bad">확인 / 다음</td>
+								<td class="good">
+									이 방법으로 시작할게요 / 사진 올리러 갈게요
+								</td>
+							</tr>
+							<tr>
+								<td>닫기 vs 취소</td>
+								<td class="bad">취소</td>
+								<td class="good">
+									닫기 (바텀시트·다이얼로그 왼쪽 버튼)
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3 class="ds-sub-title">6.4 금지 표현</h3>
+					<table class="writing-table">
+						<thead>
+							<tr>
+								<th>카테고리</th>
+								<th>❌ 금지</th>
+								<th>✅ 대체</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>의료 진단</td>
+								<td class="bad">
+									진단합니다 / 치료합니다 / IT band
+									syndrome입니다
+								</td>
+								<td class="good">
+									도움이 될 수 있어요 / IT band 긴장 가능성이
+									있어요
+								</td>
+							</tr>
+							<tr>
+								<td>확정 표현</td>
+								<td class="bad">
+									가장 좋은 방법입니다 / 최적의 모델을
+									찾았습니다
+								</td>
+								<td class="good">
+									이 방법을 많이 사용해요 / 체형에 맞는 모델을
+									찾았어요
+								</td>
+							</tr>
+							<tr>
+								<td>Disclaimer</td>
+								<td class="bad">
+									본 서비스는 책임을 지지 않습니다
+								</td>
+								<td class="good">
+									이 서비스는 예방을 위한 가이드예요 /
+									지속되는 증상은 전문가에게 확인해보세요
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- Footer -->
+				<div class="ds-footer">
+					<span
+						>TERRYPIQ Design System v1.0.0 · 최종 업데이트:
+						2026-04-19</span
+					>
+					<span>© 2026 TERRYPIQ. All rights reserved.</span>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
