@@ -5,7 +5,8 @@ class BodyMatchResponse(BaseModel):
     session_id: str
     status: str
     model_id: str
-    glb_url: str
+    base_glb_url: str
     match_type: str
-    # metrics는 향후 MediaPipe에서 추출된 체형 비율 수치를 담기 위함
-    metrics: Optional[dict] = None
+    metrics: dict  # shape_score 등 상세 지표
+    guide_video_url: Optional[str] = None # RAG 결과 반영
+    artifacts: Optional[dict] = None     # 디버그 이미지 경로 등
