@@ -1,12 +1,14 @@
 from pydantic import BaseModel
 from typing import Optional
 
+class BodyMetrics(BaseModel):
+    bmi_group: Optional[str] = None
+    # CV 디버깅용 Raw 데이터(shoulder_width 등)는 응답 모델에서 제외
+
 class BodyMatchResponse(BaseModel):
     session_id: str
     status: str
     model_id: str
-    base_glb_url: str
+    glb_url: str            # base_glb_url -> glb_url 로 정정
     match_type: str
-    metrics: dict  # shape_score 등 상세 지표
-    guide_video_url: Optional[str] = None # RAG 결과 반영
-    artifacts: Optional[dict] = None     # 디버그 이미지 경로 등
+    body_metrics: BodyMetrics # metrics -> body_metrics 로 정정

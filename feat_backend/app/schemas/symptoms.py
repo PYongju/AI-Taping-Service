@@ -1,11 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
+from typing import List
 
-class SymptomRequest(BaseModel):
-    body_part: str = Field(..., example="knee")
-    situation: str = Field(..., example="after_exercise")
-    raw_text: str = Field(..., example="달리기 후 무릎 바깥쪽이 아파요")
+class StructuredSymptom(BaseModel):
+    area: str
+    keywords: List[str]
+    summary: str
 
 class SymptomResponse(BaseModel):
     session_id: str
     status: str
-    message: str
+    structured_symptom: StructuredSymptom # 임시 message 필드 삭제 및 구조화
