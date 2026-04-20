@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import DualCTAButton from '../components/DualCTAButton';
 import './Consent.css';
 
 export default function Consent() {
@@ -23,18 +24,18 @@ export default function Consent() {
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
           </span>
-          입력하신 정보는 체형 매칭에만 사용되고, 분석 후 즉시 삭제돼요.
+          입력하신 정보는 체형 매칭에만 써요. 분석 후 바로 삭제해요.
         </div>
       </div>
 
-      <div className="bottombar" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <button className="btn btn-primary" onClick={() => navigate('/body-info')}>
-          정보 입력하고 시작할게요
-        </button>
-        <button className="btn btn-secondary" onClick={() => navigate('/analyzing')}>
-          정보 없이 시작할게요
-        </button>
-        <div className="t-caption" style={{ textAlign: 'center', marginTop: 4 }}>
+      <div className="bottombar">
+        <DualCTAButton
+          primaryLabel="정보 입력하고 시작할게요"
+          secondaryLabel="정보 없이 시작할게요"
+          onPrimary={() => navigate('/body-info')}
+          onSecondary={() => navigate('/analyzing')}
+        />
+        <div className="t-caption" style={{ textAlign: 'center', marginTop: 8 }}>
           건너뛰면 평균 기준으로 안내돼요
         </div>
       </div>

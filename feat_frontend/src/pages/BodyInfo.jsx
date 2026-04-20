@@ -109,7 +109,7 @@ export default function BodyInfo() {
 							기본 정보를 알려주세요
 						</h2>
 						<p className="t-body2" style={{ margin: "0 0 20px" }}>
-							체형 매칭에만 사용되고 즉시 삭제돼요.
+							체형 매칭에만 써요. 분석 후 바로 삭제해요.
 						</p>
 
 						<div className="field">
@@ -290,7 +290,7 @@ export default function BodyInfo() {
 									<path d="M7 11V7a5 5 0 0 1 10 0v4" />
 								</svg>
 							</span>
-							사진은 분석 후 바로 삭제돼요.
+							사진은 분석 후 바로 삭제해요.
 						</div>
 					</div>
 				)}
@@ -412,7 +412,7 @@ export default function BodyInfo() {
 									<path d="M7 11V7a5 5 0 0 1 10 0v4" />
 								</svg>
 							</span>
-							사진은 분석 후 바로 삭제돼요.
+							사진은 분석 후 바로 삭제해요.
 						</div>
 					</div>
 				)}

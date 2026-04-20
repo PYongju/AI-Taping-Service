@@ -9,42 +9,38 @@ export default function Result3D() {
 	const navigate = useNavigate();
 	const { session, updateSession } = useSession();
 	const options = session.taping_options ?? [];
-	const [selectedId, setSelectedId] = useState(
-		session.selected_option?.id ?? options[0]?.id ?? null,
-	);
-
-	const selected =
-		options.find((o) => o.id === selectedId) ?? options[0] ?? null;
+	const [selectedIdx, setSelectedIdx] = useState(session.selected_option ?? 0);
+	const selected = options[selectedIdx] ?? options[0] ?? null;
 
 	if (options.length === 0) {
 		return (
 			<div className="result-3d-error">
-				<p className="caption">분석 데이터가 없습니다.</p>
+				<p className="caption">분석 데이터가 없어요.</p>
 				<Button
 					variant="primary"
 					size="large"
 					fullWidth
-					onClick={() => navigate("/6")}
+					onClick={() => navigate("/result-video")}
 				>
-					다시 분석하기
+					다시 분석할게요
 				</Button>
 			</div>
 		);
 	}
 
 	function handleStart() {
-		updateSession({ selected_option: selected });
-		navigate("/9");
+		updateSession({ selected_option: selectedIdx });
+		navigate("/taping-guide");
 	}
 
 	return (
 		<div className="result-3d">
 			<div className="result-3d-tabs">
-				{options.map((opt) => (
+				{options.map((opt, idx) => (
 					<button
 						key={opt.id}
-						className={`result-3d-tab ${selectedId === opt.id ? "active" : ""}`}
-						onClick={() => setSelectedId(opt.id)}
+						className={`result-3d-tab ${selectedIdx === idx ? "active" : ""}`}
+						onClick={() => setSelectedIdx(idx)}
 					>
 						{opt.id}
 					</button>

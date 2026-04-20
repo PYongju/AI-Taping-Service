@@ -204,6 +204,16 @@ export default function TapingGuide() {
 					</span>
 					<span>{s.warn}</span>
 				</div>
+
+				<div className="disclaimer">
+					<span className="lock">
+						<svg className="ic ic-sm" viewBox="0 0 24 24">
+							<path d="M12 9v4M12 17h.01" />
+							<circle cx="12" cy="12" r="10" />
+						</svg>
+					</span>
+					이 서비스는 예방을 위한 가이드예요. 지속되는 증상은 전문가에게 확인해보세요.
+				</div>
 			</div>
 
 			<div className="bottombar">
@@ -213,10 +223,10 @@ export default function TapingGuide() {
 						disabled={step === 0}
 						onClick={handlePrev}
 					>
-						이전
+						이전 단계로
 					</button>
 					<button className="btn btn-primary" onClick={handleNext}>
-						{step === TOTAL - 1 ? "완료할게요" : "다음"}
+						{step === TOTAL - 1 ? "완료할게요" : "다음 단계로"}
 					</button>
 				</div>
 			</div>

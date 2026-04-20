@@ -3,6 +3,8 @@ import { SessionProvider } from "./context/SessionContext";
 import "./App.css";
 
 import Splash from "./pages/Splash";
+import History from "./pages/History";
+import SceneHospital from "./pages/SceneHospital";
 import BodyPart from "./pages/BodyPart";
 import SymptomInput from "./pages/SymptomInput";
 import Consent from "./pages/Consent";
@@ -19,6 +21,8 @@ export default function App() {
 				<div className="scene-wrap">
 					<Routes>
 						<Route path="/" element={<Splash />} />
+						<Route path="/history" element={<History />} />
+						<Route path="/hospital" element={<SceneHospital />} />
 						<Route path="/body-part" element={<BodyPart />} />
 						<Route
 							path="/symptom-input"

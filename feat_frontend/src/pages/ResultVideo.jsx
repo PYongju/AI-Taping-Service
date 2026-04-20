@@ -3,32 +3,46 @@ import { useNavigate } from "react-router-dom";
 import { useSession } from "../context/SessionContext";
 import "./ResultVideo.css";
 
-const OPTIONS = {
-	A: {
+const MOCK_OPTIONS = [
+	{
+		id: "A",
 		name: "IT band 이완 테이핑",
 		tape: "Y-strip",
 		stretch: 15,
 		why: "러닝 후 외측 긴장에 가장 일반적인 예방 테이핑이에요.",
 		coach: "💡 테이핑 전 부위를 깨끗이 닦고, 털이 있다면 면도 후 붙여주세요.",
+		step_glb_urls: [],
+		video_url: "",
+		disclaimer: "",
 	},
-	B: {
+	{
+		id: "B",
 		name: "무릎 안정화 테이핑",
 		tape: "I-strip",
 		stretch: 25,
 		why: "무릎 전반적 안정감 보강에 도움이 될 수 있어요.",
 		coach: "💡 stretch 25%는 조금 당긴 상태로 붙이는 거예요.",
+		step_glb_urls: [],
+		video_url: "",
+		disclaimer: "",
 	},
-};
+];
 
 export default function ResultVideo() {
 	const navigate = useNavigate();
-	const { updateSession } = useSession();
-	const [opt, setOpt] = useState("A");
+	const { session, updateSession } = useSession();
 
-	const o = OPTIONS[opt];
+	// API 연결 전: taping_options가 비어있으면 mock 사용
+	const options =
+		session.taping_options.length > 0
+			? session.taping_options
+			: MOCK_OPTIONS;
+
+	const [optIdx, setOptIdx] = useState(session.selected_option ?? 0);
+	const o = options[optIdx] ?? options[0];
 
 	function startGuide() {
-		updateSession({ selected_option: opt });
+		updateSession({ selected_option: optIdx });
 		navigate("/result-3d");
 	}
 
@@ -71,22 +85,23 @@ export default function ResultVideo() {
 				</div>
 
 				<div className="opt-switch">
-					<button
-						className={opt === "A" ? "active" : ""}
-						onClick={() => setOpt("A")}
-					>
-						<span className="star">★</span> 추천 A
-					</button>
-					<button
-						className={opt === "B" ? "active" : ""}
-						onClick={() => setOpt("B")}
-					>
-						옵션 B
-					</button>
+					{options.map((option, idx) => (
+						<button
+							key={option.id}
+							className={optIdx === idx ? "active" : ""}
+							onClick={() => setOptIdx(idx)}
+						>
+							{idx === 0 ? (
+								<><span className="star">★</span> 추천 {option.id}</>
+							) : (
+								`옵션 ${option.id}`
+							)}
+						</button>
+					))}
 				</div>
 
 				<div className="card selected">
-					{opt === "A" && (
+					{optIdx === 0 && (
 						<div className="badge-rec" style={{ marginBottom: 8 }}>
 							많이 선택해요
 						</div>

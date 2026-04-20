@@ -4,16 +4,20 @@ import { useSession } from "../context/SessionContext";
 import doneImg from "../assets/done.png";
 import "./Complete.css";
 
-const OPTIONS = {
-	A: { name: "IT band 이완 테이핑", tape: "Y-strip", stretch: 15 },
-	B: { name: "무릎 안정화 테이핑", tape: "I-strip", stretch: 25 },
-};
+const MOCK_OPTIONS = [
+	{ id: "A", name: "IT band 이완 테이핑", tape: "Y-strip", stretch: 15 },
+	{ id: "B", name: "무릎 안정화 테이핑", tape: "I-strip", stretch: 25 },
+];
 
 export default function Complete() {
 	const navigate = useNavigate();
 	const { session, resetSession } = useSession();
-	const optKey = session.selected_option || "A";
-	const o = OPTIONS[optKey] || OPTIONS.A;
+
+	const options =
+		session.taping_options.length > 0
+			? session.taping_options
+			: MOCK_OPTIONS;
+	const o = options[session.selected_option ?? 0] ?? options[0];
 	const now = new Date();
 	const time = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
 

@@ -27,7 +27,7 @@ export default function BodyPart() {
 
 	function pickPart(part) {
 		if (!part.available) {
-			showToast("지금은 무릎만 쓸 수 있어요.");
+			showToast("지금은 무릎만 쓸 수 있어요");
 			return;
 		}
 		updateSession({ part: part.label });
