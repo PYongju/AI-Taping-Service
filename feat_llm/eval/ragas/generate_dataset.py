@@ -99,21 +99,40 @@ def translate_questions(df, llm):
     print(f"\n[3/4] 질문 한국어 번역 ({len(df)}개)")
     korean_questions = []
 
+    korean_ground_truths = []
+
     for i, row in df.iterrows():
-        prompt = (
+        # 질문 번역
+        q_prompt = (
             "Translate the following English symptom phrase into natural, casual Korean "
             "as if a person is describing their discomfort in everyday speech. "
             "Keep it short and conversational. "
             "Output only the Korean translation, nothing else.\n\n"
             f"English: {row['user_input']}\nKorean:"
         )
-        response = llm.complete(prompt)
-        korean = response.text.strip()
-        korean_questions.append(korean)
-        print(f"  [{i+1}/{len(df)}] {row['user_input'][:60]}")
-        print(f"         -> {korean}")
+        korean_q = llm.complete(q_prompt).text.strip()
+        korean_questions.append(korean_q)
 
-    df["question_ko"] = korean_questions
+        # ground_truth 번역
+        gt = row.get("reference", "")
+        if gt:
+            gt_prompt = (
+                "You are a medical translator specializing in kinesiology taping. "
+                "Translate the following English text into natural Korean. "
+                "Output only the Korean translation, nothing else.\n\n"
+                f"English: {gt}\nKorean:"
+            )
+            korean_gt = llm.complete(gt_prompt).text.strip()
+        else:
+            korean_gt = ""
+        korean_ground_truths.append(korean_gt)
+
+        print(f"  [{i+1}/{len(df)}] {row['user_input'][:60]}")
+        print(f"         Q  -> {korean_q}")
+        print(f"         GT -> {korean_gt[:60]}")
+
+    df["question_ko"]    = korean_questions
+    df["ground_truth_ko"] = korean_ground_truths
     return df
 
 
@@ -124,10 +143,11 @@ def save_dataset(df):
     records = []
     for _, row in df.iterrows():
         records.append({
-            "question":     row["question_ko"],        # 한국어 질문 (RAG 입력)
-            "question_en":  row["user_input"],          # 영어 원문 (참고용)
-            "ground_truth": row.get("reference", ""),  # 정답
-            "contexts":     row.get("reference_contexts", []),  # 참조 컨텍스트
+            "question":     row["question_ko"],          # 한국어 질문 (RAG 입력)
+            "question_en":  row["user_input"],            # 영어 원문 (참고용)
+            "ground_truth": row.get("ground_truth_ko", ""),  # 한국어 정답
+            "ground_truth_en": row.get("reference", ""), # 영어 원문 (참고용)
+            "contexts":     row.get("reference_contexts", []),
         })
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
