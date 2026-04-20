@@ -29,7 +29,7 @@ export default function Analyzing() {
 			if (i >= STEPS.length) {
 				clearInterval(timerRef.current);
 				setProgress(100);
-				setTimeout(() => navigate("/7"), 500);
+				setTimeout(() => navigate("/result-video"), 500);
 				return;
 			}
 			setStepIdx(i);

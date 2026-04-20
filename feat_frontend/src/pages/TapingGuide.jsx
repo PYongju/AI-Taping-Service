@@ -58,7 +58,7 @@ export default function TapingGuide() {
 
 	function handleNext() {
 		if (step < TOTAL - 1) setStep(step + 1);
-		else navigate("/10");
+		else navigate("/complete");
 	}
 
 	function sendChatbot() {
@@ -85,7 +85,7 @@ export default function TapingGuide() {
 	return (
 		<div className="page" style={{ position: "relative" }}>
 			<div className="topbar">
-				<button className="back" onClick={() => navigate("/7")}>
+				<button className="back" onClick={() => navigate("/result-video")}>
 					<svg className="ic" viewBox="0 0 24 24">
 						<path d="M19 12H5M12 19l-7-7 7-7" />
 					</svg>

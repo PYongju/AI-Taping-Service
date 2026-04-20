@@ -29,13 +29,13 @@ export default function ResultVideo() {
 
 	function startGuide() {
 		updateSession({ selected_option: opt });
-		navigate("/9");
+		navigate("/result-3d");
 	}
 
 	return (
 		<div className="page">
 			<div className="topbar">
-				<button className="back" onClick={() => navigate("/6")}>
+				<button className="back" onClick={() => navigate("/analyzing")}>
 					<svg className="ic" viewBox="0 0 24 24">
 						<path d="M19 12H5M12 19l-7-7 7-7" />
 					</svg>

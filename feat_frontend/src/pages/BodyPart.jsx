@@ -35,7 +35,7 @@ export default function BodyPart() {
 
 	function handleNext() {
 		updateSession({ part: "무릎" });
-		navigate("/2");
+		navigate("/symptom-input");
 	}
 
 	return (
@@ -76,7 +76,7 @@ export default function BodyPart() {
 				className="bottombar"
 				style={{ display: "flex", flexDirection: "column", gap: 8 }}
 			>
-				<button className="btn btn-text" onClick={() => navigate("/2")}>
+				<button className="btn btn-text" onClick={() => navigate("/symptom-input")}>
 					직접 설명할게요
 				</button>
 				<button className="btn btn-primary" onClick={handleNext}>

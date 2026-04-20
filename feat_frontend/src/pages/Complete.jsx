@@ -28,7 +28,7 @@ export default function Complete() {
 
 	function handleRestart() {
 		resetSession();
-		navigate("/1");
+		navigate("/body-part");
 	}
 
 	return (
@@ -177,7 +177,7 @@ export default function Complete() {
 				</div>
 				<button
 					className="btn btn-secondary"
-					onClick={() => navigate("/7")}
+					onClick={() => navigate("/result-video")}
 					style={{ marginTop: 4 }}
 				>
 					다른 테이핑도 해볼게요

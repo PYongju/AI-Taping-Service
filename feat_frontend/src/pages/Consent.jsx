@@ -7,7 +7,7 @@ export default function Consent() {
   return (
     <div className="page">
       <div className="topbar">
-        <button className="back" onClick={() => navigate('/2')}>
+        <button className="back" onClick={() => navigate('/symptom-input')}>
           <svg className="ic" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7" /></svg>
         </button>
         <div className="title">체형 매칭</div>
@@ -28,10 +28,10 @@ export default function Consent() {
       </div>
 
       <div className="bottombar" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <button className="btn btn-primary" onClick={() => navigate('/3')}>
+        <button className="btn btn-primary" onClick={() => navigate('/body-info')}>
           정보 입력하고 시작할게요
         </button>
-        <button className="btn btn-secondary" onClick={() => navigate('/6')}>
+        <button className="btn btn-secondary" onClick={() => navigate('/analyzing')}>
           정보 없이 시작할게요
         </button>
         <div className="t-caption" style={{ textAlign: 'center', marginTop: 4 }}>

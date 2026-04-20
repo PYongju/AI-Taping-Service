@@ -23,7 +23,7 @@ export default function Splash() {
 			<div className="bottombar">
 				<button
 					className="btn btn-primary"
-					onClick={() => navigate("/1")}
+					onClick={() => navigate("/body-part")}
 				>
 					맞춤 테이핑 시작할게요
 				</button>

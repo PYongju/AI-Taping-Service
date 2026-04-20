@@ -59,7 +59,7 @@ export default function BodyInfo() {
 				showToast("사진을 올려주세요");
 				return;
 			}
-			navigate("/6");
+			navigate("/analyzing");
 		}
 	}
 

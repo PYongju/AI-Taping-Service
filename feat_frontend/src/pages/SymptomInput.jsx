@@ -76,7 +76,7 @@ export default function SymptomInput() {
 			<div className="topbar">
 				<button
 					className="back"
-					onClick={() => (step === 1 ? navigate("/1") : setStep(1))}
+					onClick={() => (step === 1 ? navigate("/body-part") : setStep(1))}
 				>
 					<svg className="ic" viewBox="0 0 24 24">
 						<path d="M19 12H5M12 19l-7-7 7-7" />
