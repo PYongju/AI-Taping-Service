@@ -1,59 +1,59 @@
 /* Input Wrapper */
 .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-sm);
 }
 
 /* Input Base */
 .input {
-  width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg);
-  font-size: var(--fs-body);
-  font-family: var(--font-sans);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  color: var(--color-heading);
-  transition: all 0.2s ease;
-  min-height: var(--touch-target-min);
+	width: 100%;
+	padding: var(--spacing-md) var(--spacing-lg);
+	font-size: var(--fs-body);
+	font-family: var(--font-sans);
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	color: var(--color-heading);
+	transition: all 0.2s ease;
+	min-height: var(--touch-target-min);
 }
 
 .input::placeholder {
-  color: var(--color-placeholder);
+	color: var(--color-placeholder);
 }
 
 .input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  background-color: #ffffff;
-  box-shadow: inset 0 0 0 2px rgba(249, 115, 22, 0.1);
+	outline: none;
+	border-color: var(--color-primary);
+	background-color: #ffffff;
+	box-shadow: inset 0 0 0 2px rgba(249, 115, 22, 0.1);
 }
 
 .input:disabled {
-  background-color: var(--color-surface);
-  color: var(--color-caption);
-  cursor: not-allowed;
-  opacity: 0.5;
+	background-color: var(--color-surface);
+	color: var(--color-caption);
+	cursor: not-allowed;
+	opacity: 0.5;
 }
 
 /* Error State */
 .input-error {
-  border-color: var(--color-error);
-  background-color: rgba(240, 68, 82, 0.05);
+	border-color: var(--color-error);
+	background-color: rgba(240, 68, 82, 0.05);
 }
 
 .input-error:focus {
-  border-color: var(--color-error);
-  box-shadow: inset 0 0 0 2px rgba(240, 68, 82, 0.1);
+	border-color: var(--color-error);
+	box-shadow: inset 0 0 0 2px rgba(240, 68, 82, 0.1);
 }
 
 /* Helper Text */
 .input-helper {
-  font-size: var(--fs-caption);
-  color: var(--color-caption);
+	font-size: var(--fs-caption);
+	color: var(--color-caption);
 }
 
 .input-helper-error {
-  color: var(--color-error);
+	color: var(--color-error);
 }

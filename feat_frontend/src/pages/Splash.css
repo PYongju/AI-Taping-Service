@@ -1,51 +1,53 @@
-.splash-page { justify-content: flex-end; }
+.splash-page {
+	justify-content: flex-end;
+}
 
 .splash-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 24px;
-  text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 32px 24px;
+	text-align: center;
 }
 
 .splash-logo {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 32px;
+	width: 200px;
+	height: 200px;
+	object-fit: contain;
+	margin-bottom: 32px;
 }
 
 .splash-brand {
-  font: 800 30px/1 var(--font-base);
-  letter-spacing: -0.03em;
-  color: var(--fg1);
-  margin-bottom: 20px;
+	font: 800 30px/1 var(--font-base);
+	letter-spacing: -0.03em;
+	color: var(--fg1);
+	margin-bottom: 20px;
 }
 
 .splash-headline {
-  text-align: center;
-  margin: 0 0 16px;
-  white-space: pre-line;
+	text-align: center;
+	margin: 0 0 16px;
+	white-space: pre-line;
 }
 
 .splash-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: var(--color-primary-light);
-  border-radius: var(--radius-full);
-  font: 500 12px/1 var(--font-base);
-  color: var(--color-primary);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 14px;
+	background: var(--color-primary-light);
+	border-radius: var(--radius-full);
+	font: 500 12px/1 var(--font-base);
+	color: var(--color-primary);
 }
 
 .splash-badge svg {
-  stroke: var(--color-primary);
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  width: 16px;
-  height: 16px;
+	stroke: var(--color-primary);
+	fill: none;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	width: 16px;
+	height: 16px;
 }
