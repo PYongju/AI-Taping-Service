@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/EL36/Downloads/**)",
+      "Bash(ls TerryPiQ20260419-handoff.zip)",
+      "Bash(unzip -o TerryPiQ20260419-handoff.zip -d TerryPiQ20260419-handoff)",
+      "Bash(npm run *)"
+    ]
+  }
+}

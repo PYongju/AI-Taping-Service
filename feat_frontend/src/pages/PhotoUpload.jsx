@@ -3,7 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { Camera } from 'lucide-react'
 import { useSession } from '../context/SessionContext'
 import { matchBody } from '../api/index'
-import styles from './PhotoUpload.module.css'
+import Button from '../components/Button'
+import Card from '../components/Card'
+import './PhotoUpload.css'
 
 export default function PhotoUpload() {
   const navigate = useNavigate()
@@ -34,7 +36,7 @@ export default function PhotoUpload() {
       if (session.weight_kg != null) formData.append('weight_kg', session.weight_kg)
       const result = await matchBody(formData)
       updateSession({ model_id: result.model_id, glb_url: result.glb_url })
-      navigate('/analyzing')
+      navigate('/6')
     } catch {
       setError('업로드에 실패했어요. 다시 시도해주세요.')
     } finally {
@@ -43,33 +45,56 @@ export default function PhotoUpload() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className="photo-upload">
       <input
         ref={inputRef}
         type="file"
         accept="image/*"
-        className={styles.hiddenInput}
+        className="photo-upload-hidden-input"
         onChange={handleFileChange}
       />
 
-      <button className={styles.btnUpload} onClick={() => inputRef.current.click()}>
-        <Camera size={18} strokeWidth={2} />
-        {file ? '사진 다시 선택' : '사진 선택하기'}
-      </button>
+      <div className="photo-upload-header">
+        <h1 className="heading-lg">사진 업로드</h1>
+      </div>
 
-      {preview && (
-        <img src={preview} alt="미리보기" className={styles.preview} />
-      )}
+      <div className="photo-upload-content">
+        <Card
+          variant="outlined"
+          className="photo-upload-button-card"
+        >
+          <button
+            className="photo-upload-button"
+            onClick={() => inputRef.current.click()}
+          >
+            <Camera size={24} strokeWidth={1.5} />
+            <span>{file ? '사진 다시 선택' : '사진 선택하기'}</span>
+          </button>
+        </Card>
 
-      {error && <p className={styles.error}>{error}</p>}
+        {preview && (
+          <div className="photo-upload-preview">
+            <img src={preview} alt="미리보기" />
+          </div>
+        )}
 
-      <button
-        className={styles.btnPrimary}
-        onClick={handleAnalyze}
-        disabled={!file || loading}
-      >
-        {loading ? '분석 중...' : '분석 시작'}
-      </button>
+        {error && (
+          <p className="photo-upload-error">{error}</p>
+        )}
+      </div>
+
+      <div className="photo-upload-footer">
+        <Button
+          variant="primary"
+          size="large"
+          fullWidth
+          onClick={handleAnalyze}
+          disabled={!file || loading}
+          loading={loading}
+        >
+          분석 시작
+        </Button>
+      </div>
     </div>
   )
 }

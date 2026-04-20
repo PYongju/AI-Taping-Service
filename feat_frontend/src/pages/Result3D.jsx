@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AlertTriangle } from 'lucide-react'
 import { useSession } from '../context/SessionContext'
-import styles from './Result3D.module.css'
+import Button from '../components/Button'
+import './Result3D.css'
 
 export default function Result3D() {
   const navigate = useNavigate()
@@ -16,27 +17,32 @@ export default function Result3D() {
 
   if (options.length === 0) {
     return (
-      <div className={styles.container}>
-        <p style={{ color: 'var(--color-caption)' }}>분석 데이터가 없습니다.</p>
-        <button className={styles.btnPrimary} onClick={() => navigate('/analyzing')}>
+      <div className="result-3d-error">
+        <p className="caption">분석 데이터가 없습니다.</p>
+        <Button
+          variant="primary"
+          size="large"
+          fullWidth
+          onClick={() => navigate('/6')}
+        >
           다시 분석하기
-        </button>
+        </Button>
       </div>
     )
   }
 
   function handleStart() {
     updateSession({ selected_option: selected })
-    navigate('/guide/1')
+    navigate('/9')
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.tabRow}>
+    <div className="result-3d">
+      <div className="result-3d-tabs">
         {options.map((opt) => (
           <button
             key={opt.id}
-            className={selectedId === opt.id ? styles.tabActive : styles.tab}
+            className={`result-3d-tab ${selectedId === opt.id ? 'active' : ''}`}
             onClick={() => setSelectedId(opt.id)}
           >
             {opt.id}
@@ -44,22 +50,27 @@ export default function Result3D() {
         ))}
       </div>
 
-      <div className={styles.viewer}>
-        <span className={styles.viewerText}>
+      <div className="result-3d-viewer">
+        <span className="caption">
           3D 모델 로딩 중 (호진 에셋 연결 예정)
         </span>
       </div>
 
-      <p className={styles.coachText}>{selected?.why}</p>
+      <p className="body result-3d-why">{selected?.why}</p>
 
-      <p className={styles.disclaimer}>
-        <AlertTriangle size={14} strokeWidth={2} style={{ flexShrink: 0, marginTop: 1 }} />
-        이 가이드는 예방적 셀프케어 목적이며 의료 진단이 아닙니다
-      </p>
+      <div className="result-3d-disclaimer">
+        <AlertTriangle size={16} strokeWidth={2} />
+        <span>이 가이드는 예방적 셀프케어 목적이며 의료 진단이 아닙니다</span>
+      </div>
 
-      <button className={styles.btnPrimary} onClick={handleStart}>
+      <Button
+        variant="primary"
+        size="large"
+        fullWidth
+        onClick={handleStart}
+      >
         이 방법으로 시작하기
-      </button>
+      </Button>
     </div>
   )
 }

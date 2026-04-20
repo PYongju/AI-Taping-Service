@@ -1,15 +1,18 @@
 import { createContext, useContext, useState } from 'react'
 
 const initialSession = {
-  body_part: null,       // "knee"
-  user_text: null,       // 증상 자유입력
-  session_id: null,      // EP1 응답값
-  height_cm: null,       // nullable
-  weight_kg: null,       // nullable
-  model_id: null,        // EP2 응답값
-  glb_url: null,         // EP2 응답값
-  taping_options: [],    // EP3 응답값 (배열)
-  selected_option: null, // 유저가 선택한 옵션
+  part: '무릎',
+  situation: null,
+  symptom: null,
+  height: null,
+  weight: null,
+  gender: null,
+  photoUploaded: false,
+  session_id: null,
+  model_id: null,
+  glb_url: null,
+  taping_options: [],
+  selected_option: 'A',
 }
 
 const SessionContext = createContext(null)

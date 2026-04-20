@@ -1,63 +1,30 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { PersonStanding } from "lucide-react";
-import styles from "./Splash.module.css";
-import myLogo from "../assets/logo.png";
+import { useNavigate } from 'react-router-dom';
+import myLogo from '../assets/logo.png';
+import './Splash.css';
 
 export default function Splash() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (import.meta.env.DEV) return; // 개발 환경에서는 막기
-
-		const history = JSON.parse(localStorage.getItem("history") || "[]");
-
-		if (history.length > 0) {
-			navigate("/history", { replace: true });
-		}
-	}, [navigate]);
-
-	function handleStart() {
-		localStorage.setItem("visited", "true");
-		navigate("/body-part");
-	}
-
-	function handleGuestStart() {
-		navigate("/body-part");
-	}
-
-	return (
-		<div className={styles.container}>
-			<div className={styles.logoSection}>
-				<span className={styles.logoLabel}>
-					<img src={myLogo} alt="로고" className={styles.logoImage} />
-				</span>
-				<h1 className={styles.logoText}>TERRYPIQ</h1>
-			</div>
-
-			<p className={styles.headline}>
-				{"이제, 나도 선수들처럼\n나만을 위한 맞춤 테이핑"}
-			</p>
-
-			<hr className={styles.divider} />
-
-			<p className={styles.trust}>
-				{"한국인 실제 체형 반영\n10,000개 빅데이터 기반"}
-			</p>
-
-			<div className={styles.spacer} />
-
-			<div className={styles.buttonGroup}>
-				<button className={styles.btnPrimary} onClick={handleStart}>
-					맞춤 테이핑 시작하기
-				</button>
-				<button
-					className={styles.btnSecondary}
-					onClick={handleGuestStart}
-				>
-					정보 제공 없이 시작하기
-				</button>
-			</div>
-		</div>
-	);
+  return (
+    <div className="page splash-page">
+      <div className="content splash-content">
+        <img src={myLogo} alt="TerryPiQ" className="splash-logo" />
+        <div className="splash-brand">TERRYPIQ</div>
+        <h1 className="t-h1 splash-headline">
+          이제, 나도 선수들처럼{'\n'}나만을 위한 맞춤 테이핑
+        </h1>
+        <div className="splash-badge">
+          <svg className="ic ic-sm" viewBox="0 0 24 24">
+            <path d="M12 2L3 7v5c0 5.5 3.84 10.74 9 12 5.16-1.26 9-6.5 9-12V7l-9-5z" />
+          </svg>
+          AI Hub · 한국인 실제 체형 데이터 기반
+        </div>
+      </div>
+      <div className="bottombar">
+        <button className="btn btn-primary" onClick={() => navigate('/1')}>
+          맞춤 테이핑 시작할게요
+        </button>
+      </div>
+    </div>
+  );
 }

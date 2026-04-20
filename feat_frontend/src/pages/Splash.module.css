@@ -1,85 +1,71 @@
-.container {
-	max-width: 375px;
-	min-height: 100dvh;
-	margin: 0 auto;
+/* Splash Page */
+.splash {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 48px 20px;
-	box-sizing: border-box;
+	min-height: 100vh;
+	padding: var(--spacing-2xl);
+	background-color: var(--color-bg);
+	gap: var(--spacing-4xl);
 }
 
-.logo {
-	font-size: 30px;
-	font-weight: 700;
-	line-height: 1.33;
-	letter-spacing: 0.06em;
-	color: var(--color-heading);
-	margin-bottom: 28px;
-}
-
-.headline {
-	font-size: 22px;
-	font-weight: 700;
-	line-height: 1.36;
+/* Hero Section */
+.splash-hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
-	white-space: pre-line;
-	color: var(--color-heading);
-	margin-bottom: 12px;
+	gap: var(--spacing-2xl);
+	flex: 1;
+	justify-content: center;
 }
 
-.trust {
-	font-size: 13px;
+/* Logo Section */
+.splash-logo-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-md);
+	margin-bottom: var(--spacing-lg);
+}
+
+.splash-logo-image {
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	display: block;
+}
+
+.splash-title {
+	font-size: var(--fs-display-lg);
+	font-weight: 700;
+	color: var(--color-heading);
+	letter-spacing: 0.05em;
+}
+
+/* Headline */
+.splash-headline {
+	font-size: var(--fs-heading-lg);
+	font-weight: 700;
+	line-height: 1.4;
+	color: var(--color-heading);
+	margin: 0;
+}
+
+/* Subtitle */
+.splash-subtitle {
+	font-size: var(--fs-body-sm);
 	color: var(--color-caption);
-	text-align: center;
-	line-height: 1.54;
-	margin-bottom: 44px;
+	line-height: 1.5;
+	margin: 0;
 }
 
-.buttonGroup {
+/* Footer */
+.splash-footer {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-}
-
-.btnPrimary {
-	width: 100%;
-	height: 56px;
-	font-size: 16px;
-	font-weight: 600;
-	background: var(--color-primary);
-	color: #fff;
-	border: none;
-	border-radius: var(--radius-md);
-	cursor: pointer;
-}
-
-.btnPrimary:active {
-	opacity: 0.88;
-}
-
-.btnSecondary {
-	width: 100%;
-	height: 56px;
-	font-size: 16px;
-	font-weight: 600;
-	background: var(--color-surface);
-	color: var(--color-heading);
-	border: none;
-	border-radius: var(--radius-md);
-	cursor: pointer;
-}
-
-.btnSecondary:active {
-	opacity: 0.88;
-}
-
-.logoImage {
-	width: 48px;
-	height: 48px;
-	object-fit: contain;
-	display: block;
-	margin: 0 auto;
+	gap: var(--spacing-md);
+	flex-shrink: 0;
 }

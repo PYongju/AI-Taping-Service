@@ -1,0 +1,90 @@
+/* PhotoGuide Page */
+.photo-guide {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background-color: var(--color-bg);
+}
+
+.photo-guide-header {
+	padding: var(--spacing-xl);
+	border-bottom: 1px solid var(--color-border);
+	background-color: var(--color-bg);
+}
+
+.photo-guide-subtitle {
+	color: var(--color-caption);
+	margin-top: var(--spacing-sm);
+}
+
+.photo-guide-content {
+	flex: 1;
+	padding: var(--spacing-xl);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-xl);
+	overflow-y: auto;
+}
+
+.photo-guide-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: var(--spacing-lg);
+}
+
+.photo-guide-card {
+	padding: var(--spacing-lg) !important;
+}
+
+.photo-guide-label {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	font-size: var(--fs-body);
+	font-weight: 700;
+	margin-bottom: var(--spacing-md);
+	margin: 0 0 var(--spacing-md) 0;
+}
+
+.photo-guide-label.good {
+	color: var(--color-success);
+}
+
+.photo-guide-label.bad {
+	color: var(--color-error);
+}
+
+.photo-guide-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-sm);
+}
+
+.photo-guide-list li {
+	font-size: var(--fs-body-sm);
+	color: var(--color-body);
+	line-height: 1.4;
+}
+
+.photo-guide-privacy {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-md);
+	padding: var(--spacing-lg);
+	background-color: var(--color-surface);
+	border-radius: var(--radius-md);
+	font-size: var(--fs-body-sm);
+	color: var(--color-caption);
+}
+
+.photo-guide-footer {
+	padding: var(--spacing-xl);
+	border-top: 1px solid var(--color-border);
+	background-color: var(--color-bg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-md);
+}

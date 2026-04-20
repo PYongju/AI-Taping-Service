@@ -1,92 +1,61 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useSession } from '../context/SessionContext'
-import { getTapingRecommend } from '../api/index'
-import styles from './Analyzing.module.css'
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import loadingImg from '../assets/loading.png';
+import './Analyzing.css';
 
-const STEPS = [
-  '관절 위치 파악 중...',
-  '체형 수치 계산 중...',
-  '유사 모델 탐색 중...',
-  '테이핑 옵션 생성 중...',
-]
-
-const MOCK_OPTIONS = [
-  { id: 'A', name: 'IT band 이완 테이핑', tape_type: 'elastic', stretch_pct: 25, why: '외측 무릎 긴장 완화에 효과적' },
-  { id: 'B', name: '슬개골 안정 테이핑', tape_type: 'non-elastic', stretch_pct: 0, why: '슬개골 정렬 보조' },
-  { id: 'C', name: 'VMO 활성화 테이핑', tape_type: 'elastic', stretch_pct: 15, why: '내측 근육 활성화' },
-]
-
-// 애니메이션 최소 지속 시간 (ms)
-const MIN_DURATION = (STEPS.length - 1) * 1000 + 800
+const STEPS = ['체형 계산 중이에요', '테이핑 방법을 찾고 있어요', '곧 결과를 보여드릴게요'];
+const TIPS = [
+  '테이핑은 근육이 이완된 상태에서 붙이면 더 잘 붙어요.',
+  '땀이나 물기가 있다면 마른 수건으로 닦은 뒤 붙여주세요.',
+  '보통 2–3일 유지되지만, 가려움이 있으면 바로 풀어주세요.',
+];
 
 export default function Analyzing() {
-  const navigate = useNavigate()
-  const { session, updateSession } = useSession()
-  const [stepIndex, setStepIndex] = useState(0)
-  const [error, setError] = useState(null)
-  const [retryKey, setRetryKey] = useState(0)
+  const navigate = useNavigate();
+  const [stepIdx, setStepIdx] = useState(0);
+  const [tipIdx, setTipIdx] = useState(0);
+  const [progress, setProgress] = useState(30);
+  const timerRef = useRef(null);
 
-  // 순차 텍스트 애니메이션
   useEffect(() => {
-    setStepIndex(0)
-    const timers = STEPS.slice(1).map((_, i) =>
-      setTimeout(() => setStepIndex(i + 1), (i + 1) * 1000)
-    )
-    return () => timers.forEach(clearTimeout)
-  }, [retryKey])
-
-  // API 호출
-  useEffect(() => {
-    let cancelled = false
-    setError(null)
-
-    async function run() {
-      try {
-        const optionsPromise = session.session_id
-          ? getTapingRecommend(session.session_id).then((r) => r.taping_options)
-          : Promise.resolve(MOCK_OPTIONS)
-
-        const [options] = await Promise.all([
-          optionsPromise,
-          new Promise((r) => setTimeout(r, MIN_DURATION)),
-        ])
-
-        if (cancelled) return
-        updateSession({ taping_options: options })
-        navigate('/result-video')
-      } catch {
-        if (!cancelled) setError('분석에 실패했어요. 다시 시도해주세요.')
+    setProgress(30);
+    let i = 0;
+    timerRef.current = setInterval(() => {
+      i++;
+      if (i >= STEPS.length) {
+        clearInterval(timerRef.current);
+        setProgress(100);
+        setTimeout(() => navigate('/7'), 500);
+        return;
       }
-    }
-
-    run()
-    return () => { cancelled = true }
-  }, [retryKey]) // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (error) {
-    return (
-      <div className={styles.container}>
-        <p className={styles.errorText}>{error}</p>
-        <button
-          className={styles.btnPrimary}
-          onClick={() => setRetryKey((k) => k + 1)}
-        >
-          다시 시도
-        </button>
-      </div>
-    )
-  }
+      setStepIdx(i);
+      setTipIdx(i % TIPS.length);
+      setProgress(30 + i * 30);
+    }, 2200);
+    return () => clearInterval(timerRef.current);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className={styles.container}>
-      <div className={styles.stepList}>
-        {STEPS.map((s, i) => (
-          <p key={i} className={i <= stepIndex ? styles.stepActive : styles.stepInactive}>
-            {s}
-          </p>
-        ))}
+    <div className="page analyzing-page">
+      <div className="content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '24px 20px 20px', gap: 24 }}>
+        <img src={loadingImg} alt="" style={{ width: 180, height: 180, objectFit: 'contain', marginTop: 16 }} />
+
+        <div style={{ textAlign: 'center' }}>
+          <div className="t-h1" style={{ fontWeight: 700 }}>{STEPS[stepIdx]}</div>
+          <div className="t-body2" style={{ marginTop: 8 }}>잠시만 기다려주세요...</div>
+        </div>
+
+        <div style={{ width: '100%', maxWidth: 280 }}>
+          <div className="pbar">
+            <div className="fill" style={{ width: `${progress}%` }} />
+          </div>
+        </div>
+
+        <div className="tip-card" style={{ width: '100%', marginTop: 8 }}>
+          <div className="tag">TIP</div>
+          <div className="t-body2" style={{ color: 'var(--fg2)', fontWeight: 500 }}>{TIPS[tipIdx]}</div>
+        </div>
       </div>
     </div>
-  )
+  );
 }
