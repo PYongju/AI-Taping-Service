@@ -17,7 +17,7 @@ from resource_config import setup_global_llm_and_embedding
 
 DOCSTORE_PATH = Path(__file__).parent.parent / "data" / "docstore" / "docstore.json"
 
-# 추천 옵션 생성용 시스템 프롬프트 (llm.complete()로 직접 호출)
+#추천 옵션 생성용 시스템 프롬프트 (llm.complete()로 직접 호출)
 RECOMMENDATION_PROMPT = """\
 SYSTEM:
 You are a kinesiology taping recommendation assistant.
@@ -72,8 +72,6 @@ TEXT_PROMPT = PromptTemplate(
     "질문: {query_str}\n"
     "답변:"
 )
-
-
 
 class TapingRAGSystem:
     def __init__(self, index_name: str):
@@ -141,6 +139,7 @@ class TapingRAGSystem:
             return {}
         meta = nodes[0].metadata
         return {
+            "chunk_id":       nodes[0].node_id,
             "source":         meta.get("source"),
             "body_part":      meta.get("body_part"),
             "technique_code": meta.get("technique_code"),
@@ -219,9 +218,10 @@ if __name__ == "__main__":
 
     rag = TapingRAGSystem(index_name="taping-guide-index")
 
-    test_question = "무릎 바깥쪽 통증(IT 밴드 마찰 증후군) 테이핑 방법 알려줘"
+    test_question = "무릎 바깥쪽 통증 테이핑 방법 알려줘"
     print(f"\n[질문] {test_question}")
 
+    # get_structured_response
     result = rag.get_structured_response(test_question, filter_body_part="knee")
 
     import json
@@ -229,3 +229,25 @@ if __name__ == "__main__":
     print("최종 응답")
     print("=" * 50)
     print(json.dumps(result, indent=2, ensure_ascii=False))
+
+    # --- get_recommendation 테스트 ---
+    print("\n" + "=" * 50)
+    print("추천 옵션 테스트")
+    print("=" * 50)
+
+    test_symptom = {
+        "condition": "무릎 바깥쪽 통증",
+        "body_part": "knee",
+        "acute": False,
+    }
+    test_valid_ids = ["generic_knee_y", "generic_knee_i", "generic_itband_x"]
+
+    print(f"[증상] {json.dumps(test_symptom, ensure_ascii=False)}")
+    print(f"[허용 ID] {test_valid_ids}")
+
+    rec_result = rag.get_recommendation(
+        structured_symptom=test_symptom,
+        valid_taping_ids=test_valid_ids,
+        filter_body_part="knee",
+    )
+    print(json.dumps(rec_result, indent=2, ensure_ascii=False))

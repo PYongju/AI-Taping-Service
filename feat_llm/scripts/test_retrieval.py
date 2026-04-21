@@ -109,12 +109,12 @@ def test_search_quality(index_name: str, query: str, filter_body_part: str = Non
         print(f"\n[{i}순위] Score: {score_str}")
         print(f"  부위/질환: {meta.get('body_part')} / {meta.get('condition')}")
         print(f"  tape_type: {meta.get('tape_type', [])}  stretch: {meta.get('min_stretch')}~{meta.get('max_stretch')}%")
-        print(f"  원문 미리보기:\n   {node.text[:300]}...")
+        print(f"  원문 미리보기:\n   {node}...")
 
 
 if __name__ == "__main__":
     TARGET_INDEX = "taping-guide-index"
 
-    TEST_QUERY = "KNEE_001"
+    TEST_QUERY = "Lateral knee pain"
     test_search_quality(TARGET_INDEX, TEST_QUERY)
     test_search_quality(TARGET_INDEX, TEST_QUERY, filter_body_part="knee")
