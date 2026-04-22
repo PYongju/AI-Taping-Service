@@ -97,7 +97,7 @@ def apply_ch03_manual_mapping(endpoint: str, key: str, index_name: str) -> None:
     new_docs = list(doc_client.search(
         search_text="*",
         filter="body_part eq 'knee' and source eq 'book1_gibbons'",
-        select="chunk_id,chunk",
+        select="chunk_id,chunk,metadata",  # metadata 문자열 필드도 함께 조회
         top=100,
     ))
     print(f"  index-3 ch03 청크: {len(new_docs)}개")
@@ -105,7 +105,8 @@ def apply_ch03_manual_mapping(endpoint: str, key: str, index_name: str) -> None:
     def key_of(text: str) -> str:
         return (text or "").strip()[:100]
 
-    new_lookup = {key_of(d["chunk"]): d["chunk_id"] for d in new_docs}
+    new_lookup      = {key_of(d["chunk"]): d["chunk_id"]          for d in new_docs}
+    metadata_lookup = {d["chunk_id"]:      d.get("metadata", "{}") for d in new_docs}
 
     updates = []
     matched, unmatched = 0, []
@@ -116,12 +117,24 @@ def apply_ch03_manual_mapping(endpoint: str, key: str, index_name: str) -> None:
             unmatched.append(sc.get("chunk_id"))
             continue
         matched += 1
+
+        # 기존 metadata JSON 문자열을 파싱해서 수동 매핑값으로 덮어쓰기
+        # → LlamaIndex가 n.metadata를 metadata 문자열에서 읽으므로 함께 패치 필요
+        try:
+            meta = json.loads(metadata_lookup.get(new_id, "{}"))
+        except json.JSONDecodeError:
+            meta = {}
+        meta["technique_code"] = sc.get("technique_code")
+        meta["condition"]      = sc.get("condition")
+        meta["body_region"]    = sc.get("body_region")
+
         updates.append({
-            "chunk_id": new_id,
+            "chunk_id":      new_id,
             "technique_code": sc.get("technique_code"),
-            "condition": sc.get("condition"),
-            "body_region": sc.get("body_region"),
-            "pain_area": sc.get("pain_area") or [],
+            "condition":      sc.get("condition"),
+            "body_region":    sc.get("body_region"),
+            "pain_area":      sc.get("pain_area") or [],
+            "metadata":       json.dumps(meta, ensure_ascii=False),  # 문자열 필드도 패치
         })
 
     print(f"  매칭 성공: {matched}/{len(saved_chunks)}개")
@@ -229,4 +242,15 @@ def process_and_index():
 if __name__ == "__main__":
     from dotenv import load_dotenv
     load_dotenv()
-    process_and_index()
+
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "--patch-only":
+        # metadata 문자열 패치만 단독 실행 (전체 re-ingestion 불필요 시)
+        # 실행: python ingestion3.py --patch-only
+        print("[패치 모드] ch03 수동 매핑 (metadata 문자열 포함) 재적용...")
+        endpoint = os.getenv("AZURE_AI_SEARCH_ENDPOINT")
+        key      = os.getenv("AZURE_AI_SEARCH_KEY")
+        apply_ch03_manual_mapping(endpoint, key, INDEX_NAME)
+        print("[완료]")
+    else:
+        process_and_index()
