@@ -1,0 +1,38 @@
+.photo-guide-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.guide-example {
+	aspect-ratio: 3/4;
+	border-radius: var(--radius-md);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px;
+}
+
+.guide-example.good {
+	background: #ecfdf5;
+	border: 1.5px solid var(--color-success);
+}
+
+.guide-example.bad {
+	background: #fef2f2;
+	border: 1.5px solid var(--color-error);
+}
+
+.guide-label {
+	font: 700 11px/1 var(--font-base);
+}
+
+.guide-label.good {
+	color: var(--color-success);
+}
+.guide-label.bad {
+	color: var(--color-error);
+}

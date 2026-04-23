@@ -1,0 +1,118 @@
+:root {
+	--color-primary: #ff7a00;
+	--color-primary-hover: #e56e00;
+	--color-primary-light: #fff3e0;
+	--color-secondary: #2563e8;
+	--color-info: #38bdf8;
+
+	--gray-900: #111827;
+	--gray-700: #374151;
+	--gray-500: #6b7280;
+	--gray-300: #d1d5db;
+	--gray-100: #f3f4f6;
+	--white: #fff;
+
+	--color-success: #16a34a;
+	--color-warning: #f59e0b;
+	--color-error: #ef4444;
+
+	--fg1: var(--gray-900);
+	--fg2: var(--gray-700);
+	--fg3: var(--gray-500);
+	--fg4: var(--gray-300);
+	--bg1: #fff;
+	--bg2: #f8f9fa;
+	--bg3: var(--gray-100);
+
+	--font-base:
+		"Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+		"Noto Sans KR", system-ui, sans-serif;
+
+	--sp-0: 4px;
+	--sp-1: 8px;
+	--sp-2: 16px;
+	--sp-3: 24px;
+	--sp-4: 32px;
+	--sp-5: 40px;
+	--sp-6: 48px;
+
+	--radius-sm: 8px;
+	--radius-md: 12px;
+	--radius-lg: 16px;
+	--radius-xl: 24px;
+	--radius-full: 9999px;
+
+	--shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--shadow-2: 0 4px 12px rgba(0, 0, 0, 0.1);
+	--shadow-3: 0 8px 24px rgba(0, 0, 0, 0.14);
+	--shadow-sheet: 0 -4px 24px rgba(0, 0, 0, 0.12);
+
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--dur-fast: 150ms;
+	--dur-base: 220ms;
+	--dur-slow: 320ms;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: var(--font-base);
+	color: var(--fg1);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background: #111;
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	overflow: hidden;
+}
+
+#root {
+	width: 100%;
+	max-width: 390px;
+	height: 100vh;
+	height: 100dvh;
+	margin: 0 auto;
+	background: var(--bg1);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0 40px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 500px) {
+	body {
+		align-items: center;
+		padding: 20px 0;
+	}
+	#root {
+		height: min(860px, 95vh);
+		border-radius: 44px;
+		overflow: hidden;
+		border: 10px solid #0b0b0b;
+		box-shadow:
+			0 30px 80px rgba(0, 0, 0, 0.55),
+			0 0 0 2px #1a1a1a;
+	}
+}
+
+button {
+	font-family: inherit;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+input,
+textarea {
+	font-family: inherit;
+}

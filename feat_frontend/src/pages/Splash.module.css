@@ -1,0 +1,71 @@
+/* Splash Page */
+.splash {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: var(--spacing-2xl);
+	background-color: var(--color-bg);
+	gap: var(--spacing-4xl);
+}
+
+/* Hero Section */
+.splash-hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: var(--spacing-2xl);
+	flex: 1;
+	justify-content: center;
+}
+
+/* Logo Section */
+.splash-logo-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--spacing-md);
+	margin-bottom: var(--spacing-lg);
+}
+
+.splash-logo-image {
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	display: block;
+}
+
+.splash-title {
+	font-size: var(--fs-display-lg);
+	font-weight: 700;
+	color: var(--color-heading);
+	letter-spacing: 0.05em;
+}
+
+/* Headline */
+.splash-headline {
+	font-size: var(--fs-heading-lg);
+	font-weight: 700;
+	line-height: 1.4;
+	color: var(--color-heading);
+	margin: 0;
+}
+
+/* Subtitle */
+.splash-subtitle {
+	font-size: var(--fs-body-sm);
+	color: var(--color-caption);
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* Footer */
+.splash-footer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-md);
+	flex-shrink: 0;
+}
