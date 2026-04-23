@@ -50,8 +50,6 @@ def ensure_model_file_exists():
             f.write(blob_client.download_blob().readall())
         print("✅ 모델 파일 다운로드 완료!")
 
-# 🚀 [추가] 서버가 임포트될 때 딱 한 번 모델 존재 여부를 체크합니다.
-ensure_model_file_exists()
 
 # 💡 [수정됨] 프로젝트 폴더에 같이 있는 json 파일도 CV_BASE 연결!
 WIDTH_FEATURE_JSON_PATH = str(CV_BASE / "body_width_features.json")
@@ -618,7 +616,7 @@ def rerank_with_actor_info(
 _MODEL_INDEX_CACHE = None
 
 def get_model_index_from_cache():
-    """최초 1회만 Azure에서 인덱스를 다운받고, 이후엔 메모리에서 즉시 반환"""
+
     global _MODEL_INDEX_CACHE
     if _MODEL_INDEX_CACHE is None:
         print("📥 [최초 1회] Azure에서 통합 인덱스(all_models_index.json)를 메모리로 로드합니다...")
