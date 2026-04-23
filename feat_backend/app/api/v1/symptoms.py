@@ -1,9 +1,27 @@
+import sys
+import os
 from fastapi import APIRouter, HTTPException
 import uuid
 from datetime import datetime, timezone
+
+# [경로 수정] scripts 폴더까지 path에 추가
+ROOT_PATH = r"C:\Users\USER\Desktop\AI school 2차\main"
+SCRIPTS_PATH = os.path.join(ROOT_PATH, "feat_llm", "scripts")
+
+if SCRIPTS_PATH not in sys.path:
+    sys.path.append(SCRIPTS_PATH)
+
 from app.schemas.symptoms import SymptomRequest, SymptomResponse, StructuredSymptom
 from app.services.db_manager import db 
 
+try:
+    from llm_structure_symptom import SymptomStructurer
+    print("[SUCCESS] 증상 구조화 LLM 모듈 로드 완료!")
+except ImportError as e:
+    print(f"[FATAL ERROR] 증상 구조화 LLM 로드 실패: {e}")
+    SymptomStructurer = None
+
+structurer = SymptomStructurer() if SymptomStructurer else None
 symptom_router = APIRouter()
 
 @symptom_router.post("/analyze", response_model=SymptomResponse)
@@ -12,48 +30,46 @@ async def analyze_symptoms(request: SymptomRequest):
         new_session_id = f"sess_{datetime.now().strftime('%Y%m%d')}_{uuid.uuid4().hex[:6]}"
         now_time = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
         
-        # 1. 구조화된 증상 데이터 생성 (LLM 분석 단계 가정)
-        # [QA-16 조치] EP3에서 재연산(GPT 중복 호출)을 방지하기 위해 
-        # 응답 반환 전, 세션 생성 시점에 데이터를 먼저 완성합니다.
-        mock_structured_symptom = StructuredSymptom(
-            area=request.body_part,
-            keywords=[request.situation, "통증"],
-            summary=f"{request.body_part} 부위의 {request.situation} 상황에 대한 분석 결과입니다."
-        )
+        llm_input = {
+            "body_part": request.body_part,
+            "situation": request.situation,
+            "symptom_type": request.symptom_type or "custom", 
+            "user_text": request.raw_text 
+        }
 
-        # 2. Cosmos DB 세션 문서 생성
+        if structurer:
+            llm_response = structurer.structure(llm_input)
+            symptom_data = llm_response.get("structured_symptom", {})
+            structured_symptom_data = StructuredSymptom(
+                area=symptom_data.get("area", request.body_part),
+                keywords=symptom_data.get("keywords", [request.situation, "통증"]),
+                summary=symptom_data.get("summary", "증상 분석이 완료되었습니다.")
+            )
+        else:
+            structured_symptom_data = StructuredSymptom(
+                area=request.body_part,
+                keywords=[request.situation, "통증"],
+                summary=f"{request.body_part} 증상 분석 완료 (Mock)"
+            )
+
         session_document = {
-            "id": new_session_id,                 
-            "session_id": new_session_id,         
-            "status": "SYMPTOMS_ANALYZED",        # 의미론적 상태값 사용 권장
-            "created_at": now_time,               
-            "updated_at": now_time,               
-            "user_input": {                       
+            "id": new_session_id, 
+            "session_id": new_session_id, 
+            "status": "SYMPTOMS_ANALYZED", 
+            "created_at": now_time, 
+            "updated_at": now_time, 
+            "user_input": { 
                 "body_part": request.body_part,
                 "situation": request.situation,
                 "raw_text": request.raw_text,
-                "physical_info": {         
-                    "height_cm": request.height_cm,
-                    "weight_kg": request.weight_kg,
-                    "gender": request.gender
-                }
+                "symptom_type": request.symptom_type, 
+                "physical_info": { "height_cm": request.height_cm, "weight_kg": request.weight_kg, "gender": request.gender }
             },
-            # [QA-16 조치] 분석된 결과를 DB에 박아둡니다.
-            # model_dump()를 사용하여 Pydantic 모델을 JSON 직렬화 가능한 딕셔너리로 변환합니다.
-            "structured_symptom": mock_structured_symptom.model_dump()
+            "structured_symptom": structured_symptom_data.model_dump()
         }
     
-        # 3. DB 저장 실행
         db.create_session(session_document)
-        print(f"[LOG] DB 저장 완료. Session: {new_session_id}")
-        
-        # 4. 정정한 스키마에 맞춘 결과 반환
-        return SymptomResponse(
-            session_id=new_session_id,
-            status="SYMPTOMS_ANALYZED",
-            structured_symptom=mock_structured_symptom
-        )
+        return SymptomResponse(session_id=new_session_id, status="SYMPTOMS_ANALYZED", structured_symptom=structured_symptom_data)
 
     except Exception as e:
-        print(f"[ERROR] {str(e)}")
-        raise HTTPException(status_code=500, detail=f"데이터 처리 및 DB 저장 중 오류 발생: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

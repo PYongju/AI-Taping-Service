@@ -1,5 +1,6 @@
 from azure.cosmos import CosmosClient, PartitionKey
 from app.core.config import settings
+from datetime import datetime, timezone
 
 class CosmosDBManager:
     def __init__(self):
