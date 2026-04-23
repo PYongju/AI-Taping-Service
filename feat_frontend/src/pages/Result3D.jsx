@@ -38,11 +38,11 @@ export default function Result3D() {
 			<div className="result-3d-tabs">
 				{options.map((opt, idx) => (
 					<button
-						key={opt.id}
+						key={opt.taping_id ?? opt.registry_key ?? idx}
 						className={`result-3d-tab ${selectedIdx === idx ? "active" : ""}`}
 						onClick={() => setSelectedIdx(idx)}
 					>
-						{opt.id}
+						{opt.taping_id ?? opt.registry_key ?? idx + 1}
 					</button>
 				))}
 			</div>

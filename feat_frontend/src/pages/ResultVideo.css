@@ -1,1 +1,17 @@
-/* ResultVideo uses global styles from App.css */
+.opt-switch button.locked {
+	cursor: pointer;
+	opacity: 0.72;
+}
+
+.opt-switch button.locked:hover {
+	border-color: var(--color-primary);
+}
+
+.result-video-player {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	border: 0;
+	border-radius: var(--radius-md);
+	background: #000;
+	object-fit: cover;
+}

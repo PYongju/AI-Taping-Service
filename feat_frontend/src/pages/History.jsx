@@ -1,24 +1,24 @@
-import { useNavigate } from 'react-router-dom'
-import { useSession } from '../context/SessionContext'
-import styles from './History.module.css'
+import { useNavigate } from "react-router-dom";
+import { useSession } from "../context/SessionContext";
+import styles from "./History.module.css";
 
 export default function History() {
-  const navigate = useNavigate()
-  const { resetSession } = useSession()
-  const history = JSON.parse(localStorage.getItem('history') || '[]')
+  const navigate = useNavigate();
+  const { resetSession } = useSession();
+  const history = JSON.parse(localStorage.getItem("history") || "[]");
 
   function handleYes() {
-    navigate('/guide/1')
+    navigate("/result-3d");
   }
 
   function handleNo() {
-    resetSession()
-    navigate('/body-part')
+    resetSession();
+    navigate("/body-part");
   }
 
   function handleNewStart() {
-    resetSession()
-    navigate('/body-part')
+    resetSession();
+    navigate("/body-part");
   }
 
   return (
@@ -44,10 +44,10 @@ export default function History() {
 
       <div className={styles.btnRow}>
         <button className={styles.btnYes} onClick={handleYes}>
-          YES
+          네, 같아요
         </button>
         <button className={styles.btnNo} onClick={handleNo}>
-          NO
+          아니요, 달라요
         </button>
       </div>
 
@@ -55,5 +55,5 @@ export default function History() {
         새로 시작하기
       </button>
     </div>
-  )
+  );
 }

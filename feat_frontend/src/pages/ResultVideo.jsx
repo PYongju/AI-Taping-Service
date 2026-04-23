@@ -1,30 +1,30 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "../context/SessionContext";
 import "./ResultVideo.css";
 
 const MOCK_OPTIONS = [
 	{
-		id: "A",
+		taping_id: "A",
 		name: "IT band 이완 테이핑",
-		tape: "Y-strip",
-		stretch: 15,
+		tape_type: "Y-strip",
+		stretch_pct: 15,
 		why: "러닝 후 외측 긴장에 가장 일반적인 예방 테이핑이에요.",
 		coach: "💡 테이핑 전 부위를 깨끗이 닦고, 털이 있다면 면도 후 붙여주세요.",
 		step_glb_urls: [],
 		video_url: "",
-		disclaimer: "",
+		disclaimer: "이 서비스는 예방을 위한 가이드예요. 지속되는 증상은 전문가에게 확인해보세요.",
 	},
 	{
-		id: "B",
+		taping_id: "B",
 		name: "무릎 안정화 테이핑",
-		tape: "I-strip",
-		stretch: 25,
+		tape_type: "I-strip",
+		stretch_pct: 25,
 		why: "무릎 전반적 안정감 보강에 도움이 될 수 있어요.",
 		coach: "💡 stretch 25%는 조금 당긴 상태로 붙이는 거예요.",
 		step_glb_urls: [],
 		video_url: "",
-		disclaimer: "",
+		disclaimer: "이 서비스는 예방을 위한 가이드예요. 지속되는 증상은 전문가에게 확인해보세요.",
 	},
 ];
 
@@ -39,7 +39,23 @@ export default function ResultVideo() {
 			: MOCK_OPTIONS;
 
 	const [optIdx, setOptIdx] = useState(session.selected_option ?? 0);
+	const [toast, setToast] = useState("");
+	const toastTimer = useRef(null);
 	const o = options[optIdx] ?? options[0];
+
+	function showToast(message) {
+		setToast(message);
+		clearTimeout(toastTimer.current);
+		toastTimer.current = setTimeout(() => setToast(""), 2000);
+	}
+
+	function handleOptionClick(idx) {
+		if (idx > 0) {
+			showToast("옵션 B는 지금 준비 중입니다.");
+			return;
+		}
+		setOptIdx(idx);
+	}
 
 	function startGuide() {
 		updateSession({ selected_option: optIdx });
@@ -74,7 +90,9 @@ export default function ResultVideo() {
 							marginBottom: 6,
 						}}
 					>
-						체형에 맞는 모델을 찾았어요
+						{session.body_info_mode === "full"
+							? "체형에 맞는 모델을 찾았어요"
+							: "평균 체형을 기준으로 찾았어요"}
 					</div>
 					<h2 className="t-h1" style={{ margin: 0 }}>
 						IT band 긴장 가능성이 있어요
@@ -87,14 +105,16 @@ export default function ResultVideo() {
 				<div className="opt-switch">
 					{options.map((option, idx) => (
 						<button
-							key={option.id}
-							className={optIdx === idx ? "active" : ""}
-							onClick={() => setOptIdx(idx)}
+							key={option.taping_id}
+							className={`${optIdx === idx ? "active" : ""} ${idx > 0 ? "locked" : ""}`}
+							aria-disabled={idx > 0}
+							title={idx > 0 ? "옵션 B는 지금 준비 중입니다" : undefined}
+							onClick={() => handleOptionClick(idx)}
 						>
 							{idx === 0 ? (
-								<><span className="star">★</span> 추천 {option.id}</>
+								<><span className="star">★</span> 추천 {option.taping_id}</>
 							) : (
-								`옵션 ${option.id}`
+								`옵션 ${option.taping_id}`
 							)}
 						</button>
 					))}
@@ -133,7 +153,7 @@ export default function ResultVideo() {
 						>
 							테이프:{" "}
 							<span style={{ color: "var(--fg1)" }}>
-								{o.tape}
+								{o.tape_type}
 							</span>
 						</span>
 						<span
@@ -147,7 +167,7 @@ export default function ResultVideo() {
 						>
 							stretch:{" "}
 							<span style={{ color: "var(--fg1)" }}>
-								{o.stretch}%
+								{o.stretch_pct}%
 							</span>
 						</span>
 					</div>
@@ -161,19 +181,28 @@ export default function ResultVideo() {
 					</div>
 				</div>
 
-				<div className="video-placeholder">
-					<svg
-						className="ic ic-lg"
-						viewBox="0 0 24 24"
-						style={{ stroke: "var(--fg3)" }}
-					>
-						<polygon
-							points="5 3 19 12 5 21 5 3"
-							fill="var(--fg3)"
-						/>
-					</svg>
-					테이핑 시연 영상
-				</div>
+				{o.video_url ? (
+					<video
+						className="result-video-player"
+						src={o.video_url}
+						controls
+						playsInline
+					/>
+				) : (
+					<div className="video-placeholder">
+						<svg
+							className="ic ic-lg"
+							viewBox="0 0 24 24"
+							style={{ stroke: "var(--fg3)" }}
+						>
+							<polygon
+								points="5 3 19 12 5 21 5 3"
+								fill="var(--fg3)"
+							/>
+						</svg>
+						테이핑 시연 영상
+					</div>
+				)}
 
 				<div className="disclaimer">
 					<span className="lock">
@@ -205,6 +234,8 @@ export default function ResultVideo() {
 					이 방법으로 시작할게요
 				</button>
 			</div>
+
+			<div className={`toast ${toast ? "show" : ""}`}>{toast}</div>
 		</div>
 	);
 }

@@ -1,11 +1,18 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import careImage from "../assets/care.png";
 import "./SceneHospital.css";
+
+const RICE_ITEMS = [
+	{ icon: "🛌", key: "Rest", label: "무리하지 말고 쉬어주세요" },
+	{ icon: "🧊", key: "Ice", label: "얼음으로 찜질해주세요" },
+	{ icon: "💎", key: "Comp.", label: "가볍게 압박해주세요" },
+	{ icon: "🦵", key: "Elev.", label: "다친 부위를 심장보다 높게 올려주세요" },
+];
 
 export default function SceneHospital() {
 	const navigate = useNavigate();
 	const { state } = useLocation();
 
-	// SymptomInput에서 navigate('/hospital', { state: { keyword } }) 로 전달
 	const keyword = state?.keyword ?? "";
 
 	return (
@@ -20,10 +27,17 @@ export default function SceneHospital() {
 			</div>
 
 			<div className="content hospital-content">
-				<div className="hospital-icon" aria-hidden="true">🏥</div>
+				<img
+					className="hospital-care-img"
+					src={careImage}
+					alt=""
+					aria-hidden="true"
+				/>
 
 				<h1 className="t-h1 hospital-heading">
-					전문가 확인이 필요해 보여요
+					지금 테이핑보다 먼저
+					<br />
+					할 일이 있어요
 				</h1>
 
 				{keyword && (
@@ -33,33 +47,31 @@ export default function SceneHospital() {
 					</div>
 				)}
 
-				<p className="t-body2 hospital-desc">
-					급성 부상이 의심돼요.{"\n"}
-					테이핑 전에 가까운 병원이나{"\n"}
-					응급실을 먼저 방문해보세요.
-				</p>
+				<section className="rice-card" aria-label="RICE 응급 처치 안내">
+					<div className="rice-title">응급처치 가이드</div>
+					{RICE_ITEMS.map((item) => (
+						<div className="rice-row" key={item.key}>
+							<span className="rice-icon">{item.icon}</span>
+							<span className="rice-key">{item.key}</span>
+							<span className="rice-dash">-</span>
+							<span className="rice-label">{item.label}</span>
+						</div>
+					))}
+				</section>
 
-				<div className="hospital-disclaimer">
-					이 서비스는 예방을 위한 가이드예요.{"\n"}
-					지속되는 증상은 전문가에게 확인해보세요.
-				</div>
+				<p className="t-body2 hospital-desc">
+					먼저 병원에서 확인해보시는 걸 꼭 권해드려요.
+				</p>
+				<p className="hospital-sub">괜찮아지면 언제든지 다시 찾아오세요!</p>
+				<p className="hospital-note">ⓘ 이 안내는 의료진단이 아니에요.</p>
 			</div>
 
-			<div
-				className="bottombar"
-				style={{ display: "flex", flexDirection: "column", gap: 8 }}
-			>
-				<button
-					className="btn btn-secondary"
-					onClick={() => navigate("/consent")}
-				>
-					그래도 계속 진행할게요
+			<div className="bottombar hospital-actions">
+				<button className="btn btn-primary" onClick={() => navigate("/")}>
+					나중에 다시 올게요
 				</button>
-				<button
-					className="btn btn-text"
-					onClick={() => navigate("/body-part")}
-				>
-					처음부터 다시 해볼게요
+				<button className="btn btn-secondary" onClick={() => navigate("/consent")}>
+					그래도 계속 진행할게요
 				</button>
 			</div>
 		</div>

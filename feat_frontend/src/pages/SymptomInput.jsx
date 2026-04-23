@@ -12,16 +12,23 @@ const SITUATIONS = [
   { val: "other", label: "기타" },
 ];
 
-const ACUTE_KEYWORDS = ["붓기", "못 걷겠", "삐었", "넘어짐", "골절"];
+const ACUTE_KEYWORD_PATTERNS = [
+  /붓|부었|부어|부은|부음|부종|퉁퉁| swelling/i,
+  /못\s*걷|걷기\s*힘|디디기\s*힘|체중.?실|발을\s*못/i,
+  /삐었|삐끗|접질|접지르|꺾였|꺾임|염좌/i,
+  /넘어|넘어짐|넘어졌|떨어|부딪|충돌/i,
+  /골절|금.?간|뼈.?부러|부러진|파열/i,
+  /극심|심한\s*통증|참기\s*힘|응급|피.?남|출혈|열감/i,
+];
 
 function hasAcuteKeyword(text) {
-  return ACUTE_KEYWORDS.some((kw) => text.includes(kw));
+  return ACUTE_KEYWORD_PATTERNS.some((pattern) => pattern.test(text));
 }
 
 const SYMPTOM_CHIPS = [
   { val: "stiff", label: "뻐근하고 뻣뻣해요" },
-  { val: "front_pain", label: "무릎 앞쪽이 아파요" },
-  { val: "outer_pain", label: "무릎 바깥쪽이 아파요" },
+  { val: "front_pain", label: "무릎 앞쪽이 불편해요" },
+  { val: "outer_pain", label: "무릎 바깥쪽이 불편해요" },
   { val: "instability", label: "불안정한 느낌이에요" },
   { val: "prevention", label: "예방 목적이에요" },
   { val: "custom", label: "직접 설명할게요" },
@@ -51,6 +58,12 @@ export default function SymptomInput() {
     }
   }, [messages, apiError]);
 
+  useEffect(() => {
+    if (step === 2 && situation === "other") {
+      inputRef.current?.focus();
+    }
+  }, [step, situation]);
+
   function pickSituation(sit) {
     setSituation(sit.val);
     setSituationLabel(sit.label);
@@ -70,7 +83,13 @@ export default function SymptomInput() {
     }
 
     if (hasAcuteKeyword(chip.label)) {
-      navigate("/hospital", { state: { keyword: chip.label } });
+      callEP1({
+        symptom_type: chip.val,
+        user_text: null,
+        appendUserMsg: true,
+        nextRoute: "hospital",
+        hospitalKeyword: chip.label,
+      });
       return;
     }
 
@@ -93,7 +112,13 @@ export default function SymptomInput() {
     }
 
     if (hasAcuteKeyword(msg)) {
-      navigate("/hospital", { state: { keyword: msg } });
+      callEP1({
+        symptom_type: "custom",
+        user_text: msg,
+        appendUserMsg: true,
+        nextRoute: "hospital",
+        hospitalKeyword: msg,
+      });
       return;
     }
 
@@ -104,7 +129,13 @@ export default function SymptomInput() {
     });
   }
 
-  async function callEP1({ symptom_type, user_text, appendUserMsg = true }) {
+  async function callEP1({
+    symptom_type,
+    user_text,
+    appendUserMsg = true,
+    nextRoute = "consent",
+    hospitalKeyword = null,
+  }) {
     if (inFlightRef.current) return;
     inFlightRef.current = true; // 렌더 없이 즉시 잠금
 
@@ -115,7 +146,7 @@ export default function SymptomInput() {
 
     setApiError(false);
     setLoading(true);
-    setLastPayload({ symptom_type, user_text });
+    setLastPayload({ symptom_type, user_text, nextRoute, hospitalKeyword });
 
     setMessages((prev) => [
       ...prev,
@@ -141,7 +172,11 @@ export default function SymptomInput() {
       });
 
       setMessages((prev) => prev.filter((m) => m.role !== "typing"));
-      navigate("/consent");
+      if (nextRoute === "hospital") {
+        navigate("/hospital", { state: { keyword: hospitalKeyword ?? displayText } });
+      } else {
+        navigate("/consent");
+      }
     } catch (error) {
       setMessages((prev) => prev.filter((m) => m.role !== "typing"));
       setApiError(true);
