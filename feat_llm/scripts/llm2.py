@@ -194,12 +194,15 @@ class TapingRAGSystem:
         백엔드가 호출하는 유일한 public 메서드.
 
         input 기대 키:
-            body_part    (str): 통증 부위 (예: "knee")
-            body_region  (str): 세부 위치 (예: "lateral")
-            situation    (str): 상황 (예: "after_exercise")
-            symptom_type (str | None): 증상 유형
-            raw_text     (str): 사용자 직접 입력 텍스트
-            laterality   (str): "left" | "right" | "bilateral"
+            session_id          (str): 세션 ID (llm 내부에서 사용 안 함)
+            model_id            (str): 3D 모델 ID (llm 내부에서 사용 안 함)
+            body_part           (str): 통증 부위 (예: "knee")
+            situation           (str): 상황 (예: "after_exercise")
+            laterality          (str): "left" | "right" | "bilateral"
+            raw_text            (str): 사용자 직접 입력 텍스트
+            structured_symptom  (dict): EP1에서 구조화된 증상 정보
+                area     (str) : 세부 위치 (예: "knee_lateral")
+                keywords (list): 증상 키워드 (예: ["outer_pain", "running"])
         """
         # [Step 6-②] acute 입력 시 LLM 호출 없이 즉시 반환
         if input.get("acute"):
@@ -246,10 +249,12 @@ class TapingRAGSystem:
             f"[chunk_id: {n.node_id}]\n{n.get_content()}"
             for n in nodes
         )
+        # session_id, model_id는 LLM 프롬프트에 불필요하므로 제거 후 전달
+        llm_context = {k: v for k, v in input.items() if k not in ("session_id", "model_id")}
         prompt = RECOMMENDATION_PROMPT.format(
             valid_codes=json.dumps(valid_codes, ensure_ascii=False),
             rag_chunks=rag_chunks,
-            structured_symptom=json.dumps(input, ensure_ascii=False),
+            structured_symptom=json.dumps(llm_context, ensure_ascii=False),
         )
         print("[DEBUG] 추천 옵션 생성 중...")
         response = self.llm.complete(prompt)
@@ -283,12 +288,16 @@ if __name__ == "__main__":
 
     # 정상 케이스
     test_input = {
+        "session_id": "sess_abc123",
+        "model_id": "M0234",
         "body_part": "knee",
-        "body_region": "lateral",
         "situation": "after_exercise",
-        "symptom_type": "outer_pain",
-        "raw_text": "달리기 후 무릎 바깥쪽 통증",
         "laterality": "right",
+        "raw_text": "달리기 후 무릎 바깥쪽 통증",
+        "structured_symptom": {
+            "area": "knee_lateral",
+            "keywords": ["outer_pain", "running"],
+        },
     }
 
     # acute 케이스 (LLM 호출 없이 즉시 반환되는지 확인)
