@@ -1,5 +1,6 @@
 from azure.cosmos import CosmosClient, PartitionKey
 from app.core.config import settings
+from datetime import datetime, timezone
 
 class CosmosDBManager:
     def __init__(self):
@@ -31,16 +32,28 @@ class CosmosDBManager:
         return session_data
     
     def update_session(self, session_id: str, update_data: dict):
-        """기존 세션 문서를 찾아서 데이터를 업데이트(PATCH)합니다."""
-        # 1. 기존 아이템 읽기
-        item = self.session_container.read_item(item=session_id, partition_key=session_id)
-        
-        # 2. 데이터 병합 (기존 데이터 위에 새로운 데이터 덮어쓰기)
-        item.update(update_data)
-        
-        # 3. DB에 다시 저장
-        self.session_container.upsert_item(body=item)
-        return item
+        try:
+            # 1. 기존 세션 문서 읽기
+            item = self.session_container.read_item(
+                item=session_id, 
+                partition_key=session_id
+            )
+            
+            # 2. 새로운 데이터로 병합 (Dictionary Update)
+            item.update(update_data)
+            
+            # 3. [핵심] updated_at 자동 갱신 로직 추가
+            # 파이프라인의 어느 곳에서 호출하든 항상 최신 시간으로 덮어씌움
+            item["updated_at"] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+            
+            # 4. DB에 최종 저장(Upsert)
+            self.session_container.upsert_item(item)
+            
+            return item
+            
+        except Exception as e:
+            print(f"[DB Error] 세션 업데이트 실패: {str(e)}")
+            raise e
 
     def get_session(self, session_id: str):
         """특정 세션 정보를 가져옵니다."""
