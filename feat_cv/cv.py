@@ -14,6 +14,7 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 from rembg import remove
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+from azure.storage.blob import BlobServiceClient
 
 try:
     import pillow_avif  # noqa: F401
@@ -23,21 +24,49 @@ except Exception:
     except Exception:
         pass
 
+from pathlib import Path
 
-MEDIAPIPE_MODEL_PATH = r"pose_landmarker_full.task"
-BODY_JSON_DIR = r"body_jsons"
-OBJ_DIR = r"body_models"
-WIDTH_FEATURE_JSON_PATH = r"body_width_features.json"
+# 현재 cv.py가 있는 폴더(feat_cv) 기준 절대 경로로 세팅
+CV_BASE = Path(__file__).resolve().parent
+
+# 로컬 캐싱된 파일들의 위치
+MEDIAPIPE_MODEL_PATH = str(CV_BASE / "pose_landmarker_full.task")
+
+AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+CONTAINER_NAME = "models"
+
+def ensure_model_file_exists():
+    """로컬에 모델 파일이 없으면 Azure에서 다운로드합니다."""
+    local_model_path = Path(MEDIAPIPE_MODEL_PATH)
+    if not local_model_path.exists():
+        print("📥 모델 파일이 로컬에 없습니다. Azure에서 다운로드합니다...")
+        blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
+        container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+            
+        # models 컨테이너 바로 밑에 있으므로 이름은 그대로
+        blob_client = container_client.get_blob_client("pose_landmarker_full.task")
+            
+        with open(local_model_path, "wb") as f:
+            f.write(blob_client.download_blob().readall())
+        print("✅ 모델 파일 다운로드 완료!")
+
+# 🚀 [추가] 서버가 임포트될 때 딱 한 번 모델 존재 여부를 체크합니다.
+ensure_model_file_exists()
+
+# 💡 [수정됨] 프로젝트 폴더에 같이 있는 json 파일도 CV_BASE 연결!
+WIDTH_FEATURE_JSON_PATH = str(CV_BASE / "body_width_features.json")
+
+# (선택사항) 만약 cv.py 내부에서 OBJ 파일을 직접 열어서 읽는 로직이 있다면 아래도 CV_BASE를 붙여야 합니다.
+# 그게 아니라 단순히 이름(String)만 반환하는 거라면 그대로 두셔도 됩니다.
+OBJ_DIR = ""
 
 TOP_K = 5
 PREFILTER_K = 30
 
-APP_TMP_DIR = Path("service_outputs")
+APP_TMP_DIR = CV_BASE / "temp_outputs" 
 APP_TMP_DIR.mkdir(parents=True, exist_ok=True)
 
-# 개인정보 입력 거부 시 사용할 기본 body 모델 경로
-DEFAULT_BODY_OBJ_PATH = r"body_models_final/3148M.obj"
-
+DEFAULT_BODY_OBJ_PATH = "https://tapingdata1.blob.core.windows.net/models/body_privacy/JerryPing_BODY.glb"
 
 MP_IDX = {
     "nose": 0,
@@ -215,9 +244,11 @@ def find_taping_asset_for_body(
 
 
 def detect_pose_from_photo(photo_path: str, model_path: str) -> Tuple[np.ndarray, Dict[str, List[float]]]:
-    image_bgr = cv2.imread(photo_path)
+    img_array = np.fromfile(photo_path, np.uint8)
+    image_bgr = cv2.imdecode(img_array, cv2.IMREAD_COLOR) # image_bgr로 변수 대입
+
     if image_bgr is None:
-        raise RuntimeError(f"OpenCV가 이미지를 읽지 못했습니다: {photo_path}")
+        raise ValueError(f"OpenCV가 이미지를 읽지 못했습니다: {photo_path}")
 
     h, w = image_bgr.shape[:2]
     options = vision.PoseLandmarkerOptions(
@@ -584,10 +615,26 @@ def rerank_with_actor_info(
     return score, bonus
 
 
+_MODEL_INDEX_CACHE = None
+
+def get_model_index_from_cache():
+    """최초 1회만 Azure에서 인덱스를 다운받고, 이후엔 메모리에서 즉시 반환"""
+    global _MODEL_INDEX_CACHE
+    if _MODEL_INDEX_CACHE is None:
+        print("📥 [최초 1회] Azure에서 통합 인덱스(all_models_index.json)를 메모리로 로드합니다...")
+        blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
+        container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+        
+        blob_client = container_client.get_blob_client("all_models_index.json")
+        data_stream = blob_client.download_blob().readall()
+        _MODEL_INDEX_CACHE = json.loads(data_stream)
+        print(f"✅ 총 {len(_MODEL_INDEX_CACHE)}개의 모델 인덱스 로드 완료!")
+        
+    return _MODEL_INDEX_CACHE
+
 def rank_all_models_integrated(
     user_ratio_features: Dict[str, float],
     user_width_features: Dict[str, Optional[float]],
-    json_dir: str,
     width_feature_json_path: str,
     user_sex: Optional[str] = None,
     user_height_cm: Optional[float] = None,
@@ -595,13 +642,17 @@ def rank_all_models_integrated(
     top_k: int = TOP_K,
     prefilter_k: int = PREFILTER_K,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    
     user_sex_norm = normalize_sex(user_sex)
     width_index = load_width_feature_index(width_feature_json_path)
     stage1_results: List[Dict[str, Any]] = []
 
-    for json_path in Path(json_dir).rglob("*.json"):
+    # 🚀 핵심: 수천 개 다운로드 루프 대신, 메모리에서 완성된 리스트를 1초 만에 가져옵니다.
+    all_models = get_model_index_from_cache()
+
+    for info in all_models:
         try:
-            info = load_body_json(json_path)
+            # 이미 info 안에 ratio_features가 다 계산되어 들어있습니다!
             json_sex_norm = normalize_sex(info.get("sex"))
             if user_sex_norm is not None and json_sex_norm is not None:
                 if user_sex_norm != json_sex_norm:
@@ -612,25 +663,28 @@ def rank_all_models_integrated(
 
             shape_score, score_pack = combined_body_score(
                 user_skeleton_ratios=user_ratio_features,
-                model_skeleton_ratios=info["ratio_features"],
+                model_skeleton_ratios=info["ratio_features"], # 👈 캐시된 비율 바로 사용!
                 user_width_features=user_width_features,
                 model_width_features=model_width_features or {},
             )
 
-            info["shape_score"] = shape_score
-            info["skeleton_score"] = score_pack["skeleton_score"]
-            info["width_score"] = score_pack["width_score"]
-            info["score_detail"] = {
+            info_copy = info.copy() # 원본 캐시 훼손 방지
+            info_copy["shape_score"] = shape_score
+            info_copy["skeleton_score"] = score_pack["skeleton_score"]
+            info_copy["width_score"] = score_pack["width_score"]
+            info_copy["score_detail"] = {
                 "skeleton_detail": score_pack["skeleton_detail"],
                 "width_detail": score_pack["width_detail"],
             }
-            stage1_results.append(info)
+            stage1_results.append(info_copy)
+            
         except Exception as e:
-            print(f"[SKIP] {json_path.name}: {e}")
+            pass # 불량 데이터 무시
 
     if not stage1_results:
         return [], []
 
+    # --- 여기서부터는 기존의 Rerank 로직과 동일 ---
     stage1_results.sort(key=lambda x: x["shape_score"])
     stage2_candidates = stage1_results[:prefilter_k]
 
@@ -650,16 +704,18 @@ def rank_all_models_integrated(
     return reranked_results[:top_k], reranked_results
 
 
+# 💡 [핵심 수정] cv.py 내 resolve_obj_path 함수를 아래처럼만 바꾸세요.
 def resolve_obj_path(obj_dir: str, obj_file_name: Optional[str]) -> Optional[str]:
     if not obj_file_name:
         return None
-    direct = Path(obj_dir) / obj_file_name
-    if direct.exists():
-        return str(direct)
-    matches = list(Path(obj_dir).rglob(obj_file_name))
-    if matches:
-        return str(matches[0])
-    return None
+    
+    # 로컬 탐색 코드를 삭제하고 바로 URL을 생성합니다.
+    base_storage_url = "https://tapingdata1.blob.core.windows.net/models"
+    
+    # 파일명이 KT_를 포함하면 knee, 아니면 body 폴더로 자동 분류
+    folder = "knee" if "KT_" in obj_file_name else "body"
+    
+    return f"{base_storage_url}/{folder}/{obj_file_name}"
 
 
 def load_trimesh_safe(path: str) -> trimesh.Trimesh:
@@ -832,7 +888,7 @@ def rank_body_candidates(
     top_matches, _ = rank_all_models_integrated(
         user_ratio_features=user_ratio_features,
         user_width_features=user_width_features,
-        json_dir=BODY_JSON_DIR,
+        #json_dir=BODY_JSON_DIR,
         width_feature_json_path=WIDTH_FEATURE_JSON_PATH,
         user_sex=user_sex,
         user_height_cm=user_height_cm,
@@ -844,20 +900,22 @@ def rank_body_candidates(
     if not top_matches:
         raise RuntimeError("조건에 맞는 후보를 찾지 못했습니다.")
 
+    # 💡 수정: 파일 존재 여부 체크 없이 바로 URL 생성 로직(resolve_obj_path) 호출
     best_match = top_matches[0]
-    best_obj_path = resolve_obj_path(OBJ_DIR, best_match.get("mesh_obj_file_name"))
-    if best_obj_path is None:
-        raise FileNotFoundError(f"best match의 OBJ 파일을 찾지 못했습니다: {best_match.get('mesh_obj_file_name')}")
-    best_match["body_obj_path"] = best_obj_path
+    best_glb_filename = best_match.get("mesh_obj_file_name", "").replace(".obj", ".glb")
+    best_match["body_obj_path"] = resolve_obj_path(OBJ_DIR, best_glb_filename) 
 
     normalized_top_matches: List[Dict[str, Any]] = []
     for idx, item in enumerate(top_matches, start=1):
-        obj_path = resolve_obj_path(OBJ_DIR, item.get("mesh_obj_file_name"))
+        # 💡 [핵심 수정] 루프 내의 모든 파일명도 GLB로 변경
+        item_glb_filename = item.get("mesh_obj_file_name", "").replace(".obj", ".glb")
+        obj_path = resolve_obj_path(OBJ_DIR, item_glb_filename)
+        
         normalized_top_matches.append({
             "rank": idx,
             "annotation_id": item.get("annotation_id"),
             "model_id": item.get("model_id"),
-            "body_obj_path": obj_path,
+            "body_obj_path": obj_path, # 변수명은 유지해도 되지만 실제 경로는 GLB임
             "json_path": item.get("json_path"),
             "shape_score": item.get("shape_score"),
             "final_score": item.get("final_score"),
@@ -1224,3 +1282,7 @@ if __name__ == "__main__":
         print(json.dumps(output, ensure_ascii=False, indent=2))
     else:
         print("샘플 실행을 원하면 user_full_body.jpg 파일을 현재 경로에 두세요.")
+
+
+# 그리고 이 함수를 서버 시작 시점에 호출하거나, 
+# MediaPipe를 로드하기 직전에 호출하면 됩니다.

@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime, timezone
 
 # [경로 수정] scripts 폴더까지 path에 추가
-ROOT_PATH = r"C:\Users\USER\Desktop\AI school 2차\main"
+ROOT_PATH = r"C:\Users\USER\Desktop\AI_school2\main"
 SCRIPTS_PATH = os.path.join(ROOT_PATH, "feat_llm", "scripts")
 
 if SCRIPTS_PATH not in sys.path:
