@@ -25,8 +25,8 @@ except Exception:
 
 
 MEDIAPIPE_MODEL_PATH = r"pose_landmarker_full.task"
-BODY_JSON_DIR = r"body_jsons_final"
-OBJ_DIR = r"body_models_final"
+BODY_JSON_DIR = r"body_jsons"
+OBJ_DIR = r"body_models"
 WIDTH_FEATURE_JSON_PATH = r"body_width_features.json"
 
 TOP_K = 5
@@ -34,6 +34,9 @@ PREFILTER_K = 30
 
 APP_TMP_DIR = Path("service_outputs")
 APP_TMP_DIR.mkdir(parents=True, exist_ok=True)
+
+# 개인정보 입력 거부 시 사용할 기본 body 모델 경로
+DEFAULT_BODY_OBJ_PATH = r"body_models_final/3148M.obj"
 
 
 MP_IDX = {
@@ -898,7 +901,7 @@ def run_body_search(
     """
     개인정보 입력이 없는 경우:
     - MediaPipe / body search 생략
-    - default_body_obj_path 사용
+    - default_body_obj_path 또는 DEFAULT_BODY_OBJ_PATH 사용
     - RAG technique_code + body model name으로 asset_id 생성
     - registry에서 tape mesh 찾기
     - body 경로 / tape mesh 경로 / guide video 경로만 반환
@@ -937,9 +940,10 @@ def run_body_search(
     debug_image_path: Optional[str] = None
 
     if privacy_opt_out:
-        if not default_body_obj_path:
-            raise ValueError("privacy_opt_out=True 인 경우 default_body_obj_path가 필요합니다.")
-        body_obj_path = default_body_obj_path
+        resolved_default_body_obj_path = default_body_obj_path or DEFAULT_BODY_OBJ_PATH
+        if not resolved_default_body_obj_path:
+            raise ValueError("privacy_opt_out=True 인 경우 default_body_obj_path 또는 DEFAULT_BODY_OBJ_PATH가 필요합니다.")
+        body_obj_path = resolved_default_body_obj_path
 
         if selected_rag_option and registry_path:
             technique_code = selected_rag_option.get("technique_code")
@@ -1055,6 +1059,145 @@ def run_body_search(
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     return result
+
+
+def build_error_response(
+    *,
+    message: str,
+    error_code: str,
+    request_id: Optional[str] = None,
+    output_dir: Optional[str] = None,
+    image_path: Optional[str] = None,
+    height_cm: Optional[float] = None,
+    weight_kg: Optional[float] = None,
+    sex: Optional[str] = None,
+    selected_option_rank: int = 1,
+    privacy_opt_out: bool = False,
+) -> Dict[str, Any]:
+    """
+    경량화된 실패 응답 전용 JSON 생성 함수.
+
+    성공 응답은 run_body_search()의 기존 구조를 그대로 유지하고,
+    실패 응답만 아래 최소 스키마로 반환한다.
+
+    {
+      "request_id": "...",
+      "status": "error",
+      "data": None,
+      "error": {
+        "code": "...",
+        "message": "..."
+      }
+    }
+    """
+    return {
+        "request_id": request_id,
+        "status": "error",
+        "data": None,
+        "error": {
+            "code": error_code,
+            "message": message,
+        },
+    }
+
+def classify_run_body_search_error(exc: Exception) -> str:
+    if isinstance(exc, FileNotFoundError):
+        return "FILE_NOT_FOUND"
+    if isinstance(exc, LookupError):
+        return "TAPING_ASSET_NOT_FOUND"
+    if isinstance(exc, ValueError):
+        return "INVALID_INPUT"
+    if isinstance(exc, RuntimeError):
+        msg = str(exc)
+        if "전신 포즈를 찾지 못했습니다" in msg:
+            return "POSE_NOT_FOUND"
+        if "segmentation mask가 비어 있습니다" in msg:
+            return "SEGMENTATION_FAILED"
+        if "조건에 맞는 후보를 찾지 못했습니다" in msg:
+            return "NO_BODY_CANDIDATE"
+        if "이미지 JPG 변환에 실패했습니다" in msg:
+            return "IMAGE_CONVERSION_FAILED"
+        if "OpenCV가 이미지를 읽지 못했습니다" in msg:
+            return "IMAGE_READ_FAILED"
+        return "INFERENCE_FAILED"
+    return "UNKNOWN_ERROR"
+
+
+def run_body_search_safe(
+    image_path: Optional[str],
+    height_cm: Optional[float],
+    weight_kg: Optional[float],
+    sex: Optional[str],
+    output_dir: Optional[str] = None,
+    top_k: int = TOP_K,
+    prefilter_k: int = PREFILTER_K,
+    rag_result: Optional[Dict[str, Any]] = None,
+    tape_type: Optional[str] = None,
+    selected_option_rank: int = 1,
+    registry_path: Optional[str] = None,
+    privacy_opt_out: bool = False,
+    default_body_obj_path: Optional[str] = None,
+) -> Dict[str, Any]:
+    """
+    run_body_search()를 감싸는 안전 래퍼.
+
+    성공 시:
+    - run_body_search()의 성공 JSON 그대로 반환
+
+    실패 시:
+    - UX에서 바로 사용할 수 있는 에러 JSON 반환
+    - 예외를 밖으로 던지지 않음
+    """
+    request_id: Optional[str] = None
+    resolved_output_dir = output_dir
+
+    try:
+        if resolved_output_dir is None:
+            request_id = uuid.uuid4().hex[:12]
+            resolved_output_dir = str(APP_TMP_DIR / request_id)
+        else:
+            request_id = Path(resolved_output_dir).name
+
+        return run_body_search(
+            image_path=image_path,
+            height_cm=height_cm,
+            weight_kg=weight_kg,
+            sex=sex,
+            output_dir=resolved_output_dir,
+            top_k=top_k,
+            prefilter_k=prefilter_k,
+            rag_result=rag_result,
+            tape_type=tape_type,
+            selected_option_rank=selected_option_rank,
+            registry_path=registry_path,
+            privacy_opt_out=privacy_opt_out,
+            default_body_obj_path=default_body_obj_path,
+        )
+    except Exception as exc:
+        error_code = classify_run_body_search_error(exc)
+        error_result = build_error_response(
+            message=str(exc),
+            error_code=error_code,
+            request_id=request_id,
+            output_dir=resolved_output_dir,
+            image_path=image_path,
+            height_cm=height_cm,
+            weight_kg=weight_kg,
+            sex=sex,
+            selected_option_rank=selected_option_rank,
+            privacy_opt_out=privacy_opt_out,
+        )
+
+        if resolved_output_dir:
+            try:
+                ensure_dir(resolved_output_dir)
+                report_path = str(Path(resolved_output_dir) / "body_search_report.json")
+                with open(report_path, "w", encoding="utf-8") as f:
+                    json.dump(error_result, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+
+        return error_result
 
 
 if __name__ == "__main__":
