@@ -1,1 +1,7 @@
-/* Complete uses global styles from App.css */
+.complete-note {
+	margin: 8px 0 0;
+	font: 400 11px/1.55 var(--font-base);
+	color: var(--fg3);
+	text-align: center;
+	word-break: keep-all;
+}

@@ -76,9 +76,6 @@ export default function BodyPart() {
 				className="bottombar"
 				style={{ display: "flex", flexDirection: "column", gap: 8 }}
 			>
-				<button className="btn btn-text" onClick={() => navigate("/symptom-input")}>
-					직접 설명할게요
-				</button>
 				<button className="btn btn-primary" onClick={handleNext}>
 					다음으로 넘어갈게요
 				</button>
