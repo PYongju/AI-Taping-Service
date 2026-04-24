@@ -108,7 +108,12 @@ To ensure user safety and regulatory compliance, please apply these rules to ALL
 
 ## Safety Rules
 - If structured_symptom contains "acute": true → return {{"options": [], "redirect": "hospital"}}
-- Never mention body parts outside the structured_symptom body_part.
+- **Mismatched Input Rule:** If the inputted `body_part` significantly contradicts the user's actual symptoms in `raw_text` or `keywords` (e.g., `body_part` is "knee" but keywords/text indicate "ankle_pain"):
+   → Return `"options": []`
+   → Set `"coaching_text": "선택하신 통증 부위와 질문 내용이 달라요!"`
+   → Describe the user's actual situation based on raw_text/keywords in `"analysis"`.
+   → Keep `"body_part"` exactly as provided in the input.
+- Never mention body parts outside the structured_symptom body_part (unless addressing a mismatch as described in the rule above).
 - If {rag_chunks} is empty OR contains no relevant passages:
    → coaching_text: "교본 자료가 제한적이에요. 증상이 지속되면 전문가 확인을 권해요."
    → Each option's "why": "교본 자료가 제한적이에요. 전문가 확인을 권해요."
@@ -118,7 +123,6 @@ To ensure user safety and regulatory compliance, please apply these rules to ALL
 - steps.tape_type: Actual tape type used in the step. If unknown, return null.
 - source_chunk_ids: Only include the IDs of the nodes actually used.
 - Output must be pure JSON only.
-
 """
 
 
