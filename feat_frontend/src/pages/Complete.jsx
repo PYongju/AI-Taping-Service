@@ -49,7 +49,7 @@ export default function Complete() {
     setSaving(true);
     const historyEntry = {
       date: new Date().toLocaleDateString("ko-KR"),
-      body_part: session.part ?? "무릎",
+      body_part: session.part ?? "knee",
       option: o.name,
     };
     try {

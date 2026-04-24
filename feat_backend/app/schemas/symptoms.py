@@ -14,10 +14,10 @@ class SymptomRequest(BaseModel):
     raw_text: str = Field(..., example="달리기 후 무릎 바깥쪽 통증")
     symptom_type: Optional[str] = Field(None, description="Quick Reply 선택 시 들어오는 Enum 값")
     
-    # 신체 정보
-    height_cm: float = Field(..., example=175.0)
-    weight_kg: float = Field(..., example=70.0)
-    gender: str = Field(..., example="male")
+    # 필수 필드였던 신체 정보를 선택사항으로 변경
+    height_cm: Optional[float] = Field(None, example=175.0)
+    weight_kg: Optional[float] = Field(None, example=70.0)
+    gender: Optional[str] = Field(None, example="male")
 
 # 3. API 요청 성공 시 프론트엔드로 반환하는 응답 스키마 (EP1)
 class SymptomResponse(BaseModel):

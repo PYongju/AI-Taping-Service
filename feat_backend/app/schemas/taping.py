@@ -1,8 +1,10 @@
-from pydantic import BaseModel
-from typing import List
+from pydantic import BaseModel, Field
+from typing import List, Optional
 
 class TapingRequest(BaseModel):
     session_id: str
+
+
 
 class TapingOption(BaseModel):
     option_rank: int        # rank -> option_rank 로 정정
