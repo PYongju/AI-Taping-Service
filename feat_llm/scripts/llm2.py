@@ -7,6 +7,7 @@ from typing import Dict, Any, List
 sys.stdout.reconfigure(encoding='utf-8')
 
 from llama_index.core import VectorStoreIndex, StorageContext, Settings
+from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.core.retrievers import AutoMergingRetriever
 from llama_index.core.storage.docstore import SimpleDocumentStore
 from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
@@ -15,10 +16,6 @@ from azure.search.documents import SearchClient
 from azure.search.documents.indexes import SearchIndexClient
 from azure.core.credentials import AzureKeyCredential
 from resource_config import setup_global_llm_and_embedding
-
-# [진단용 코드] 인덱스 데이터 덤프
-from azure.search.documents import SearchClient
-from azure.core.credentials import AzureKeyCredential
 
 # ---------------------------------------------------------------------------
 # 상수
@@ -35,30 +32,46 @@ DOCSTORE_PATH = Path(__file__).parent.parent / "data" / "docstore3" / "docstore.
 # valid_codes: RAG 검색 후 노드 메타데이터에서 동적 추출
 # ---------------------------------------------------------------------------
 
-RECOMMENDATION_PROMPT = """\
-SYSTEM:
-You are a kinesiology taping recommendation assistant.
-You will receive (1) a structured symptom, and (2) retrieved textbook passages.
-Your job is to recommend taping options and explain WHY each option helps.
+RECOMMENDATION_PROMPT = """
+## Role
+You are a taping guidance system that suggests self-care options based on patterns, not a medical expert.
+You will receive (1) a structured symptom, and (2) retrieved textbook passages. 
+Your job is to recommend taping options and explain WHY each option helps based on the provided data.
 
-=== CRITICAL CONSTRAINTS ===
-- You MUST only recommend technique_codes from the VALID SET provided below.
+## Guidelines
+- Output ONLY valid JSON. No explanation, no markdown.
+- You MUST only recommend taping_ids from the VALID SET provided below.
 - Do NOT invent techniques outside this list.
 - If no technique in the valid set matches, return an empty options array.
-- All "why" and "steps.instruction" fields must be grounded in the retrieved passages.
-  If a passage does not support a claim, do not make the claim.
-- Output ONLY valid JSON. No explanation, no markdown.
+- All "why" fields must be grounded in the retrieved passages. If a passage does not support a claim, do not make the claim.
+- "why" must explain the effect in simple, functional terms the user can understand.
+- Avoid anatomical explanations; focus on sensation or support (e.g., "바깥쪽 부담을 줄이는 데 도움").
+- coaching_text must follow:
+  1 what to do (추천 행동)
+  2 why it helps (간단 이유)
+- "analysis" should describe the situation, NOT interpret or diagnose.
+- Avoid causal or medical conclusions.
 
-=== VALID TECHNIQUE CODES FOR THIS REQUEST ===
+## Tone and Language Guidelines
+To ensure user safety and regulatory compliance, please apply these rules to ALL output fields ("why", "coaching_text", "disclaimer", "name_ko"):
+- Do NOT expose internal medical/anatomical terms directly (e.g., IT band, patella).
+- Always translate them into user-friendly expressions (e.g., "무릎 바깥쪽", "무릎 앞쪽").
+- **Use supportive, non-clinical language:** Avoid medical jargon like "diagnose," "treat," or "prescribe."
+- **Frame as Wellness Guidance:** All recommendations must be framed as general self-care or wellness guidance, not as professional medical advice.
+- **Use Possibility Expressions:** Prefer phrases like "~에 도움이 될 수 있어요", "~관리에 도움이 돼요", or "~할 가능성이 있어요" over absolute statements.
+- **Avoid Definitive Claims:** Do not use words like "perfect match," "best solution," or "guaranteed outcome." Instead, use "commonly used," "frequently applied," or "suitable for your body type."
+- **Service Responsibility:** Instead of phrases like "사용자 책임입니다", use gentle guidance like "이 서비스는 예방적 셀프케어를 위한 가이드입니다. 증상이 지속되면 전문가와 상담하세요."
+
+## Valid Technique Codes for this Request
 {valid_codes}
 
-=== RETRIEVED TEXTBOOK PASSAGES ===
+## Retrieved Textbook Passages
 {rag_chunks}
 
-=== STRUCTURED SYMPTOM ===
+## Structured Symptom
 {structured_symptom}
 
-Output schema:
+## Output Schema
 {{
   "analysis": "전반적인 증상 해석 한 줄",
   "body_part": "입력받은 body_part 그대로",
@@ -93,14 +106,23 @@ Output schema:
   }}
 }}
 
-=== SAFETY RULES ===
+## Safety Rules
 - If structured_symptom contains "acute": true → return {{"options": [], "redirect": "hospital"}}
-- Never mention body parts outside the structured_symptom body_part.
-- If retrieved passages are insufficient, set why to: "교본 자료가 제한적이에요. 전문가 확인을 권해요."
-- steps: taping procedure 청크의 Step 순서대로. 청크에 없으면 []
-- steps.tape_type: 해당 step 실제 사용 타입. 정보 없으면 null
-- source_chunk_ids: 실제 사용한 노드 ID만
-- 출력은 순수 JSON만 (마크다운 없음)
+- **Mismatched Input Rule:** If the inputted `body_part` significantly contradicts the user's actual symptoms in `raw_text` or `keywords` (e.g., `body_part` is "knee" but keywords/text indicate "ankle_pain"):
+   → Return `"options": []`
+   → Set `"coaching_text": "선택하신 통증 부위와 질문 내용이 달라요!"`
+   → Describe the user's actual situation based on raw_text/keywords in `"analysis"`.
+   → Keep `"body_part"` exactly as provided in the input.
+- Never mention body parts outside the structured_symptom body_part (unless addressing a mismatch as described in the rule above).
+- If {rag_chunks} is empty OR contains no relevant passages:
+   → coaching_text: "교본 자료가 제한적이에요. 증상이 지속되면 전문가 확인을 권해요."
+   → Each option's "why": "교본 자료가 제한적이에요. 전문가 확인을 권해요."
+   → Do NOT hallucinate textbook content. Only state what the passages explicitly support.
+- If textbook passages are insufficient for a specific option, set that option's "why" to: "교본 자료가 제한적이에요. 전문가 확인을 권해요."
+- steps: Based on the taping procedure chunks. If not found, return [].
+- steps.tape_type: Actual tape type used in the step. If unknown, return null.
+- source_chunk_ids: Only include the IDs of the nodes actually used.
+- Output must be pure JSON only.
 """
 
 
@@ -148,10 +170,7 @@ class TapingRAGSystem:
                 "tape_type", "min_stretch", "max_stretch",
             ],
         )
-        self.index = VectorStoreIndex.from_vector_store(
-            vector_store=self.vector_store,
-            embed_model=Settings.embed_model
-        )
+        self.index = VectorStoreIndex.from_vector_store(vector_store=self.vector_store)
 
         try:
             self.docstore = SimpleDocumentStore.from_persist_path(str(DOCSTORE_PATH))
@@ -162,7 +181,7 @@ class TapingRAGSystem:
 
     def _build_retriever(self, filters=None):
         """AutoMergingRetriever 생성. docstore가 없으면 기본 retriever 반환."""
-        base_retriever = self.index.as_retriever(similarity_top_k=6, filters=filters)
+        base_retriever = self.index.as_retriever(similarity_top_k=6, filters=filters, vector_store_query_mode=VectorStoreQueryMode.HYBRID)
 
         if self.docstore is None:
             return base_retriever
@@ -177,21 +196,16 @@ class TapingRAGSystem:
         """한국어 입력을 영어 의학 용어로 번역 (recommend() 내부 전용).
         LLM 호출 실패 또는 빈 결과 시 원문 반환.
         """
-        # 1. Few-Shot Prompting: 예시를 직접 주어 대답 방식을 강제합니다.
         prompt = (
-            "당신은 의료 전문 번역가입니다. 아래의 한국어 증상을 검색용 영어 의학 키워드로만 번역하세요.\n"
-            "조건: 설명이나 인삿말 없이 오직 영어 단어만 출력하세요.\n"
-            f"한국어: {raw_text}\n"
-            "영어:"
+            "You are a medical translator specializing in kinesiology taping. "
+            "Translate the user's Korean input into English medical terms for searching professional documents.\n\n"
+            f"Korean: {raw_text}\nEnglish:"
         )
         try:
             response = self.llm.complete(prompt)
             translated = response.text.strip()
-            # "Of course", "Please" 등이 포함되면 번역 실패로 간주
-            if any(x in translated.lower() for x in ["provide", "course", "sure", "translate"]):
-                return raw_text
-            return translated
-        except:
+        except Exception as e:
+            print(f"[WARN] 번역 실패 ({e}). 원문으로 검색합니다.")
             return raw_text
 
         if not translated:
@@ -204,114 +218,80 @@ class TapingRAGSystem:
     def recommend(self, input: Dict[str, Any]) -> Dict[str, Any]:
         """
         백엔드가 호출하는 유일한 public 메서드.
+
+        input 기대 키:
+            session_id          (str): 세션 ID (llm 내부에서 사용 안 함)
+            model_id            (str): 3D 모델 ID (llm 내부에서 사용 안 함)
+            body_part           (str): 통증 부위 (예: "knee")
+            situation           (str): 상황 (예: "after_exercise")
+            laterality          (str): "left" | "right" | "bilateral"
+            raw_text            (str): 사용자 직접 입력 텍스트
+            structured_symptom  (dict): EP1에서 구조화된 증상 정보
+                area     (str) : 세부 위치 (예: "knee_lateral")
+                keywords (list): 증상 키워드 (예: ["outer_pain", "running"])
         """
         # [Step 6-②] acute 입력 시 LLM 호출 없이 즉시 반환
         if input.get("acute"):
             return {"options": [], "redirect": "hospital"}
 
-        # 1) 번역 및 쿼리 확보
-        raw_text = input.get("raw_text", "")
-        e_query = self._translate(raw_text)
+        # 1) 번역
+        e_query = self._translate(input.get("raw_text", ""))
 
-        if Settings.embed_model is None:
-            print("[FATAL] Settings.embed_model이 None입니다! resource_config.py를 확인하세요.")
-
-        # 2) body_part 필터 설정
-        body_part_val = input.get("body_part", "").strip().lower()
+        # 2) body_part 필터로 RAG 검색
         filters = MetadataFilters(
-            filters=[ExactMatchFilter(key="body_part", value=body_part_val)]
+            filters=[ExactMatchFilter(key="body_part", value=input.get("body_part", "").lower())]
         )
 
-        leaf_nodes = []
-        # 🌟 핵심 개선 1: Embedding 누락 등으로 인한 500 에러 원천 차단 (try-except)
-        try:
-            # 검색 범위 확장 (6 -> 15)
-            base_retriever = self.index.as_retriever(similarity_top_k=15, filters=filters)
-            leaf_nodes = base_retriever.retrieve(e_query)
+        # valid_codes: SearchClient로 technique_code 컬럼 직접 조회
+        # → LlamaIndex는 _node_content에서 노드를 재구성하므로 n.metadata가
+        #   수동 매핑 전 값을 반환함. 컬럼 직접 조회로 우회
+        base_retriever = self.index.as_retriever(similarity_top_k=6, filters=filters)
+        leaf_nodes = base_retriever.retrieve(e_query)
+        chunk_ids = [n.node_id for n in leaf_nodes]
+        search_results = self._search_client.search(
+            search_text="*",
+            filter=" or ".join(f"chunk_id eq '{cid}'" for cid in chunk_ids),
+            select="chunk_id,technique_code",
+            top=len(chunk_ids),
+        )
+        valid_codes = list({
+            r["technique_code"]
+            for r in search_results
+            if r.get("technique_code")
+        })
+        print(f"[DEBUG] valid_codes: {valid_codes}")
 
-            # 🌟 핵심 개선 2: 필터 검색 결과가 없으면 필터 없이 전체 검색 (Fallback)
-            if not leaf_nodes:
-                print("[INFO] 필터 검색 결과 없음. 필터 없이 재검색 시도")
-                base_retriever = self.index.as_retriever(similarity_top_k=15)
-                leaf_nodes = base_retriever.retrieve(e_query)
-                
-                # 그래도 없으면 한글 원문(raw_text)으로 마지막 검색 시도
-                if not leaf_nodes:
-                    print("[INFO] 번역 쿼리 검색 결과 없음. 원문으로 재검색 시도")
-                    leaf_nodes = base_retriever.retrieve(raw_text)
-
-        except Exception as e:
-            print(f"[ERROR] 검색 중 에러 발생 (Embedding 오류 등): {e}")
-            # 서버가 죽지 않고 프론트엔드로 안전하게 에러 메시지 전달
-            return {"options": [], "coaching_text": "검색 엔진 오류가 발생했습니다. 잠시 후 다시 시도해주세요."}
-
-        # 3) Technique Code 추출
-        chunk_ids = [n.node_id for n in leaf_nodes if n.node_id]
-        valid_codes = []
-
-        # 🌟 핵심 개선 3: chunk_ids가 비어있을 때 Azure Search를 호출하면 터지는 버그 방지
-        if chunk_ids:
-            try:
-                search_results = self._search_client.search(
-                    search_text="*",
-                    filter=" or ".join(f"chunk_id eq '{cid}'" for cid in chunk_ids),
-                    select="chunk_id,technique_code",
-                    top=len(chunk_ids),
-                )
-                for r in search_results:
-                    code = r.get("technique_code")
-                    if code:
-                        valid_codes.append(code)
-                
-                # 중복 코드 제거
-                valid_codes = list(set(valid_codes))
-            except Exception as e:
-                print(f"[ERROR] Azure Search 메타데이터 조회 중 에러: {e}")
-
-        print(f"[DEBUG] 최종 추출된 valid_codes: {valid_codes}")
-
-        # 🌟 핵심 개선 4: valid_codes가 없어도 뻗지 않고 안내 멘트(coaching_text)와 함께 안전하게 반환
         if not valid_codes:
             print("[WARN] 검색된 노드에서 technique_code를 찾을 수 없습니다.")
-            return {
-                "options": [],
-                "coaching_text": "해당 증상에 맞는 정확한 테이핑 기법을 찾지 못했어요. 통증이 심하다면 전문가의 진료를 권장합니다."
-            }
+            return {"options": []}
 
-        # rag_chunks: AutoMergingRetriever로 parent 병합 후 추출
-        current_filters = filters if len(leaf_nodes) > 0 else None
-        retriever = self._build_retriever(filters=current_filters)
-        try:
-            nodes = retriever.retrieve(e_query)
-        except Exception:
-            nodes = leaf_nodes # 에러 시 기존에 찾은 노드 재사용
+        # rag_chunks: AutoMergingRetriever로 parent 병합 후 추출 (더 넓은 컨텍스트)
+        retriever = self._build_retriever(filters=filters)
+        nodes = retriever.retrieve(e_query)
 
         # 4) 프롬프트 조합 & LLM 호출
+        # chunk_id를 레이블로 붙여서 LLM이 source_chunk_ids에 실제 ID를 쓸 수 있게 함
         rag_chunks = "\n\n".join(
             f"[chunk_id: {n.node_id}]\n{n.get_content()}"
             for n in nodes
         )
+        # session_id, model_id는 LLM 프롬프트에 불필요하므로 제거 후 전달
         llm_context = {k: v for k, v in input.items() if k not in ("session_id", "model_id")}
         prompt = RECOMMENDATION_PROMPT.format(
             valid_codes=json.dumps(valid_codes, ensure_ascii=False),
             rag_chunks=rag_chunks,
             structured_symptom=json.dumps(llm_context, ensure_ascii=False),
         )
-        
         print("[DEBUG] 추천 옵션 생성 중...")
-        try:
-            response = self.llm.complete(prompt)
-        except Exception as e:
-            print(f"[ERROR] LLM 답변 생성 중 에러: {e}")
-            return {"options": [], "coaching_text": "AI 분석 중 오류가 발생했습니다."}
+        response = self.llm.complete(prompt)
 
         # 5) LLM 응답(문자열) → Python dict 변환
+        # [Step 6-①] JSON 파싱 실패 시 ValueError로 감싸서 백엔드가 500 처리
         try:
             result = json.loads(response.text.strip())
+            # result = response.text.strip()  # JSON 문자열 그대로 반환 시
         except json.JSONDecodeError as e:
-            print(f"[ERROR] LLM JSON 파싱 실패: {e}\n원문: {response.text.strip()}")
-            # 🌟 핵심 개선 5: JSON 파싱에 실패해도 500 에러 대신 안전하게 종료
-            return {"options": [], "coaching_text": "추천 결과를 분석하는 중 문제가 발생했습니다."}
+            raise ValueError(f"LLM JSON 파싱 실패: {e}\n원문: {response.text.strip()}")
 
         # [Step 6-④] options 키 누락 시 빈 배열 fallback
         if "options" not in result:
@@ -361,19 +341,6 @@ if __name__ == "__main__":
     print("최종 응답")
     print("=" * 50)
     print(json.dumps(result, indent=2, ensure_ascii=False))
-
-    # 환경변수가 로드되어 있다는 가정하에 실행
-    client = SearchClient(
-        endpoint=os.getenv("AZURE_AI_SEARCH_ENDPOINT"),
-        index_name="taping-guide-index-3", # 사용 중인 인덱스 이름
-        credential=AzureKeyCredential(os.getenv("AZURE_AI_SEARCH_KEY")),
-    )
-
-    print("\n--- 인덱스 데이터 샘플링 시작 ---")
-    results = client.search(search_text="*", select="chunk_id,body_part,technique_code", top=10)
-    for r in results:
-        print(f"ID: {r['chunk_id'][:10]} | Body: {r.get('body_part')} | Code: {r.get('technique_code')}")
-    print("--- 샘플링 끝 ---\n")
 
     # from azure.search.documents import SearchClient
     # from azure.core.credentials import AzureKeyCredential
