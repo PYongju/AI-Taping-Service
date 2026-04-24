@@ -6,8 +6,18 @@ import doneImg from "../assets/done.png";
 import "./Complete.css";
 
 const MOCK_OPTIONS = [
-  { taping_id: "A", name: "IT band 이완 테이핑", tape_type: "Y-strip", stretch_pct: 15 },
-  { taping_id: "B", name: "무릎 안정화 테이핑", tape_type: "I-strip", stretch_pct: 25 },
+  {
+    taping_id: "A",
+    name: "기본 무릎 고정 테이핑",
+    tape_type: "Y-strip",
+    stretch_pct: 15,
+  },
+  {
+    taping_id: "B",
+    name: "보강형 무릎 테이핑",
+    tape_type: "I-strip",
+    stretch_pct: 25,
+  },
 ];
 
 export default function Complete() {
@@ -18,7 +28,10 @@ export default function Complete() {
     session.taping_options.length > 0 ? session.taping_options : MOCK_OPTIONS;
   const o = options[session.selected_option ?? 0] ?? options[0];
   const now = new Date();
-  const time = `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
+  const time = `${now.getHours().toString().padStart(2, "0")}:${now
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
 
   const [toast, setToast] = useState("");
   const [saving, setSaving] = useState(false);
@@ -34,13 +47,20 @@ export default function Complete() {
   async function handleSave() {
     if (saving || saved) return;
     setSaving(true);
-    const historyEntry = { date: new Date().toLocaleDateString("ko-KR"), body_part: session.part ?? "무릎", option: o.name };
+    const historyEntry = {
+      date: new Date().toLocaleDateString("ko-KR"),
+      body_part: session.part ?? "무릎",
+      option: o.name,
+    };
     try {
-      await saveSession({ session_id: session.session_id, taping_id: o.taping_id });
+      await saveSession({
+        session_id: session.session_id,
+        taping_id: o.taping_id,
+      });
       setSaved(true);
       showToast("결과를 저장했어요");
     } catch {
-      showToast("서버 저장에 실패했어요. 기기에만 저장해요.");
+      showToast("서버 저장에 실패했어요. 기기에는 저장할게요.");
     } finally {
       const prev = JSON.parse(localStorage.getItem("history") || "[]");
       localStorage.setItem("history", JSON.stringify([historyEntry, ...prev]));
@@ -75,13 +95,15 @@ export default function Complete() {
 
         <div>
           <h1 className="t-h1" style={{ margin: 0 }}>
-            테이핑을 완료했어요 🎉
+            테이핑을 완료했어요
           </h1>
           <p
             className="t-body2"
             style={{ margin: "12px 0 0", whiteSpace: "pre-line" }}
           >
-            무릎이 저리거나 피부색이 하얗게 변하면{"\n"}풀고 다시 해주세요.
+            무릎을 돌리거나 걸을 때 느낌이 어떤지
+            {"\n"}
+            잠깐 체크해보세요
           </p>
         </div>
 
@@ -138,7 +160,7 @@ export default function Complete() {
                 color: "var(--fg1)",
               }}
             >
-              {o.tape_type} · {o.stretch_pct}%
+              {o.tape_type} / {o.stretch_pct}%
             </span>
           </div>
           <div
@@ -194,11 +216,14 @@ export default function Complete() {
           onClick={() => navigate("/result-video")}
           style={{ marginTop: 4 }}
         >
-          다른 테이핑도 해볼게요
+          다른 테이핑도 볼게요
         </button>
         <button className="btn btn-text" onClick={handleRestart}>
           처음부터 다시 볼게요
         </button>
+        <p className="complete-note">
+          📚 재구성된 가이드예요 · 원문은 사용하지 않았어요.
+        </p>
       </div>
 
       <div className={`toast ${toast ? "show" : ""}`}>{toast}</div>

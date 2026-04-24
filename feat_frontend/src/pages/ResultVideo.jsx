@@ -6,25 +6,25 @@ import "./ResultVideo.css";
 const MOCK_OPTIONS = [
 	{
 		taping_id: "A",
-		name: "IT band 이완 테이핑",
+		name: "기본 무릎 고정 테이핑",
 		tape_type: "Y-strip",
 		stretch_pct: 15,
-		why: "러닝 후 외측 긴장에 가장 일반적인 예방 테이핑이에요.",
-		coach: "💡 테이핑 전 부위를 깨끗이 닦고, 털이 있다면 면도 후 붙여주세요.",
+		why: "무릎 안정성을 높이는 가장 보편적인 방식입니다.",
+		coach: "피부를 깨끗하게 정리한 뒤 안내에 맞춰 붙여주세요.",
 		step_glb_urls: [],
 		video_url: "",
-		disclaimer: "이 서비스는 예방을 위한 가이드예요. 지속되는 증상은 전문가에게 확인해보세요.",
+		disclaimer: "지속되는 증상은 전문가에게 확인해보세요.",
 	},
 	{
 		taping_id: "B",
-		name: "무릎 안정화 테이핑",
+		name: "보강형 무릎 테이핑",
 		tape_type: "I-strip",
 		stretch_pct: 25,
-		why: "무릎 전반적 안정감 보강에 도움이 될 수 있어요.",
-		coach: "💡 stretch 25%는 조금 당긴 상태로 붙이는 거예요.",
+		why: "조금 더 단단한 고정을 위한 대안 방식입니다.",
+		coach: "강한 압박보다는 자연스러운 밀착을 우선해주세요.",
 		step_glb_urls: [],
 		video_url: "",
-		disclaimer: "이 서비스는 예방을 위한 가이드예요. 지속되는 증상은 전문가에게 확인해보세요.",
+		disclaimer: "지속되는 증상은 전문가에게 확인해보세요.",
 	},
 ];
 
@@ -32,11 +32,8 @@ export default function ResultVideo() {
 	const navigate = useNavigate();
 	const { session, updateSession } = useSession();
 
-	// API 연결 전: taping_options가 비어있으면 mock 사용
 	const options =
-		session.taping_options.length > 0
-			? session.taping_options
-			: MOCK_OPTIONS;
+		session.taping_options.length > 0 ? session.taping_options : MOCK_OPTIONS;
 
 	const [optIdx, setOptIdx] = useState(session.selected_option ?? 0);
 	const [toast, setToast] = useState("");
@@ -95,10 +92,10 @@ export default function ResultVideo() {
 							: "평균 체형을 기준으로 찾았어요"}
 					</div>
 					<h2 className="t-h1" style={{ margin: 0 }}>
-						IT band 긴장 가능성이 있어요
+						무릎에 맞는 테이핑을 찾았어요
 					</h2>
 					<p className="t-body2" style={{ margin: "8px 0 0" }}>
-						아래 두 가지 방법이 도움이 될 수 있어요.
+						아래 추천 방법을 확인해보세요.
 					</p>
 				</div>
 
@@ -112,20 +109,17 @@ export default function ResultVideo() {
 							onClick={() => handleOptionClick(idx)}
 						>
 							{idx === 0 ? (
-								<><span className="star">★</span> 추천 {option.taping_id}</>
+								<>
+									<span className="star">★</span> 추천 A
+								</>
 							) : (
-								`옵션 ${option.taping_id}`
+								"추천 B"
 							)}
 						</button>
 					))}
 				</div>
 
 				<div className="card selected">
-					{optIdx === 0 && (
-						<div className="badge-rec" style={{ marginBottom: 8 }}>
-							많이 선택해요
-						</div>
-					)}
 					<div
 						style={{
 							font: "700 17px/1.3 var(--font-base)",
@@ -151,10 +145,7 @@ export default function ResultVideo() {
 								color: "var(--fg2)",
 							}}
 						>
-							테이프:{" "}
-							<span style={{ color: "var(--fg1)" }}>
-								{o.tape_type}
-							</span>
+							테이프 <span style={{ color: "var(--fg1)" }}>{o.tape_type}</span>
 						</span>
 						<span
 							style={{
@@ -165,10 +156,7 @@ export default function ResultVideo() {
 								color: "var(--fg2)",
 							}}
 						>
-							stretch:{" "}
-							<span style={{ color: "var(--fg1)" }}>
-								{o.stretch_pct}%
-							</span>
+							stretch <span style={{ color: "var(--fg1)" }}>{o.stretch_pct}%</span>
 						</span>
 					</div>
 					<div
@@ -204,15 +192,9 @@ export default function ResultVideo() {
 					</div>
 				)}
 
-				<div className="disclaimer">
-					<span className="lock">
-						<svg className="ic ic-sm" viewBox="0 0 24 24">
-							<path d="M12 9v4M12 17h.01" />
-							<circle cx="12" cy="12" r="10" />
-						</svg>
-					</span>
-					이 서비스는 예방을 위한 가이드예요. 지속되는 증상은
-					전문가에게 확인해보세요.
+				<div className="disclaimer simple-disclaimer">
+					<span className="lock">⚠️</span>
+					지속되는 증상은 전문가에게 확인해보세요.
 				</div>
 
 				<div
