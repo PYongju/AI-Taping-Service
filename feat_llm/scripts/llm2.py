@@ -7,6 +7,7 @@ from typing import Dict, Any, List
 sys.stdout.reconfigure(encoding='utf-8')
 
 from llama_index.core import VectorStoreIndex, StorageContext, Settings
+from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.core.retrievers import AutoMergingRetriever
 from llama_index.core.storage.docstore import SimpleDocumentStore
 from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
@@ -31,30 +32,46 @@ DOCSTORE_PATH = Path(__file__).parent.parent / "data" / "docstore3" / "docstore.
 # valid_codes: RAG 검색 후 노드 메타데이터에서 동적 추출
 # ---------------------------------------------------------------------------
 
-RECOMMENDATION_PROMPT = """\
-SYSTEM:
-You are a kinesiology taping recommendation assistant.
-You will receive (1) a structured symptom, and (2) retrieved textbook passages.
-Your job is to recommend taping options and explain WHY each option helps.
+RECOMMENDATION_PROMPT = """
+## Role
+You are a taping guidance system that suggests self-care options based on patterns, not a medical expert.
+You will receive (1) a structured symptom, and (2) retrieved textbook passages. 
+Your job is to recommend taping options and explain WHY each option helps based on the provided data.
 
-=== CRITICAL CONSTRAINTS ===
-- You MUST only recommend technique_codes from the VALID SET provided below.
+## Guidelines
+- Output ONLY valid JSON. No explanation, no markdown.
+- You MUST only recommend taping_ids from the VALID SET provided below.
 - Do NOT invent techniques outside this list.
 - If no technique in the valid set matches, return an empty options array.
-- All "why" and "steps.instruction" fields must be grounded in the retrieved passages.
-  If a passage does not support a claim, do not make the claim.
-- Output ONLY valid JSON. No explanation, no markdown.
+- All "why" fields must be grounded in the retrieved passages. If a passage does not support a claim, do not make the claim.
+- "why" must explain the effect in simple, functional terms the user can understand.
+- Avoid anatomical explanations; focus on sensation or support (e.g., "바깥쪽 부담을 줄이는 데 도움").
+- coaching_text must follow:
+  1 what to do (추천 행동)
+  2 why it helps (간단 이유)
+- "analysis" should describe the situation, NOT interpret or diagnose.
+- Avoid causal or medical conclusions.
 
-=== VALID TECHNIQUE CODES FOR THIS REQUEST ===
+## Tone and Language Guidelines
+To ensure user safety and regulatory compliance, please apply these rules to ALL output fields ("why", "coaching_text", "disclaimer", "name_ko"):
+- Do NOT expose internal medical/anatomical terms directly (e.g., IT band, patella).
+- Always translate them into user-friendly expressions (e.g., "무릎 바깥쪽", "무릎 앞쪽").
+- **Use supportive, non-clinical language:** Avoid medical jargon like "diagnose," "treat," or "prescribe."
+- **Frame as Wellness Guidance:** All recommendations must be framed as general self-care or wellness guidance, not as professional medical advice.
+- **Use Possibility Expressions:** Prefer phrases like "~에 도움이 될 수 있어요", "~관리에 도움이 돼요", or "~할 가능성이 있어요" over absolute statements.
+- **Avoid Definitive Claims:** Do not use words like "perfect match," "best solution," or "guaranteed outcome." Instead, use "commonly used," "frequently applied," or "suitable for your body type."
+- **Service Responsibility:** Instead of phrases like "사용자 책임입니다", use gentle guidance like "이 서비스는 예방적 셀프케어를 위한 가이드입니다. 증상이 지속되면 전문가와 상담하세요."
+
+## Valid Technique Codes for this Request
 {valid_codes}
 
-=== RETRIEVED TEXTBOOK PASSAGES ===
+## Retrieved Textbook Passages
 {rag_chunks}
 
-=== STRUCTURED SYMPTOM ===
+## Structured Symptom
 {structured_symptom}
 
-Output schema:
+## Output Schema
 {{
   "analysis": "전반적인 증상 해석 한 줄",
   "body_part": "입력받은 body_part 그대로",
@@ -89,14 +106,23 @@ Output schema:
   }}
 }}
 
-=== SAFETY RULES ===
+## Safety Rules
 - If structured_symptom contains "acute": true → return {{"options": [], "redirect": "hospital"}}
-- Never mention body parts outside the structured_symptom body_part.
-- If retrieved passages are insufficient, set why to: "교본 자료가 제한적이에요. 전문가 확인을 권해요."
-- steps: taping procedure 청크의 Step 순서대로. 청크에 없으면 []
-- steps.tape_type: 해당 step 실제 사용 타입. 정보 없으면 null
-- source_chunk_ids: 실제 사용한 노드 ID만
-- 출력은 순수 JSON만 (마크다운 없음)
+- **Mismatched Input Rule:** If the inputted `body_part` significantly contradicts the user's actual symptoms in `raw_text` or `keywords` (e.g., `body_part` is "knee" but keywords/text indicate "ankle_pain"):
+   → Return `"options": []`
+   → Set `"coaching_text": "선택하신 통증 부위와 질문 내용이 달라요!"`
+   → Describe the user's actual situation based on raw_text/keywords in `"analysis"`.
+   → Keep `"body_part"` exactly as provided in the input.
+- Never mention body parts outside the structured_symptom body_part (unless addressing a mismatch as described in the rule above).
+- If {rag_chunks} is empty OR contains no relevant passages:
+   → coaching_text: "교본 자료가 제한적이에요. 증상이 지속되면 전문가 확인을 권해요."
+   → Each option's "why": "교본 자료가 제한적이에요. 전문가 확인을 권해요."
+   → Do NOT hallucinate textbook content. Only state what the passages explicitly support.
+- If textbook passages are insufficient for a specific option, set that option's "why" to: "교본 자료가 제한적이에요. 전문가 확인을 권해요."
+- steps: Based on the taping procedure chunks. If not found, return [].
+- steps.tape_type: Actual tape type used in the step. If unknown, return null.
+- source_chunk_ids: Only include the IDs of the nodes actually used.
+- Output must be pure JSON only.
 """
 
 
@@ -155,7 +181,7 @@ class TapingRAGSystem:
 
     def _build_retriever(self, filters=None):
         """AutoMergingRetriever 생성. docstore가 없으면 기본 retriever 반환."""
-        base_retriever = self.index.as_retriever(similarity_top_k=6, filters=filters)
+        base_retriever = self.index.as_retriever(similarity_top_k=6, filters=filters, vector_store_query_mode=VectorStoreQueryMode.HYBRID)
 
         if self.docstore is None:
             return base_retriever
