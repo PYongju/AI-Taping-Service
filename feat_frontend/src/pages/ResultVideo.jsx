@@ -10,10 +10,6 @@ const MOCK_OPTIONS = [
     tape_type: "Y-strip",
     stretch_pct: 15,
     why: "무릎 안정성을 높이는 가장 보편적인 방식입니다.",
-    coach: "피부를 깨끗하게 정리한 뒤 안내에 맞춰 붙여주세요.",
-    step_glb_urls: [],
-    video_url: "",
-    disclaimer: "지속되는 증상은 전문가에게 확인해보세요.",
   },
   {
     taping_id: "B",
@@ -21,31 +17,39 @@ const MOCK_OPTIONS = [
     tape_type: "I-strip",
     stretch_pct: 25,
     why: "조금 더 단단한 고정을 위한 대안 방식입니다.",
-    coach: "강한 압박보다는 자연스러운 밀착을 우선해주세요.",
-    step_glb_urls: [],
-    video_url: "",
-    disclaimer: "지속되는 증상은 전문가에게 확인해보세요.",
   },
 ];
 
 export default function ResultVideo() {
   const navigate = useNavigate();
   const { session, updateSession } = useSession();
-
   const options =
-    session.taping_options.length > 0 ? session.taping_options : MOCK_OPTIONS;
-
+    session.taping_options?.length > 0 ? session.taping_options : MOCK_OPTIONS;
   const [optIdx, setOptIdx] = useState(session.selected_option ?? 0);
   const [toast, setToast] = useState("");
   const toastTimer = useRef(null);
   const o = options[optIdx] ?? options[0];
+
+  // 🌟 유연한 데이터 매핑 로직 적용
+  const displayTitle = o.title || o.name || o.technique_name || "추천 테이핑";
+  const displayWhy =
+    o.why ||
+    o.description ||
+    o.explanation ||
+    "분석된 증상에 가장 적합한 테이핑 방법입니다.";
+  const displayCoach =
+    o.coach ||
+    o.coach_tips ||
+    o.tips ||
+    "안내에 따라 정확한 위치에 부착해주세요.";
+  const displayTapeType = o.tape_type || o.type || "Kinesiology Tape";
+  const displayStretch = o.stretch_pct ?? o.stretch ?? 0;
 
   function showToast(message) {
     setToast(message);
     clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(""), 2000);
   }
-
   function handleOptionClick(idx) {
     if (idx > 0) {
       showToast("옵션 B는 지금 준비 중입니다.");
@@ -53,7 +57,6 @@ export default function ResultVideo() {
     }
     setOptIdx(idx);
   }
-
   function startGuide() {
     updateSession({ selected_option: optIdx });
     navigate("/result-3d");
@@ -69,7 +72,6 @@ export default function ResultVideo() {
         </button>
         <div className="title">추천 결과</div>
       </div>
-
       <div
         className="content"
         style={{
@@ -98,14 +100,11 @@ export default function ResultVideo() {
             아래 추천 방법을 확인해보세요.
           </p>
         </div>
-
         <div className="opt-switch">
           {options.map((option, idx) => (
             <button
-              key={option.taping_id}
+              key={option.taping_id || idx}
               className={`${optIdx === idx ? "active" : ""} ${idx > 0 ? "locked" : ""}`}
-              aria-disabled={idx > 0}
-              title={idx > 0 ? "옵션 B는 지금 준비 중입니다" : undefined}
               onClick={() => handleOptionClick(idx)}
             >
               {idx === 0 ? (
@@ -118,7 +117,6 @@ export default function ResultVideo() {
             </button>
           ))}
         </div>
-
         <div className="card selected">
           <div
             style={{
@@ -126,7 +124,7 @@ export default function ResultVideo() {
               color: "var(--fg1)",
             }}
           >
-            {o.name}
+            {displayTitle}
           </div>
           <div
             style={{
@@ -145,7 +143,8 @@ export default function ResultVideo() {
                 color: "var(--fg2)",
               }}
             >
-              테이프 <span style={{ color: "var(--fg1)" }}>{o.tape_type}</span>
+              테이프{" "}
+              <span style={{ color: "var(--fg1)" }}>{displayTapeType}</span>
             </span>
             <span
               style={{
@@ -157,19 +156,19 @@ export default function ResultVideo() {
               }}
             >
               stretch{" "}
-              <span style={{ color: "var(--fg1)" }}>{o.stretch_pct}%</span>
+              <span style={{ color: "var(--fg1)" }}>{displayStretch}%</span>
             </span>
           </div>
           <div
             style={{
               font: "400 13px/1.55 var(--font-base)",
               color: "var(--fg2)",
+              whiteSpace: "pre-line",
             }}
           >
-            {o.why}
+            {displayWhy}
           </div>
         </div>
-
         {o.video_url ? (
           <video
             className="result-video-player"
@@ -191,12 +190,10 @@ export default function ResultVideo() {
             테이핑 시연 영상
           </div>
         )}
-
         <div className="disclaimer simple-disclaimer">
-          <span className="lock">⚠️</span>
-          지속되는 증상은 전문가에게 확인해보세요.
+          <span className="lock">⚠️</span>지속되는 증상은 전문가에게
+          확인해보세요.
         </div>
-
         <div
           className="t-body2"
           style={{
@@ -207,16 +204,14 @@ export default function ResultVideo() {
             fontWeight: 500,
           }}
         >
-          {o.coach}
+          {displayCoach}
         </div>
       </div>
-
       <div className="bottombar">
         <button className="btn btn-primary" onClick={startGuide}>
           이 방법으로 시작할게요
         </button>
       </div>
-
       <div className={`toast ${toast ? "show" : ""}`}>{toast}</div>
     </div>
   );

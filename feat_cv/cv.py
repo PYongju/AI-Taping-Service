@@ -648,6 +648,13 @@ def rank_all_models_integrated(
     # 🚀 핵심: 수천 개 다운로드 루프 대신, 메모리에서 완성된 리스트를 1초 만에 가져옵니다.
     all_models = get_model_index_from_cache()
 
+    # 🌟 [추가] 2. 레지스트리에 실제 3D 파일이 있는 모델만 필터링합니다.
+    # 우리가 실제로 작업한 모델 ID들만 리스트에 넣으세요.
+    valid_ids = ["3148M", "7136F", "JerryPing"]
+    
+    # 🌟 [추가] 필터링 수행: ID의 앞부분(3148M 등)이 valid_ids에 있는 것만 남깁니다.
+    all_models = [m for m in all_models if m.get("model_id", "").split('_')[0] in valid_ids]
+
     for info in all_models:
         try:
             # 이미 info 안에 ratio_features가 다 계산되어 들어있습니다!
@@ -707,11 +714,15 @@ def resolve_obj_path(obj_dir: str, obj_file_name: Optional[str]) -> Optional[str
     if not obj_file_name:
         return None
     
-    # 로컬 탐색 코드를 삭제하고 바로 URL을 생성합니다.
     base_storage_url = "https://tapingdata1.blob.core.windows.net/models"
     
-    # 파일명이 KT_를 포함하면 knee, 아니면 body 폴더로 자동 분류
-    folder = "knee" if "KT_" in obj_file_name else "body"
+    # 🌟 폴더 분기 로직 적용
+    if "KT_" in obj_file_name:
+        folder = "knee"
+    elif "JerryPing" in obj_file_name:
+        folder = "body_privacy"  # 기본 모델은 body_privacy
+    else:
+        folder = "body"          # 다른 모델들은 body 폴더에 있음
     
     return f"{base_storage_url}/{folder}/{obj_file_name}"
 
@@ -953,6 +964,7 @@ def run_body_search(
     registry_path: Optional[str] = None,
     privacy_opt_out: bool = False,
     default_body_obj_path: Optional[str] = None,
+    debug: bool = True, # 🌟 [추가됨] 디버그 모드 파라미터
 ) -> Dict[str, Any]:
     """
     개인정보 입력이 없는 경우:
@@ -1114,6 +1126,21 @@ def run_body_search(
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
+    # =========================================================
+    # 🌟 [추가됨] 디버그 이미지 확인 및 터미널 출력 로직 (return 직전)
+    # =========================================================
+    if debug and image_path:
+        # 이 코드 구조상 extract_user_features 내부에서 이미 debug_image_path를 생성하고 있습니다.
+        if debug_image_path:
+            print(f"📸 [CV DEBUG] 랜드마크 이미지가 생성되었습니다: {debug_image_path}")
+        # 혹시 현재 스코프에 annotated_image가 있다면 추가로 저장합니다.
+        elif 'annotated_image' in locals():
+            import cv2
+            debug_img_path = Path(image_path).parent / f"debug_{Path(image_path).name}"
+            cv2.imwrite(str(debug_img_path), annotated_image)
+            print(f"📸 [CV DEBUG] 랜드마크 이미지가 임시 저장되었습니다: {debug_img_path}")
+    # =========================================================
+
     return result
 
 
@@ -1193,28 +1220,25 @@ def run_body_search_safe(
     registry_path: Optional[str] = None,
     privacy_opt_out: bool = False,
     default_body_obj_path: Optional[str] = None,
+    debug: bool = True,  # 🌟 [추가] 디버그 모드 파라미터
 ) -> Dict[str, Any]:
     """
     run_body_search()를 감싸는 안전 래퍼.
-
-    성공 시:
-    - run_body_search()의 성공 JSON 그대로 반환
-
-    실패 시:
-    - UX에서 바로 사용할 수 있는 에러 JSON 반환
-    - 예외를 밖으로 던지지 않음
     """
     request_id: Optional[str] = None
     resolved_output_dir = output_dir
 
     try:
+        # 1. 경로 최적화: request_id 생성 및 디렉토리 설정
         if resolved_output_dir is None:
             request_id = uuid.uuid4().hex[:12]
-            resolved_output_dir = str(APP_TMP_DIR / request_id)
+            # APP_TMP_DIR가 정의되어 있어야 합니다 (보통 Path객체)
+            resolved_output_dir = str(Path(APP_TMP_DIR) / request_id)
         else:
             request_id = Path(resolved_output_dir).name
 
-        return run_body_search(
+        # 2. 실제 분석 함수 호출 (debug 파라미터 전달)
+        result = run_body_search(
             image_path=image_path,
             height_cm=height_cm,
             weight_kg=weight_kg,
@@ -1228,8 +1252,22 @@ def run_body_search_safe(
             registry_path=registry_path,
             privacy_opt_out=privacy_opt_out,
             default_body_obj_path=default_body_obj_path,
+            debug=debug  # 🌟 [추가] 내부 함수에도 debug 전달
         )
+
+        # 3. [추가] 결과 로그 출력 (터미널에서 바로 확인 가능)
+        if debug:
+            best_match = result.get("best_match", {})
+            model_id = best_match.get("model_id", "Unknown")
+            print("\n" + "="*50)
+            print(f"🔥 [MATCH RESULT] 최종 결정된 모델 ID: {model_id}")
+            print(f"📍 [DEBUG INFO] Request ID: {request_id}")
+            print("="*50 + "\n")
+
+        return result
+
     except Exception as exc:
+        # 에러 발생 시 처리 로직
         error_code = classify_run_body_search_error(exc)
         error_result = build_error_response(
             message=str(exc),
@@ -1244,6 +1282,7 @@ def run_body_search_safe(
             privacy_opt_out=privacy_opt_out,
         )
 
+        # 에러 리포트 저장
         if resolved_output_dir:
             try:
                 ensure_dir(resolved_output_dir)
@@ -1253,9 +1292,8 @@ def run_body_search_safe(
             except Exception:
                 pass
 
+        print(f"❌ [CV SAFE WRAPPER ERROR] {str(exc)}")
         return error_result
-
-
 if __name__ == "__main__":
 
     sample_image = "user_full_body.jpg"

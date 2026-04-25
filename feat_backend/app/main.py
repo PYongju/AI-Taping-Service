@@ -40,8 +40,8 @@ app = FastAPI(title="AI Taping Guide API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], # 프론트엔드 주소 명시
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

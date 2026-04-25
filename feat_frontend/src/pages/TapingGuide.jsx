@@ -8,25 +8,46 @@ import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, useGLTF, Stage } from "@react-three/drei";
 import * as THREE from "three";
 
+// 🌟 테이프 모델 로드 및 포커스 제어 컴포넌트
+function TapeModel({ url, onLoaded }) {
+  const { scene } = useGLTF(url);
+  useEffect(() => {
+    if (scene) onLoaded(scene);
+  }, [scene, onLoaded]);
+  return <primitive object={scene} />;
+}
+
+// 🌟 전체 모델 컨테이너
 function ModelContainer({ bodyUrl, tapeUrl }) {
   const { camera, controls } = useThree();
   const body = useGLTF(bodyUrl);
-  const tape = tapeUrl ? useGLTF(tapeUrl) : null;
+  const [tapeLoaded, setTapeLoaded] = useState(false);
+
+  const handleTapeLoaded = (tapeScene) => {
+    if (controls && tapeScene) {
+      const box = new THREE.Box3().setFromObject(tapeScene);
+      const center = box.getCenter(new THREE.Vector3());
+      controls.target.copy(center);
+      camera.position.set(center.x + 20, center.y, center.z + 10);
+      controls.update();
+      setTapeLoaded(true);
+    }
+  };
 
   useEffect(() => {
-    if (body.scene && controls) {
+    if (body.scene && controls && !tapeUrl) {
       const box = new THREE.Box3().setFromObject(body.scene);
       const center = box.getCenter(new THREE.Vector3());
       controls.target.copy(center);
       camera.position.set(center.x, center.y, center.z + 5);
       controls.update();
     }
-  }, [body.scene, controls]);
+  }, [body.scene, controls, tapeUrl, camera]);
 
   return (
     <group>
       <primitive object={body.scene} />
-      {tape && <primitive object={tape.scene} />}
+      {tapeUrl && <TapeModel url={tapeUrl} onLoaded={handleTapeLoaded} />}
     </group>
   );
 }
@@ -46,25 +67,47 @@ export default function TapingGuide() {
 
   const recommendations =
     session?.taping_recommendations || session?.taping_options || [];
-  const selected = recommendations[session?.selected_option ?? 0];
-  const steps = selected?.steps || [];
-  const TOTAL = steps.length || 1;
+  const selectedIdx = session?.selected_option ?? 0;
+  const selected = recommendations[selectedIdx];
+
+  // 🌟 [수정 로직] LLM이 반환한 중복 단계를 더 강력하게 제거합니다.
+  const rawSteps = selected?.steps || [];
+  const steps = rawSteps.filter((item, index, self) => {
+    // 공백을 제거한 내용이 이전 단계와 완벽히 일치하면 제거합니다.
+    const currentClean = item.instruction.trim().replace(/\s+/g, "");
+    return (
+      index ===
+      self.findIndex(
+        (t) => t.instruction.trim().replace(/\s+/g, "") === currentClean,
+      )
+    );
+  });
+
+  const TOTAL = steps.length;
+  const currentStepData = steps[step] || {};
 
   const bodyModelUrl =
     session.glb_url ||
-    "https://tapingdata1.blob.core.windows.net/models/body_privacy/JerryPing_Onlybody.glb";
-  const tapeModelUrl =
-    selected?.model_url ||
-    (selected?.technique_code
-      ? `https://.../models/knee/JerryPing_${selected.technique_code}.glb`
-      : null);
+    "https://tapingdata1.blob.core.windows.net/models/body_privacy/JerryPing_BODY.glb";
+  const tapeModelUrl = selected?.model_url;
 
-  const currentStepData = steps[step] || {
-    title: selected?.title || "테이핑 가이드",
-    instruction: selected?.why || "상세 데이터를 불러오는 중입니다.",
-    pose: "화면의 안내 자세를 유지해 주세요.",
-    warn: "통증이 느껴지면 즉시 중단하세요.",
-  };
+  // 🌟 [중복 방지] 제목이나 내용에서 "Step X" 문구 걷어내기
+  const rawTitle = currentStepData.title || "";
+  const stepTitle = /^(Step\s*\d+|\d+단계)/i.test(rawTitle.trim())
+    ? ""
+    : rawTitle;
+
+  const rawInstruction =
+    currentStepData.instruction || "상세 데이터를 불러오는 중입니다.";
+  const stepInstruction = rawInstruction
+    .replace(/^(Step\s*\d+\s*[:\s-]*|\d+단계\s*[:\s-]*)/i, "")
+    .trim();
+
+  const poseText =
+    currentStepData.pose || "편안한 자세를 취하고 화면의 안내를 따라주세요.";
+  const warnText =
+    currentStepData.warn ||
+    "통증이나 불편함이 느껴지면 즉시 테이핑을 중단하세요.";
 
   useEffect(() => {
     if (scrollRef.current)
@@ -79,24 +122,41 @@ export default function TapingGuide() {
     else navigate("/complete");
   }
 
-  function sendChatbot() {
+  async function sendChatbot() {
     if (!cbInput.trim()) {
       setCbShake(true);
       setTimeout(() => setCbShake(false), 400);
       return;
     }
+    const userMsg = cbInput;
+    setCbInput("");
     setCbMessages((prev) => [
       ...prev,
-      { role: "user", text: cbInput },
+      { role: "user", text: userMsg },
       { role: "typing" },
     ]);
-    setCbInput("");
-    setTimeout(() => {
+    try {
+      const res = await fetch("http://127.0.0.1:8000/api/v1/taping/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          session_id: session.session_id,
+          current_step: step + 1,
+          instruction: stepInstruction,
+          message: userMsg,
+        }),
+      });
+      const data = await res.json();
       setCbMessages((prev) => [
         ...prev.filter((m) => m.role !== "typing"),
-        { role: "bot", text: "궁금한 점을 물어보세요!" },
+        { role: "bot", text: data.reply },
       ]);
-    }, 1200);
+    } catch {
+      setCbMessages((prev) => [
+        ...prev.filter((m) => m.role !== "typing"),
+        { role: "bot", text: "테리가 잠시 자리를 비웠어요!" },
+      ]);
+    }
   }
 
   return (
@@ -110,9 +170,7 @@ export default function TapingGuide() {
         <div className="title">테이핑 가이드</div>
       </div>
 
-      {/* 🌟 수정 포인트: 패딩을 조절하고 내부 요소들에 margin-bottom(mb)을 추가했습니다. */}
       <div className="content" style={{ padding: "20px 20px 100px 20px" }}>
-        {/* 점 인디케이터 영역 */}
         <div
           style={{
             display: "flex",
@@ -137,7 +195,6 @@ export default function TapingGuide() {
           </div>
         </div>
 
-        {/* 3D 모델 영역 */}
         <div
           className="model-3d-container"
           style={{
@@ -151,7 +208,13 @@ export default function TapingGuide() {
         >
           <Canvas style={{ touchAction: "none" }}>
             <Suspense fallback={null}>
-              <Stage preset="soft" intensity={1} environment="city">
+              <Stage
+                preset="soft"
+                intensity={1}
+                environment="city"
+                adjustCamera={false}
+                center={false}
+              >
                 <ModelContainer bodyUrl={bodyModelUrl} tapeUrl={tapeModelUrl} />
               </Stage>
               <OrbitControls makeDefault />
@@ -159,7 +222,6 @@ export default function TapingGuide() {
           </Canvas>
         </div>
 
-        {/* 본문 설명 영역 */}
         <div style={{ marginBottom: "24px" }}>
           <div
             style={{
@@ -170,15 +232,16 @@ export default function TapingGuide() {
           >
             STEP {step + 1}
           </div>
-          <h2 className="t-h2" style={{ margin: "0 0 12px" }}>
-            {currentStepData.title}
-          </h2>
+          {stepTitle && (
+            <h2 className="t-h2" style={{ margin: "0 0 12px" }}>
+              {stepTitle}
+            </h2>
+          )}
           <p className="t-body2" style={{ margin: 0, lineHeight: 1.6 }}>
-            {currentStepData.instruction}
+            {stepInstruction}
           </p>
         </div>
 
-        {/* 자세 안내 박스 */}
         <div
           style={{
             padding: "16px",
@@ -197,11 +260,10 @@ export default function TapingGuide() {
             className="t-body2"
             style={{ color: "var(--fg2)", lineHeight: 1.5 }}
           >
-            {currentStepData.pose}
+            {poseText}
           </div>
         </div>
 
-        {/* 경고 박스 */}
         <div
           className="warning"
           style={{
@@ -224,7 +286,7 @@ export default function TapingGuide() {
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
           </span>
-          <span style={{ lineHeight: 1.5 }}>{currentStepData.warn}</span>
+          <span style={{ lineHeight: 1.5 }}>{warnText}</span>
         </div>
       </div>
 
@@ -243,7 +305,6 @@ export default function TapingGuide() {
         </div>
       </div>
 
-      {/* 챗봇 섹션 (변경 없음) */}
       <button className="fab" onClick={() => setChatOpen(true)}>
         <img src={fabImg} alt="Terry chat" />
       </button>

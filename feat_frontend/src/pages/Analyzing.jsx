@@ -35,6 +35,7 @@ function normalizeOption(option, idx, ep3) {
       "",
     video_url:
       option.guide_video_url ?? option.video_url ?? ep3.video_url ?? "",
+    body_url: option.body_url ?? ep3.glb_url ?? ep3.current_body_url ?? "",
     disclaimer: option.disclaimer ?? ep3.disclaimer ?? DEFAULT_DISCLAIMER,
   };
 }
@@ -65,27 +66,40 @@ export default function Analyzing() {
       let model_id = session.model_id || "JerryPing_KT_KNEE_GENERAL";
       let session_id = session.session_id;
 
+      const hasValidModel =
+        session.model_id && !session.model_id.includes("JerryPing");
+
+      // 🌟 [수정 포인트] 여기서도 성별이 비어있으면 "none"으로 처리
+      const userGender = session.gender || session.sex || "none";
+
       if (
         session.body_info_mode === "full" &&
         session.height_cm &&
-        session.weight_kg
+        session.weight_kg &&
+        !hasValidModel
       ) {
         const formData = new FormData();
         formData.append("session_id", session_id ?? "");
         formData.append("height_cm", session.height_cm);
         formData.append("weight_kg", session.weight_kg);
-        formData.append("image_path", session.image || "");
+        formData.append("image", session.image || "");
+
+        formData.append("sex", userGender);
 
         try {
           const ep2 = await matchBody(formData);
           model_id = ep2.model_id ?? model_id;
           session_id = ep2.session_id ?? session_id;
+
+          if (ep2.glb_url) {
+            updateSession({ glb_url: ep2.glb_url, sex: userGender });
+          }
         } catch (cvError) {
           console.warn("CV 분석 실패, 기본 모델 사용");
         }
       }
 
-      updateSession({ model_id, session_id });
+      updateSession({ model_id, session_id, sex: userGender });
       setStepIdx(1);
       setProgress(60);
 
@@ -99,7 +113,12 @@ export default function Analyzing() {
 
       setStepIdx(2);
       setProgress(100);
-      updateSession({ taping_options: options, selected_option: 0 });
+
+      updateSession({
+        taping_options: options,
+        selected_option: 0,
+        glb_url: ep3.glb_url || session.glb_url,
+      });
 
       setTimeout(() => navigate("/result-video"), 500);
     } catch (error) {

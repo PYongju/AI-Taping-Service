@@ -47,23 +47,86 @@ export default function Complete() {
   async function handleSave() {
     if (saving || saved) return;
     setSaving(true);
-    const historyEntry = {
-      date: new Date().toLocaleDateString("ko-KR"),
-      body_part: session.part ?? "knee",
-      option: o.name,
-    };
+
     try {
+      // 🌟 가이드 단계 중복 제거 (내용이 같은 단계 필터링)
+      const rawSteps = o?.steps || [];
+      const cleanSteps = rawSteps.filter((item, index, self) => {
+        const currentClean = item.instruction.trim().replace(/\s+/g, "");
+        return (
+          index ===
+          self.findIndex(
+            (t) => t.instruction.trim().replace(/\s+/g, "") === currentClean,
+          )
+        );
+      });
+
+      // 🌟 복구에 필요한 모든 상세 데이터를 객체로 구성
+      const historyEntry = {
+        id: session.session_id || Date.now(),
+        date: new Date().toLocaleDateString("ko-KR"),
+        time: time,
+        body_part: session.part ?? "knee",
+        option_name: o.name,
+        why: o.why || "",
+        coach: o.coach || "",
+        tape_type: o.tape_type,
+        stretch_pct: o.stretch_pct,
+        // 3D 및 가이드 복구를 위한 핵심 데이터 추가
+        glb_url: session.glb_url, // 바디 모델
+        model_url: o.model_url, // 테이프 모델
+        video_url: o.video_url, // 가이드 영상
+        steps: cleanSteps, // 정제된 가이드 단계
+      };
+
       await saveSession({
         session_id: session.session_id,
         taping_id: o.taping_id,
       });
+
+      // 로컬 스토리지 히스토리에 상세 데이터 저장
+      const prevHistory = JSON.parse(localStorage.getItem("history") || "[]");
+      localStorage.setItem(
+        "history",
+        JSON.stringify([historyEntry, ...prevHistory]),
+      );
+
       setSaved(true);
       showToast("결과를 저장했어요");
     } catch {
       showToast("서버 저장에 실패했어요. 기기에는 저장할게요.");
+
+      // 서버 에러 시에도 로컬 복구를 위해 데이터 저장 수행
+      const rawSteps = o?.steps || [];
+      const cleanSteps = rawSteps.filter((item, index, self) => {
+        const currentClean = item.instruction.trim().replace(/\s+/g, "");
+        return (
+          index ===
+          self.findIndex(
+            (t) => t.instruction.trim().replace(/\s+/g, "") === currentClean,
+          )
+        );
+      });
+      const historyEntry = {
+        id: Date.now(),
+        date: new Date().toLocaleDateString("ko-KR"),
+        time: time,
+        body_part: session.part ?? "knee",
+        option_name: o.name,
+        glb_url: session.glb_url,
+        model_url: o.model_url,
+        video_url: o.video_url,
+        steps: cleanSteps,
+        why: o.why || "",
+        coach: o.coach || "",
+      };
+      const prevHistory = JSON.parse(localStorage.getItem("history") || "[]");
+      localStorage.setItem(
+        "history",
+        JSON.stringify([historyEntry, ...prevHistory]),
+      );
+      setSaved(true);
     } finally {
-      const prev = JSON.parse(localStorage.getItem("history") || "[]");
-      localStorage.setItem("history", JSON.stringify([historyEntry, ...prev]));
       setSaving(false);
     }
   }
@@ -194,7 +257,7 @@ export default function Complete() {
           onClick={handleSave}
           disabled={saving || saved}
         >
-          결과 저장할게요
+          {saved ? "저장 완료" : saving ? "저장 중..." : "결과 저장할게요"}
         </button>
 
         <div style={{ display: "flex", gap: 8 }}>

@@ -4,11 +4,39 @@ import styles from "./History.module.css";
 
 export default function History() {
   const navigate = useNavigate();
-  const { resetSession } = useSession();
+  const { updateSession, resetSession } = useSession();
   const history = JSON.parse(localStorage.getItem("history") || "[]");
 
   function handleYes() {
-    navigate("/result-3d");
+    if (history.length > 0) {
+      const last = history[0]; // 가장 최근 기록 가져오기
+
+      // 🌟 저장된 상세 데이터를 현재 세션에 다시 주입하여 복구
+      updateSession({
+        session_id: last.id,
+        glb_url: last.glb_url, // 바디 모델 복구
+        taping_options: [
+          {
+            name: last.option_name,
+            title: last.option_name,
+            why: last.why,
+            coach: last.coach,
+            model_url: last.model_url, // 테이프 모델 복구
+            video_url: last.video_url, // 영상 URL 복구
+            steps: last.steps, // 가이드 단계 복구
+            tape_type: last.tape_type,
+            stretch_pct: last.stretch_pct,
+          },
+        ],
+        selected_option: 0,
+        part: last.body_part,
+      });
+
+      // 복구 후 바로 결과 화면으로 이동
+      navigate("/result-video");
+    } else {
+      navigate("/body-part");
+    }
   }
 
   function handleNo() {
@@ -33,7 +61,7 @@ export default function History() {
             <div key={i} className={styles.card}>
               <p className={styles.date}>{item.date}</p>
               <p className={styles.info}>
-                {item.body_part} · {item.option}
+                {item.body_part} · {item.option_name || item.option}
               </p>
             </div>
           ))}
