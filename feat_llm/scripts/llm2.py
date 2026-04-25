@@ -11,7 +11,7 @@ from llama_index.core.vector_stores.types import VectorStoreQueryMode
 from llama_index.core.retrievers import AutoMergingRetriever
 from llama_index.core.storage.docstore import SimpleDocumentStore
 from llama_index.core.vector_stores import MetadataFilters, ExactMatchFilter
-from llama_index.vector_stores.azureaisearch import AzureAISearchVectorStore
+from llama_index.vector_stores.azureaisearch import AzureAISearchVectorStore,IndexManagement
 from azure.search.documents import SearchClient
 from azure.search.documents.indexes import SearchIndexClient
 from azure.core.credentials import AzureKeyCredential
@@ -196,9 +196,14 @@ class TapingRAGSystem:
         """한국어 입력을 영어 의학 용어로 번역 (recommend() 내부 전용).
         LLM 호출 실패 또는 빈 결과 시 원문 반환.
         """
+        if not raw_text or not raw_text.strip():
+            return ""
+        # 🌟 여기에 강력한 제약 조건을 추가했습니다.
         prompt = (
             "You are a medical translator specializing in kinesiology taping. "
-            "Translate the user's Korean input into English medical terms for searching professional documents.\n\n"
+            "Translate the user's Korean input into English medical terms for searching professional documents.\n"
+            "CRITICAL RULE: Output ONLY the translated English terms. Do NOT include any conversational filler, greetings, or explanations like 'Of course!' or 'Here is the translation'. "
+            "If you cannot translate, just output the original text.\n\n"
             f"Korean: {raw_text}\nEnglish:"
         )
         try:
@@ -235,11 +240,54 @@ class TapingRAGSystem:
             return {"options": [], "redirect": "hospital"}
 
         # 1) 번역
-        e_query = self._translate(input.get("raw_text", ""))
+        # 1) 검색어(e_query) 설정 방어 로직
+        # 1) 검색어(e_query) 설정 방어 및 극단적 압축
+        raw_text = input.get("raw_text", "")
+        if raw_text and raw_text.strip():
+            e_query = self._translate(raw_text)
+        else:
+            structured = input.get("structured_symptom", {})
+            # 노이즈를 없애기 위해 가장 핵심이 되는 부위(area) 키워드 1개만 추출
+            area = structured.get("area", "").replace("_", " ")
+            if not area.strip() and structured.get("keywords"):
+                area = structured.get("keywords")[0]
+            
+            e_query = f"{area} taping".strip()
+            if not e_query.strip():
+                e_query = "knee taping"
+                
+            print(f"[DEBUG] 직접 입력 없음. 압축된 대체 검색어: {e_query}")
 
-        # 2) body_part 필터로 RAG 검색
+        # 🌟 2) body_part 필터 매핑 (핵심: 한글 '무릎' -> 영문 'knee' 변환)
+        input_part = input.get("body_part", "무릎")
+        part_map = {
+            "무릎": "knee",
+            "발목": "ankle",
+            "어깨": "shoulder",
+            "허리": "back",
+            "팔꿈치": "elbow",
+            "손목": "wrist"
+        }
+        db_body_part = part_map.get(input_part, "knee") # 매핑 실패 시 기본값 knee
+
         filters = MetadataFilters(
-            filters=[ExactMatchFilter(key="body_part", value=input.get("body_part", "").lower())]
+            filters=[ExactMatchFilter(key="body_part", value=db_body_part)]
+        )
+
+        # 3) RAG 검색 실행 (top_k=15 유지)
+        base_retriever = self.index.as_retriever(similarity_top_k=15, filters=filters)
+        leaf_nodes = base_retriever.retrieve(e_query)
+        chunk_ids = [n.node_id for n in leaf_nodes]
+        
+        if not chunk_ids:
+            print("[WARN] 검색된 문서가 0개입니다.")
+            return {"options": []}
+
+        search_results = self._search_client.search(
+            search_text="*",
+            filter=" or ".join(f"chunk_id eq '{cid}'" for cid in chunk_ids),
+            select="chunk_id,technique_code",
+            top=len(chunk_ids),
         )
 
         # valid_codes: SearchClient로 technique_code 컬럼 직접 조회
@@ -254,15 +302,28 @@ class TapingRAGSystem:
             select="chunk_id,technique_code",
             top=len(chunk_ids),
         )
-        valid_codes = list({
+        
+        # RAG가 찾아온 원본 코드들
+        raw_valid_codes = list({
             r["technique_code"]
             for r in search_results
             if r.get("technique_code")
         })
-        print(f"[DEBUG] valid_codes: {valid_codes}")
+
+        # 🌟 [수정 포인트] 영상이 준비된 4개의 코드 (화이트리스트)
+        ALLOWED_CODES = {
+            "KT_KNEE_MEDIAL",
+            "KT_KNEE_MALALIGNMENT_ALTERNATIVE",
+            "KT_KNEE_LATERAL",
+            "KT_KNEE_GENERAL"
+        }
+        
+        # 교집합 연산을 통해 영상이 있는 코드만 남기기
+        valid_codes = list(set(raw_valid_codes) & ALLOWED_CODES)
+        print(f"[DEBUG] 영상 필터링 적용 후 valid_codes: {valid_codes}")
 
         if not valid_codes:
-            print("[WARN] 검색된 노드에서 technique_code를 찾을 수 없습니다.")
+            print("[WARN] 매칭되는 영상/코드가 없습니다.")
             return {"options": []}
 
         # rag_chunks: AutoMergingRetriever로 parent 병합 후 추출 (더 넓은 컨텍스트)

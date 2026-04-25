@@ -4,87 +4,37 @@ import { useSession } from "../context/SessionContext";
 import fabImg from "../assets/fab.png";
 import "./TapingGuide.css";
 
-// 🌟 신규 뷰어 라이브러리 (성능 및 자동화 전용)
-import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Center,
-  useGLTF,
-  Environment,
-  Stage,
-  Html,
-} from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
+import { OrbitControls, useGLTF, Stage } from "@react-three/drei";
+import * as THREE from "three";
 
-/**
- * 하드코딩된 테이핑 모델 URL
- */
-const HARDCODED_TAPE_URL =
-  "https://tapingdata1.blob.core.windows.net/models/knee/3148M_KT_KNEE_LATERAL.glb";
-const BODY_MODEL_URL =
-  "https://tapingdata1.blob.core.windows.net/models/body/3148M_BD_B.glb";
-
-/**
- * 3D 모델 컴포넌트
- */
-function ModelContainer({ tapeUrl }) {
-  const { camera, controls } = useThree(); // R3F의 내부 상태 가져오기
-  const body = useGLTF(BODY_MODEL_URL);
-  const tape = useGLTF(tapeUrl);
+function ModelContainer({ bodyUrl, tapeUrl }) {
+  const { camera, controls } = useThree();
+  const body = useGLTF(bodyUrl);
+  const tape = tapeUrl ? useGLTF(tapeUrl) : null;
 
   useEffect(() => {
-    if (tape.scene && controls) {
-      // 1. 테이핑 모델의 경계 상자 계산
-      const box = new THREE.Box3().setFromObject(tape.scene);
+    if (body.scene && controls) {
+      const box = new THREE.Box3().setFromObject(body.scene);
       const center = box.getCenter(new THREE.Vector3());
-      const size = box.getSize(new THREE.Vector3());
-
-      // 2. 카메라의 초점(Target)을 테이핑 모델의 중심으로 변경
       controls.target.copy(center);
-
-      // 3. 카메라 위치를 적절히 당기기 (모델 크기에 맞춰 거리 조절)
-      const maxDim = Math.max(size.x, size.y, size.z);
-      const distance = maxDim * 3; // 숫자가 작을수록 더 가까이 확대됩니다.
-      camera.position.set(center.x, center.y, center.z + distance);
-
+      camera.position.set(center.x, center.y, center.z + 5);
       controls.update();
     }
-  }, [tape, camera, controls]);
+  }, [body.scene, controls]);
 
   return (
     <group>
       <primitive object={body.scene} />
-      <primitive object={tape.scene} />
+      {tape && <primitive object={tape.scene} />}
     </group>
-  );
-}
-
-/**
- * 로딩 중 표시될 UI
- */
-function Loader() {
-  return (
-    <Html center>
-      <div
-        style={{
-          background: "rgba(255,255,255,0.9)",
-          padding: "12px 24px",
-          borderRadius: "30px",
-          fontSize: "13px",
-          fontWeight: "700",
-          color: "var(--color-primary)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
-          whiteSpace: "nowrap",
-        }}
-      >
-        테리 가이드 불러오는 중...
-      </div>
-    </Html>
   );
 }
 
 export default function TapingGuide() {
   const navigate = useNavigate();
   const { session } = useSession();
+
   const [step, setStep] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [cbMessages, setCbMessages] = useState([
@@ -92,17 +42,28 @@ export default function TapingGuide() {
   ]);
   const [cbInput, setCbInput] = useState("");
   const [cbShake, setCbShake] = useState(false);
-
   const scrollRef = useRef(null);
 
-  const currentOption = session.taping_options?.[session.selected_option || 0];
-  const activeSteps = currentOption?.steps || [];
-  const TOTAL = activeSteps.length || 1;
-  const s = activeSteps[step] || {
-    title: "가이드 준비 중",
-    desc: "-",
-    pose: "-",
-    warn: "-",
+  const recommendations =
+    session?.taping_recommendations || session?.taping_options || [];
+  const selected = recommendations[session?.selected_option ?? 0];
+  const steps = selected?.steps || [];
+  const TOTAL = steps.length || 1;
+
+  const bodyModelUrl =
+    session.glb_url ||
+    "https://tapingdata1.blob.core.windows.net/models/body_privacy/JerryPing_Onlybody.glb";
+  const tapeModelUrl =
+    selected?.model_url ||
+    (selected?.technique_code
+      ? `https://.../models/knee/JerryPing_${selected.technique_code}.glb`
+      : null);
+
+  const currentStepData = steps[step] || {
+    title: selected?.title || "테이핑 가이드",
+    instruction: selected?.why || "상세 데이터를 불러오는 중입니다.",
+    pose: "화면의 안내 자세를 유지해 주세요.",
+    warn: "통증이 느껴지면 즉시 중단하세요.",
   };
 
   useEffect(() => {
@@ -133,16 +94,13 @@ export default function TapingGuide() {
     setTimeout(() => {
       setCbMessages((prev) => [
         ...prev.filter((m) => m.role !== "typing"),
-        {
-          role: "bot",
-          text: "테이핑을 붙일 때 근육을 늘린 상태에서 붙이는 것이 중요해요!",
-        },
+        { role: "bot", text: "궁금한 점을 물어보세요!" },
       ]);
     }, 1200);
   }
 
   return (
-    <div className="page" style={{ position: "relative" }}>
+    <div className="page">
       <div className="topbar">
         <button className="back" onClick={() => navigate("/result-video")}>
           <svg className="ic" viewBox="0 0 24 24">
@@ -152,20 +110,15 @@ export default function TapingGuide() {
         <div className="title">테이핑 가이드</div>
       </div>
 
-      <div
-        className="content"
-        style={{
-          padding: "16px 20px 20px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 16,
-        }}
-      >
+      {/* 🌟 수정 포인트: 패딩을 조절하고 내부 요소들에 margin-bottom(mb)을 추가했습니다. */}
+      <div className="content" style={{ padding: "20px 20px 100px 20px" }}>
+        {/* 점 인디케이터 영역 */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            marginBottom: "20px",
           }}
         >
           <div className="dots">
@@ -184,7 +137,7 @@ export default function TapingGuide() {
           </div>
         </div>
 
-        {/* 🌟 3D 뷰어 영역: 카메라 자동 정렬 적용 */}
+        {/* 3D 모델 영역 */}
         <div
           className="model-3d-container"
           style={{
@@ -193,64 +146,74 @@ export default function TapingGuide() {
             backgroundColor: "#f8f9fa",
             borderRadius: "16px",
             overflow: "hidden",
+            marginBottom: "24px",
           }}
         >
-          <Canvas shadows camera={{ position: [0, 0, 4], fov: 40 }}>
-            <Suspense fallback={<Loader />}>
-              {/* Stage는 조명, 그림자, 그리고 모델이 화면에 꽉 차도록 카메라를 자동 조정해줍니다. */}
-              <Stage
-                environment="city"
-                intensity={0.5}
-                contactShadow={{ opacity: 0.2, blur: 2 }}
-                adjustCamera={1.2}
-              >
-                <Center>
-                  <ModelContainer tapeUrl={HARDCODED_TAPE_URL} />
-                </Center>
+          <Canvas style={{ touchAction: "none" }}>
+            <Suspense fallback={null}>
+              <Stage preset="soft" intensity={1} environment="city">
+                <ModelContainer bodyUrl={bodyModelUrl} tapeUrl={tapeModelUrl} />
               </Stage>
-              <OrbitControls makeDefault minDistance={1} maxDistance={8} />
+              <OrbitControls makeDefault />
             </Suspense>
           </Canvas>
         </div>
 
-        <div>
+        {/* 본문 설명 영역 */}
+        <div style={{ marginBottom: "24px" }}>
           <div
             style={{
               font: "600 13px/1 var(--font-base)",
               color: "var(--color-primary)",
-              marginBottom: 6,
+              marginBottom: 8,
             }}
           >
             STEP {step + 1}
           </div>
-          <h2 className="t-h2" style={{ margin: "0 0 8px" }}>
-            {s.title}
+          <h2 className="t-h2" style={{ margin: "0 0 12px" }}>
+            {currentStepData.title}
           </h2>
-          <p className="t-body2" style={{ margin: 0 }}>
-            {s.desc}
+          <p className="t-body2" style={{ margin: 0, lineHeight: 1.6 }}>
+            {currentStepData.instruction}
           </p>
         </div>
 
+        {/* 자세 안내 박스 */}
         <div
           style={{
-            padding: "12px 14px",
+            padding: "16px",
             background: "var(--bg2)",
             borderRadius: "var(--radius-md)",
+            marginBottom: "20px",
           }}
         >
           <div
             className="t-caption"
-            style={{ color: "var(--fg2)", fontWeight: 600, marginBottom: 4 }}
+            style={{ color: "var(--fg2)", fontWeight: 600, marginBottom: 8 }}
           >
             자세 안내
           </div>
-          <div className="t-body2" style={{ color: "var(--fg2)" }}>
-            {s.pose}
+          <div
+            className="t-body2"
+            style={{ color: "var(--fg2)", lineHeight: 1.5 }}
+          >
+            {currentStepData.pose}
           </div>
         </div>
 
-        <div className="warning">
-          <span className="w-ic">
+        {/* 경고 박스 */}
+        <div
+          className="warning"
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "10px",
+            padding: "16px",
+            backgroundColor: "var(--bg-warning)",
+            borderRadius: "var(--radius-md)",
+          }}
+        >
+          <span className="w-ic" style={{ marginTop: "2px" }}>
             <svg
               className="ic ic-sm"
               viewBox="0 0 24 24"
@@ -261,7 +224,7 @@ export default function TapingGuide() {
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
           </span>
-          <span>{s.warn}</span>
+          <span style={{ lineHeight: 1.5 }}>{currentStepData.warn}</span>
         </div>
       </div>
 
@@ -280,6 +243,7 @@ export default function TapingGuide() {
         </div>
       </div>
 
+      {/* 챗봇 섹션 (변경 없음) */}
       <button className="fab" onClick={() => setChatOpen(true)}>
         <img src={fabImg} alt="Terry chat" />
       </button>
@@ -311,14 +275,10 @@ export default function TapingGuide() {
               <img
                 src={fabImg}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                alt=""
               />
             </div>
             <div>
               <div style={{ font: "700 14px/1 var(--font-base)" }}>테리</div>
-              <div className="t-caption" style={{ marginTop: 3 }}>
-                궁금한 걸 물어보세요
-              </div>
             </div>
           </div>
           <button
@@ -345,21 +305,13 @@ export default function TapingGuide() {
               key={i}
               className={m.role === "typing" ? "typing" : `bubble-${m.role}`}
             >
-              {m.role === "typing" ? (
-                <>
-                  <span />
-                  <span />
-                  <span />
-                </>
-              ) : (
-                m.text
-              )}
+              {m.role === "typing" ? "..." : m.text}
             </div>
           ))}
         </div>
         <div
           style={{
-            padding: "12px 20px calc(12px + env(safe-area-inset-bottom))",
+            padding: "12px 20px",
             borderTop: "1px solid var(--gray-100)",
           }}
         >
