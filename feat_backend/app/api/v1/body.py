@@ -1,109 +1,101 @@
 import os
 import shutil
 import uuid
+import logging
 from pathlib import Path
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException
-from fastapi.concurrency import run_in_threadpool
 from typing import Optional
 
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException
+from fastapi.concurrency import run_in_threadpool
+
 from app.services.db_manager import db
-import sys
+from app.services.cv_module import body_analyzer 
 
-# =====================================================================
-# [CV 모듈 통합]
-# =====================================================================
-ROOT_PATH = Path(__file__).resolve().parent.parent.parent.parent.parent
-CV_PATH = ROOT_PATH / "feat_cv"
-
-if str(CV_PATH) not in sys.path:
-    sys.path.append(str(CV_PATH))
-
-try:
-    from cv import run_body_search_safe
-    from resource_manager import download_azure_resources
-    # 주의: 로컬 테스트 완료 후 배포 시에는 아래 함수 호출을 제어하거나 환경변수로 관리하세요.
-    #download_azure_resources()
-    
-    print("[SUCCESS] CV 모듈(cv.py) 로드 완료")
-except ImportError as e:
-    print(f"[FATAL ERROR] CV 모듈 로드 실패: {e}")
-    run_body_search_safe = None
-# =====================================================================
+logger = logging.getLogger(__name__)
 
 body_router = APIRouter()
-
-# 💡 [수정] C드라이브 하드코딩 제거 -> 프로젝트 루트 기준 상대 경로로 변경
-UPLOAD_DIR = ROOT_PATH / "temp_uploads"
+UPLOAD_DIR = Path("temp_uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+BASE_STORAGE_URL = "https://tapingdata1.blob.core.windows.net/models"
 
 @body_router.post("/match")
 async def match_body(
     session_id: str = Form(...),
-    privacy_opt_out: bool = Form(False),
-    image: Optional[UploadFile] = File(None)
+    image: Optional[UploadFile] = File(None),
+    height_cm: float = Form(175.0),
+    weight_kg: float = Form(70.0),
+    sex: Optional[str] = Form("none"), 
+    privacy_opt_out: bool = Form(False)
 ):
-    if not run_body_search_safe:
-        raise HTTPException(status_code=500, detail="CV 시스템이 준비되지 않았습니다.")
-
-    try:
-        # 1. DB에서 EP1(증상 분석) 때 저장해둔 유저 신체 정보 가져오기
-        session_data = db.get_session(session_id)
-        if not session_data:
-            raise HTTPException(status_code=404, detail="세션을 찾을 수 없습니다.")
-        
-        user_input = session_data.get("user_input", {})
-        physical_info = user_input.get("physical_info", {})
-        
-        height_cm = physical_info.get("height_cm")
-        weight_kg = physical_info.get("weight_kg")
-        sex = physical_info.get("gender")
-
-        # 2. 이미지 임시 저장 (privacy_opt_out이 False일 때만)
-        temp_image_path = None
-        if not privacy_opt_out:
-            if not image:
-                raise HTTPException(status_code=400, detail="사진 제공 동의 시 이미지가 필수입니다.")
-            
-            ext = Path(image.filename).suffix
-            temp_image_path = str(UPLOAD_DIR / f"{uuid.uuid4().hex}{ext}")
-            
-            with open(temp_image_path, "wb") as buffer:
+    # 1. 이미지 저장
+    saved_image_path = None
+    if image and image.filename:
+        try:
+            file_ext = image.filename.split(".")[-1]
+            saved_image_path = str(UPLOAD_DIR / f"{uuid.uuid4()}.{file_ext}")
+            with open(saved_image_path, "wb") as buffer:
                 shutil.copyfileobj(image.file, buffer)
+        except Exception as e:
+            logger.error(f"[UPLOAD ERROR] {e}")
 
-        # 3. 무거운 CV 작업을 쓰레드풀에서 안전하게 실행
-        cv_result = await run_in_threadpool(
-            run_body_search_safe,
-            image_path=temp_image_path,
-            height_cm=height_cm,
-            weight_kg=weight_kg,
-            sex=sex,
-            privacy_opt_out=privacy_opt_out
-        )
+    # 2. 성별 값 정제 (소문자 통일)
+    safe_sex = sex.lower() if sex else "none"
 
-        # 4. 에러 처리
-        if cv_result.get("status") == "error":
-            raise HTTPException(status_code=400, detail=cv_result.get("error", {}).get("message", "CV 분석 실패"))
+    # 3. CV 분석 실행
+    cv_result = await body_analyzer.analyze_image(
+        image_path=saved_image_path,
+        height=height_cm,
+        weight=weight_kg,
+        gender=safe_sex,
+        privacy_opt_out=privacy_opt_out
+    )
 
-        # 5. 성공 시 DB에 결과 업데이트
-        best_model_id = cv_result.get("best_match", {}).get("model_id", "3148M")
-        
-        db.update_session(session_id, {
-            "status": "BODY_MATCHED",
+    # 4. 🌟 모델 ID 결정 로직 (none 우선순위 강화)
+    raw_model_id = cv_result.get("matched_model_id", "JerryPing")
+    
+    # 성별이 'none'이면 AI 결과와 상관없이 무조건 JerryPing 고정
+    if safe_sex == "none":
+        best_model_id = "JerryPing"
+    
+    # 성별이 male/female인 경우, AI가 JerryPing을 반환했다면 성별 기본값 적용
+    elif "JerryPing" in raw_model_id:
+        if safe_sex == "male":
+            best_model_id = "3148M"
+        elif safe_sex == "female":
+            best_model_id = "7136F"
+        else:
+            best_model_id = "JerryPing"
+    
+    # AI가 구체적인 모델(예: 3148M_B)을 찾았다면 해당 모델 사용
+    else:
+        best_model_id = raw_model_id.split('_')[0] if "_" in raw_model_id else raw_model_id
+    
+    logger.info(f"🔥 [MATCH RESULT] 최종 결정된 모델 ID: {best_model_id} (성별: {safe_sex})")
+
+    # 5. 폴더 및 파일 경로 분기
+    if best_model_id == "JerryPing":
+        folder = "body_privacy"
+        suffix = "BODY"
+    else:
+        folder = "body"
+        suffix = "BD_B"
+    
+    current_body_url = f"{BASE_STORAGE_URL}/{folder}/{best_model_id}_{suffix}.glb"
+
+    # 6. DB 업데이트
+    try:
+        await run_in_threadpool(db.update_session, session_id, {
             "model_id": best_model_id,
-            "cv_analysis_result": cv_result.get("user_features")
+            "glb_url": current_body_url,
+            "sex": safe_sex,
+            "status": "SCENE_4_COMPLETED"
         })
-
-        # 임시 이미지 파일 삭제
-        if temp_image_path and os.path.exists(temp_image_path):
-            os.remove(temp_image_path)
-
-        return {
-            "session_id": session_id,
-            "status": "BODY_MATCHED",
-            "matched_model_id": best_model_id,
-            "message": "체형 분석이 완료되었습니다."
-        }
-
     except Exception as e:
-        print(f"[ERROR] 체형 분석 중 오류: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"[DB ERROR] {e}")
+
+    return {
+        "status": "success", 
+        "model_id": best_model_id, 
+        "glb_url": current_body_url
+    }

@@ -4,6 +4,7 @@ uvicorn[standard]>=0.29.0
 pydantic>=2.6.0
 pydantic-settings>=2.2.0
 python-multipart>=0.0.9
+httpx>=0.27.0               # [추가] 비동기 HTTP 통신용
 
 # [Azure SDK]
 azure-cosmos>=4.5.1
@@ -11,23 +12,22 @@ azure-storage-blob>=12.19.0
 azure-search-documents>=11.4.0
 azure-identity>=1.15.0
 
-# [AI & LLM 파트] - LlamaIndex 및 Azure 연동 모듈 통합
+# [AI & LLM 파트] - LlamaIndex 중심 (LangChain, Ragas는 테스트용으로 분리 권장)
 openai>=1.14.0
 llama-index>=0.10.0
-llama-index-core>=0.10.0
+# llama-index-core는 위 패키지에 포함되므로 생략 가능
 llama-index-vector-stores-azureaisearch>=0.1.0
 llama-index-embeddings-azure-openai>=0.1.0
 llama-index-llms-azure-openai>=0.1.0
-ragas>=0.1.0
-langchain>=0.1.0
 
 # [Vision & MediaPipe]
 mediapipe>=0.10.11
 opencv-python-headless>=4.9.0
 rembg[cpu]>=2.0.50          # CV 배경 제거 모듈 (CPU 엔진)
-trimesh>=4.0.0              # 3D 모델(OBJ) 처리용
-Pillow>=10.0.0              # Python 기본 이미지 처리 모듈
-pillow-avif-plugin>=1.4.3   # 프론트엔드 AVIF 이미지 포맷 지원
+trimesh>=4.0.0              # 3D 메쉬 처리용
+pygltflib>=1.16.1           # [추가] 프론트엔드와 동일한 GLB/GLTF 처리용
+Pillow>=10.0.0              
+pillow-avif-plugin>=1.4.3   
 
 # [Utilities]
 python-dotenv>=1.0.1

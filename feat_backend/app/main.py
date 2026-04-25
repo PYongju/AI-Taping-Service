@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.api.v1.session import router as session_router
 # 1. 경로 설정
 # 현재: main/feat_backend/app/main.py -> parent.parent.parent가 'main/' 루트임
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -40,8 +40,8 @@ app = FastAPI(title="AI Taping Guide API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], # 프론트엔드 주소 명시
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -66,6 +66,7 @@ async def startup_event():
 app.include_router(symptom_router, prefix="/api/v1/symptoms", tags=["Symptoms"])
 app.include_router(body_router, prefix="/api/v1/body", tags=["Body Match"])
 app.include_router(taping_router, prefix="/api/v1/taping", tags=["Taping"])
+app.include_router(session_router, prefix="/api/v1/session", tags=["session"])
 
 @app.get("/")
 def read_root():

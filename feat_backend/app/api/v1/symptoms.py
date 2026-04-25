@@ -3,14 +3,34 @@ import os
 from fastapi import APIRouter, HTTPException
 import uuid
 from datetime import datetime, timezone
+from pathlib import Path
 
-# [경로 수정] scripts 폴더까지 path에 추가
-ROOT_PATH = r"C:\Users\USER\Desktop\AI_school2\main"
-SCRIPTS_PATH = os.path.join(ROOT_PATH, "feat_llm", "scripts")
+def get_project_root(target_name="main") -> Path:
+    """현재 파일에서 위로 올라가며 폴더명이 'main'인 곳을 찾습니다."""
+    current_path = Path(__file__).resolve()
+    
+    # 루트 폴더(/)까지 올라가며 확인
+    for parent in [current_path] + list(current_path.parents):
+        if parent.name == target_name:
+            return parent
+            
+    # 만약 'main'이라는 이름을 못 찾으면 feat_backend의 상위를 기본값으로 사용
+    return current_path.parent.parent 
 
-if SCRIPTS_PATH not in sys.path:
-    sys.path.append(SCRIPTS_PATH)
+# 1. 프로젝트의 진짜 최상위(main) 경로 확보
+PROJECT_ROOT = get_project_root("main")
 
+# 2. 메인 루트를 sys.path에 추가 (feat_cv, feat_llm 등 접근용)
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+# 3. scripts 폴더 경로 설정 및 sys.path 추가 (ROOT_PATH 에러 수정 완료)
+SCRIPTS_PATH = PROJECT_ROOT / "feat_llm" / "scripts"
+if str(SCRIPTS_PATH) not in sys.path:
+    sys.path.append(str(SCRIPTS_PATH))
+
+
+# --- 이후부터는 기존과 동일하게 완벽합니다 ---
 from app.schemas.symptoms import SymptomRequest, SymptomResponse, StructuredSymptom
 from app.services.db_manager import db 
 

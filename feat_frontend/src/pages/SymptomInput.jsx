@@ -157,13 +157,27 @@ export default function SymptomInput() {
     if (appendUserMsg) {
       setInputText("");
     }
+    // 🌟 이 줄을 추가하세요! (브라우저 F12 -> Console 탭에서 확인)
+    console.log("백엔드로 보내기 직전의 데이터:", {
+      body_part: session.part,
+      situation: situation,
+      symptom_type: symptom_type,
+      raw_text: user_text || "",
+      height_cm: null,
+      weight_kg: null,
+      gender: null,
+    });
 
     try {
       const result = await analyzeSymptoms({
         body_part: session.part,
-        situation,
-        symptom_type,
-        user_text,
+        situation: situation,
+        symptom_type: symptom_type,
+        // 아래 줄을 아래와 같이 수정하세요
+        raw_text: user_text || "",
+        height_cm: null,
+        weight_kg: null,
+        gender: null,
       });
 
       updateSession({
@@ -173,7 +187,9 @@ export default function SymptomInput() {
 
       setMessages((prev) => prev.filter((m) => m.role !== "typing"));
       if (nextRoute === "hospital") {
-        navigate("/hospital", { state: { keyword: hospitalKeyword ?? displayText } });
+        navigate("/hospital", {
+          state: { keyword: hospitalKeyword ?? displayText },
+        });
       } else {
         navigate("/consent");
       }
