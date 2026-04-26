@@ -28,11 +28,13 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "feat_frontend" # App source code path
+          app_location: "/feat_frontend" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
           app_build_command: "npm install --legacy-peer-deps && npm run build"
+        env: # ⭐️ 빌드 시 환경 변수 주입 필수!
+          VITE_API_URL: "https://terrypingv1-e7effabzbbbfh2e3.koreacentral-01.azurewebsites.net"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
