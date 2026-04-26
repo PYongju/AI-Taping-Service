@@ -1,35 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useSession } from "../context/SessionContext"; // 🌟 추가
 import myLogo from "../assets/logo.png";
 import "./Splash.css";
 
 export default function Splash() {
   const navigate = useNavigate();
-  const { updateSession } = useSession(); // 🌟 추가
 
+  // 저장된 기록이 있는지 확인
   const history = JSON.parse(localStorage.getItem("history") || "[]");
   const isReturning = history.length > 0;
 
   function handleStart() {
     if (isReturning) {
-      // 🌟 [핵심] 가장 최근에 저장한 데이터를 세션에 다시 주입합니다.
-      const last = history[0];
-      updateSession({
-        session_id: last.id,
-        glb_url: last.glb_url, // 바디 모델 복구
-        taping_options: [
-          {
-            name: last.option_name,
-            model_url: last.model_url, // 테이프 모델 복구
-            video_url: last.video_url, // 영상 복구
-            steps: last.steps, // 가이드 단계 복구
-          },
-        ],
-        selected_option: 0,
-        part: last.body_part,
-      });
-      // 데이터 주입 후 바로 가이드 화면으로 이동
-      navigate("/result-3d");
+      // 🌟 가장 최근 것 하나만 보는 대신, 목록을 보고 고를 수 있게 히스토리로 보냅니다.
+      navigate("/history");
     } else {
       navigate("/body-part");
     }
@@ -58,12 +41,9 @@ export default function Splash() {
             className="btn btn-text"
             onClick={() => navigate("/body-part")}
           >
-            새로 시작할게요
+            새로운 테이핑 시작하기
           </button>
         )}
-        <p className="splash-note">
-          🧪 맞춤 테이핑을 안내하는 학술 프로젝트예요.
-        </p>
       </div>
     </div>
   );
