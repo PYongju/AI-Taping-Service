@@ -1,8 +1,5 @@
-// const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-// const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
-const USE_MOCK = import.meta.env.VITE_USE_MOCK !== "false";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
 
 // ─── Mock 응답 ────────────────────────────────────────────────
 const MOCK_RESPONSES = {
