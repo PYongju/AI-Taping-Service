@@ -365,6 +365,37 @@ class TapingRAGSystem:
         ]
 
         return result
+    
+    def chat(self, user_message: str, current_step: int, instruction: str) -> str:
+        """
+        테리(챗봇)가 가이드 단계와 사용자의 질문을 바탕으로 답변을 생성하는 함수입니다.
+        """
+        if not user_message or not user_message.strip():
+            return "궁금한 점을 입력해주세요!"
+
+        # 테리가 문맥을 이해할 수 있도록 프롬프트를 구성합니다.
+        prompt = (
+            "You are a friendly, helpful, and professional physical therapy assistant named 'Terry' (테리). "
+            "You provide guidance on kinesiology taping based on the specific step the user is currently looking at.\n\n"
+            f"Current Step: {current_step}\n"
+            f"Step Instruction: {instruction}\n"
+            f"User's Question: {user_message}\n\n"
+            "CRITICAL RULES:\n"
+            "1. Answer in natural, friendly Korean.\n"
+            "2. Keep the answer concise (2-3 sentences) and easy to understand.\n"
+            "3. Do NOT provide medical diagnoses. Remind the user to seek professional help if they experience severe pain.\n"
+            "4. Focus your answer strictly on helping the user understand the 'Current Step' and their question."
+        )
+
+        try:
+            print(f"[DEBUG] 챗봇 LLM 호출 시작... 질문: {user_message}")
+            response = self.llm.complete(prompt)
+            reply = response.text.strip()
+            print(f"[DEBUG] 챗봇 응답 완료: {reply}")
+            return reply
+        except Exception as e:
+            print(f"[ERROR] 챗봇 LLM 생성 실패: {e}")
+            return "앗, 테리가 잠깐 생각하느라 머리가 엉켰어요. 다시 한 번 물어봐주시겠어요?"
 
 
 if __name__ == "__main__":
