@@ -1,0 +1,9 @@
+{
+  "request_id": "d895c1cd6c0d",
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "INFERENCE_FAILED",
+    "message": "Failed to load image from file"
+  }
+}

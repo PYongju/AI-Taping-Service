@@ -1,0 +1,9 @@
+{
+  "request_id": "4e4468621a43",
+  "status": "error",
+  "data": null,
+  "error": {
+    "code": "INVALID_INPUT",
+    "message": "개인정보 입력 사용 시 image_path, height_cm, weight_kg, sex가 모두 필요합니다."
+  }
+}

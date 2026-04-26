@@ -21,3 +21,7 @@ Thumbs.db
 # 로그 및 데이터 파일
 *.log
 *.db
+
+# 임시 파일
+feat_cv/temp_outputs/
+feat_backend/temp_uploads/
