@@ -2,10 +2,12 @@ import sys
 import os
 import logging
 from fastapi import APIRouter, HTTPException, Request
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
-ROOT_PATH = r"C:\Users\USER\Desktop\AI_school2\main"
+CURRENT_DIR = Path(__file__).resolve()
+ROOT_DIR = CURRENT_DIR.parent.parent.parent.parent
 SCRIPTS_PATH = os.path.join(ROOT_PATH, "feat_llm", "scripts")
 if SCRIPTS_PATH not in sys.path:
     sys.path.append(SCRIPTS_PATH)
