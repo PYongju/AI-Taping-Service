@@ -136,16 +136,19 @@ export default function TapingGuide() {
       { role: "typing" },
     ]);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/v1/taping/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session_id: session.session_id,
-          current_step: step + 1,
-          instruction: stepInstruction,
-          message: userMsg,
-        }),
-      });
+      const res = await fetch(
+        "https://terrypingv1-e7effabzbbbfh2e3.koreacentral-01.azurewebsites.net/api/v1/taping/chat",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            session_id: session.session_id,
+            current_step: step + 1,
+            instruction: stepInstruction,
+            message: userMsg,
+          }),
+        },
+      );
       const data = await res.json();
       setCbMessages((prev) => [
         ...prev.filter((m) => m.role !== "typing"),
