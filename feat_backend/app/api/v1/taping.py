@@ -7,8 +7,8 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 CURRENT_DIR = Path(__file__).resolve()
-ROOT_DIR = CURRENT_DIR.parent.parent.parent.parent
-SCRIPTS_PATH = os.path.join(ROOT_PATH, "feat_llm", "scripts")
+ROOT_DIR = CURRENT_DIR.parents[4]
+SCRIPTS_PATH = os.path.join(ROOT_DIR, "feat_llm", "scripts")
 if SCRIPTS_PATH not in sys.path:
     sys.path.append(SCRIPTS_PATH)
 

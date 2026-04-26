@@ -1,0 +1,37 @@
+# [FastAPI Core]
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+python-multipart>=0.0.9
+gunicorn>=21.2.0            #[추가] Azure 운영 서버 배포용
+httpx>=0.27.0               # 비동기 HTTP 통신용
+
+# [Azure SDK]
+azure-core>=1.30.0          # Azure 인증 및 코어 에러 처리 (명시적 추가)
+azure-cosmos>=4.5.1
+azure-storage-blob>=12.19.0
+azure-search-documents>=11.4.0
+azure-identity>=1.15.0
+
+# [AI & LLM 파트 - LlamaIndex 0.10.x 환경]
+openai>=1.14.0
+llama-index>=0.10.0
+llama-index-core>=0.10.0    # LlamaIndex 0.10+ 아키텍처 안정성을 위해 명시
+llama-index-vector-stores-azureaisearch>=0.1.0
+llama-index-embeddings-azure-openai>=0.1.0
+llama-index-llms-azure-openai>=0.1.0
+
+# [Vision & 3D & Image 파트]
+mediapipe>=0.10.11
+opencv-python-headless>=4.9.0 # 서버 배포용(GUI 의존성 제거버전)
+rembg[cpu]>=2.0.50          # CV 배경 제거 (CPU 엔진)
+trimesh>=4.0.0              # 3D 메쉬 처리
+pygltflib>=1.16.1           # GLB/GLTF 파일 처리
+Pillow>=10.0.0       
+pillow-avif-plugin>=1.4.3   
+
+# [Utilities]
+python-dotenv>=1.0.1
+pandas>=2.0.0
+numpy>=1.24.0
