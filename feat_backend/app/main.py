@@ -1,5 +1,17 @@
 import os
 import sys
+
+# ---------------------------------------------------------
+# 1. 경로 강제 주입 (이 부분이 핵심입니다!)
+# ---------------------------------------------------------
+# 현재 main.py의 위치를 기준으로 부모 폴더(feat_backend)를 찾아 시스템 경로에 넣습니다.
+CURRENT_FILE_PATH = Path(__file__).resolve()
+BACKEND_ROOT = CURRENT_FILE_PATH.parent.parent  # feat_backend 폴더 위치
+
+if str(BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(BACKEND_ROOT))
+# ---------------------------------------------------------
+
 from pathlib import Path
 from dotenv import load_dotenv, dotenv_values
 from fastapi import FastAPI
