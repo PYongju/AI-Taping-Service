@@ -1,8 +1,10 @@
+# [중요] 최상단에 headless 버전을 먼저 명시합니다.
+opencv-python-headless>=4.9.0
+opencv-contrib-python-headless>=4.9.0
 # [FastAPI Core]
 fastapi>=0.110.0
 uvicorn[standard]>=0.29.0
 gunicorn>=21.2.0 
-opencv-python-headless>=4.9.0 # 서버 배포용(GUI 의존성 제거버전)
 pydantic>=2.6.0
 pydantic-settings>=2.2.0
 python-multipart>=0.0.9
