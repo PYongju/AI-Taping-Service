@@ -14,6 +14,7 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 from rembg import remove
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+from azure.storage.blob import BlobServiceClient
 
 try:
     import pillow_avif  # noqa: F401
@@ -23,24 +24,47 @@ except Exception:
     except Exception:
         pass
 
+from pathlib import Path
 
-MEDIAPIPE_MODEL_PATH = r"pose_landmarker_full.task"
-BODY_JSON_DIR = r"body_jsons_final"
-OBJ_DIR = r"body_models_final"
-WIDTH_FEATURE_JSON_PATH = r"body_width_features.json"
+# 현재 cv.py가 있는 폴더(feat_cv) 기준 절대 경로로 세팅
+CV_BASE = Path(__file__).resolve().parent
+
+# 로컬 캐싱된 파일들의 위치
+MEDIAPIPE_MODEL_PATH = str(CV_BASE / "pose_landmarker_full.task")
+
+AZURE_CONNECTION_STRING = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+CONTAINER_NAME = "models"
+
+def ensure_model_file_exists():
+    """로컬에 모델 파일이 없으면 Azure에서 다운로드합니다."""
+    local_model_path = Path(MEDIAPIPE_MODEL_PATH)
+    if not local_model_path.exists():
+        print("📥 모델 파일이 로컬에 없습니다. Azure에서 다운로드합니다...")
+        blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
+        container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+            
+        # models 컨테이너 바로 밑에 있으므로 이름은 그대로
+        blob_client = container_client.get_blob_client("pose_landmarker_full.task")
+            
+        with open(local_model_path, "wb") as f:
+            f.write(blob_client.download_blob().readall())
+        print("✅ 모델 파일 다운로드 완료!")
+
+
+# 💡 [수정됨] 프로젝트 폴더에 같이 있는 json 파일도 CV_BASE 연결!
+WIDTH_FEATURE_JSON_PATH = str(CV_BASE / "body_width_features.json")
+
+# (선택사항) 만약 cv.py 내부에서 OBJ 파일을 직접 열어서 읽는 로직이 있다면 아래도 CV_BASE를 붙여야 합니다.
+# 그게 아니라 단순히 이름(String)만 반환하는 거라면 그대로 두셔도 됩니다.
+OBJ_DIR = ""
 
 TOP_K = 5
 PREFILTER_K = 30
 
-APP_TMP_DIR = Path("service_outputs")
+APP_TMP_DIR = CV_BASE / "temp_outputs" 
 APP_TMP_DIR.mkdir(parents=True, exist_ok=True)
 
-GUIDE_VIDEO_MAP = {
-    "Y-strip": "/static/guides/y_strip.mp4",
-    "I-strip": "/static/guides/i_strip.mp4",
-    "X-strip": "/static/guides/x_strip.mp4",
-    "Big-Daddy": "/static/guides/big_daddy.mp4",
-}
+DEFAULT_BODY_OBJ_PATH = "https://tapingdata1.blob.core.windows.net/models/body_privacy/JerryPing_BODY.glb"
 
 MP_IDX = {
     "nose": 0,
@@ -80,6 +104,7 @@ def normalize_tape_type(tape_type: Optional[str]) -> Optional[str]:
         "y-strip": "Y-strip",
         "i-strip": "I-strip",
         "x-strip": "X-strip",
+        "v-strip": "V-strip",
         "big-daddy": "Big-Daddy",
         "bigdaddy": "Big-Daddy",
     }
@@ -148,22 +173,80 @@ def extract_tape_type_from_rag_result(
     return normalize_tape_type(selected_option.get("tape_type"))
 
 
-def get_guide_video_url(
-    tape_type: Optional[str],
-    guide_video_map: Optional[Dict[str, str]] = None,
-) -> Optional[str]:
-    if tape_type is None:
-        return None
+def load_taping_registry(registry_path: str) -> List[Dict[str, Any]]:
+    path = Path(registry_path)
+    if not path.exists():
+        raise FileNotFoundError(f"Taping registry 파일을 찾을 수 없습니다: {registry_path}")
 
-    normalized = normalize_tape_type(tape_type)
-    mapping = guide_video_map or GUIDE_VIDEO_MAP
-    return mapping.get(normalized)
+    with path.open("r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    if not isinstance(data, list):
+        raise ValueError("Taping registry JSON은 list 형태여야 합니다.")
+
+    return data
+
+
+def normalize_text(value: Optional[str]) -> Optional[str]:
+    if value is None:
+        return None
+    return str(value).strip().lower()
+
+
+def get_body_model_key_from_path(body_obj_path: str) -> str:
+    """
+    body obj 파일명에서 registry asset_id prefix로 사용할 body model key를 추출한다.
+
+    예:
+      body_models_final/3148M.obj      -> 3148M
+      body_models_final/3148M_BD_B.obj -> 3148M
+    """
+    stem = Path(body_obj_path).stem.strip()
+    if "_" in stem:
+        return stem.split("_")[0]
+    return stem
+
+
+def build_asset_id(body_obj_path: str, technique_code: str) -> str:
+    body_model_key = get_body_model_key_from_path(body_obj_path)
+    return f"{body_model_key}_{technique_code}"
+
+
+def find_taping_asset_by_asset_id(
+    registry: List[Dict[str, Any]],
+    asset_id: str,
+) -> Dict[str, Any]:
+    target = normalize_text(asset_id)
+
+    for row in registry:
+        row_asset_id = normalize_text(row.get("asset_id"))
+        is_active = bool(row.get("active", True))
+        if is_active and row_asset_id == target:
+            result = dict(row)
+            result["match_level"] = "asset_id_exact"
+            return result
+
+    raise LookupError(f"asset_id로 일치하는 taping registry 항목을 찾지 못했습니다: {asset_id}")
+
+
+def find_taping_asset_for_body(
+    registry_path: str,
+    body_obj_path: str,
+    technique_code: str,
+) -> Dict[str, Any]:
+    registry = load_taping_registry(registry_path)
+    asset_id = build_asset_id(body_obj_path, technique_code)
+    result = find_taping_asset_by_asset_id(registry, asset_id)
+    result["resolved_asset_id"] = asset_id
+    return result
 
 
 def detect_pose_from_photo(photo_path: str, model_path: str) -> Tuple[np.ndarray, Dict[str, List[float]]]:
-    image_bgr = cv2.imread(photo_path)
+    img_array = np.fromfile(photo_path, np.uint8)
+    image_bgr = cv2.imdecode(img_array, cv2.IMREAD_COLOR) # image_bgr로 변수 대입
+
     if image_bgr is None:
-        raise RuntimeError(f"OpenCV가 이미지를 읽지 못했습니다: {photo_path}")
+        raise ValueError(f"OpenCV가 이미지를 읽지 못했습니다: {photo_path}")
 
     h, w = image_bgr.shape[:2]
     options = vision.PoseLandmarkerOptions(
@@ -530,10 +613,26 @@ def rerank_with_actor_info(
     return score, bonus
 
 
+_MODEL_INDEX_CACHE = None
+
+def get_model_index_from_cache():
+
+    global _MODEL_INDEX_CACHE
+    if _MODEL_INDEX_CACHE is None:
+        print("📥 [최초 1회] Azure에서 통합 인덱스(all_models_index.json)를 메모리로 로드합니다...")
+        blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
+        container_client = blob_service_client.get_container_client(CONTAINER_NAME)
+        
+        blob_client = container_client.get_blob_client("all_models_index.json")
+        data_stream = blob_client.download_blob().readall()
+        _MODEL_INDEX_CACHE = json.loads(data_stream)
+        print(f"✅ 총 {len(_MODEL_INDEX_CACHE)}개의 모델 인덱스 로드 완료!")
+        
+    return _MODEL_INDEX_CACHE
+
 def rank_all_models_integrated(
     user_ratio_features: Dict[str, float],
     user_width_features: Dict[str, Optional[float]],
-    json_dir: str,
     width_feature_json_path: str,
     user_sex: Optional[str] = None,
     user_height_cm: Optional[float] = None,
@@ -541,13 +640,24 @@ def rank_all_models_integrated(
     top_k: int = TOP_K,
     prefilter_k: int = PREFILTER_K,
 ) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
+    
     user_sex_norm = normalize_sex(user_sex)
     width_index = load_width_feature_index(width_feature_json_path)
     stage1_results: List[Dict[str, Any]] = []
 
-    for json_path in Path(json_dir).rglob("*.json"):
+    # 🚀 핵심: 수천 개 다운로드 루프 대신, 메모리에서 완성된 리스트를 1초 만에 가져옵니다.
+    all_models = get_model_index_from_cache()
+
+    # 🌟 [추가] 2. 레지스트리에 실제 3D 파일이 있는 모델만 필터링합니다.
+    # 우리가 실제로 작업한 모델 ID들만 리스트에 넣으세요.
+    valid_ids = ["3148M", "7136F", "JerryPing"]
+    
+    # 🌟 [추가] 필터링 수행: ID의 앞부분(3148M 등)이 valid_ids에 있는 것만 남깁니다.
+    all_models = [m for m in all_models if m.get("model_id", "").split('_')[0] in valid_ids]
+
+    for info in all_models:
         try:
-            info = load_body_json(json_path)
+            # 이미 info 안에 ratio_features가 다 계산되어 들어있습니다!
             json_sex_norm = normalize_sex(info.get("sex"))
             if user_sex_norm is not None and json_sex_norm is not None:
                 if user_sex_norm != json_sex_norm:
@@ -558,25 +668,28 @@ def rank_all_models_integrated(
 
             shape_score, score_pack = combined_body_score(
                 user_skeleton_ratios=user_ratio_features,
-                model_skeleton_ratios=info["ratio_features"],
+                model_skeleton_ratios=info["ratio_features"], # 👈 캐시된 비율 바로 사용!
                 user_width_features=user_width_features,
                 model_width_features=model_width_features or {},
             )
 
-            info["shape_score"] = shape_score
-            info["skeleton_score"] = score_pack["skeleton_score"]
-            info["width_score"] = score_pack["width_score"]
-            info["score_detail"] = {
+            info_copy = info.copy() # 원본 캐시 훼손 방지
+            info_copy["shape_score"] = shape_score
+            info_copy["skeleton_score"] = score_pack["skeleton_score"]
+            info_copy["width_score"] = score_pack["width_score"]
+            info_copy["score_detail"] = {
                 "skeleton_detail": score_pack["skeleton_detail"],
                 "width_detail": score_pack["width_detail"],
             }
-            stage1_results.append(info)
+            stage1_results.append(info_copy)
+            
         except Exception as e:
-            print(f"[SKIP] {json_path.name}: {e}")
+            pass # 불량 데이터 무시
 
     if not stage1_results:
         return [], []
 
+    # --- 여기서부터는 기존의 Rerank 로직과 동일 ---
     stage1_results.sort(key=lambda x: x["shape_score"])
     stage2_candidates = stage1_results[:prefilter_k]
 
@@ -596,16 +709,22 @@ def rank_all_models_integrated(
     return reranked_results[:top_k], reranked_results
 
 
+# 💡 [핵심 수정] cv.py 내 resolve_obj_path 함수를 아래처럼만 바꾸세요.
 def resolve_obj_path(obj_dir: str, obj_file_name: Optional[str]) -> Optional[str]:
     if not obj_file_name:
         return None
-    direct = Path(obj_dir) / obj_file_name
-    if direct.exists():
-        return str(direct)
-    matches = list(Path(obj_dir).rglob(obj_file_name))
-    if matches:
-        return str(matches[0])
-    return None
+    
+    base_storage_url = "https://tapingdata1.blob.core.windows.net/models"
+    
+    # 🌟 폴더 분기 로직 적용
+    if "KT_" in obj_file_name:
+        folder = "knee"
+    elif "JerryPing" in obj_file_name:
+        folder = "body_privacy"  # 기본 모델은 body_privacy
+    else:
+        folder = "body"          # 다른 모델들은 body 폴더에 있음
+    
+    return f"{base_storage_url}/{folder}/{obj_file_name}"
 
 
 def load_trimesh_safe(path: str) -> trimesh.Trimesh:
@@ -778,7 +897,7 @@ def rank_body_candidates(
     top_matches, _ = rank_all_models_integrated(
         user_ratio_features=user_ratio_features,
         user_width_features=user_width_features,
-        json_dir=BODY_JSON_DIR,
+        #json_dir=BODY_JSON_DIR,
         width_feature_json_path=WIDTH_FEATURE_JSON_PATH,
         user_sex=user_sex,
         user_height_cm=user_height_cm,
@@ -790,20 +909,22 @@ def rank_body_candidates(
     if not top_matches:
         raise RuntimeError("조건에 맞는 후보를 찾지 못했습니다.")
 
+    # 💡 수정: 파일 존재 여부 체크 없이 바로 URL 생성 로직(resolve_obj_path) 호출
     best_match = top_matches[0]
-    best_obj_path = resolve_obj_path(OBJ_DIR, best_match.get("mesh_obj_file_name"))
-    if best_obj_path is None:
-        raise FileNotFoundError(f"best match의 OBJ 파일을 찾지 못했습니다: {best_match.get('mesh_obj_file_name')}")
-    best_match["body_obj_path"] = best_obj_path
+    best_glb_filename = best_match.get("mesh_obj_file_name", "").replace(".obj", ".glb")
+    best_match["body_obj_path"] = resolve_obj_path(OBJ_DIR, best_glb_filename) 
 
     normalized_top_matches: List[Dict[str, Any]] = []
     for idx, item in enumerate(top_matches, start=1):
-        obj_path = resolve_obj_path(OBJ_DIR, item.get("mesh_obj_file_name"))
+        # 💡 [핵심 수정] 루프 내의 모든 파일명도 GLB로 변경
+        item_glb_filename = item.get("mesh_obj_file_name", "").replace(".obj", ".glb")
+        obj_path = resolve_obj_path(OBJ_DIR, item_glb_filename)
+        
         normalized_top_matches.append({
             "rank": idx,
             "annotation_id": item.get("annotation_id"),
             "model_id": item.get("model_id"),
-            "body_obj_path": obj_path,
+            "body_obj_path": obj_path, # 변수명은 유지해도 되지만 실제 경로는 GLB임
             "json_path": item.get("json_path"),
             "shape_score": item.get("shape_score"),
             "final_score": item.get("final_score"),
@@ -828,20 +949,42 @@ def render_body_with_tape_glb(body_obj_path: str, tape_mesh_path: str, output_di
     return merge_body_and_mesh_to_glb(body_obj_path, tape_mesh_path, output_glb_path)
 
 
+
 def run_body_search(
-    image_path: str,
-    height_cm: float,
-    weight_kg: float,
-    sex: str,
+    image_path: Optional[str],
+    height_cm: Optional[float],
+    weight_kg: Optional[float],
+    sex: Optional[str],
     output_dir: Optional[str] = None,
     top_k: int = TOP_K,
     prefilter_k: int = PREFILTER_K,
     rag_result: Optional[Dict[str, Any]] = None,
     tape_type: Optional[str] = None,
     selected_option_rank: int = 1,
-    guide_video_map: Optional[Dict[str, str]] = None,
+    registry_path: Optional[str] = None,
+    privacy_opt_out: bool = False,
+    default_body_obj_path: Optional[str] = None,
+    debug: bool = True, # 🌟 [추가됨] 디버그 모드 파라미터
 ) -> Dict[str, Any]:
-    
+    """
+    개인정보 입력이 없는 경우:
+    - MediaPipe / body search 생략
+    - default_body_obj_path 또는 DEFAULT_BODY_OBJ_PATH 사용
+    - RAG technique_code + body model name으로 asset_id 생성
+    - registry에서 tape mesh 찾기
+    - body 경로 / tape mesh 경로 / guide video 경로만 반환
+
+    개인정보 입력이 있는 경우:
+    - 기존 body search 알고리즘 수행
+    - best body model 선택
+    - RAG technique_code + best body model name으로 asset_id 생성
+    - registry에서 tape mesh 찾기
+    - body 경로 / tape mesh 경로 / guide video 경로만 반환
+
+    주의:
+    - 이 함수는 body+tape를 합성한 새 모델을 만들지 않는다.
+    - 프론트/뷰어가 반환된 경로의 body와 tape mesh를 그대로 표시하면 된다.
+    """
     if output_dir is None:
         request_id = uuid.uuid4().hex[:12]
         output_dir = str(APP_TMP_DIR / request_id)
@@ -850,36 +993,98 @@ def run_body_search(
 
     ensure_dir(output_dir)
 
-    user_features = extract_user_features(
-        image_path=image_path,
-        height_cm=height_cm,
-        weight_kg=weight_kg,
-        sex=sex,
-        output_dir=output_dir,
-    )
-
-    ranked = rank_body_candidates(
-        user_ratio_features=user_features["ratio_features"],
-        user_width_features=user_features["width_features"],
-        user_height_cm=height_cm,
-        user_weight_kg=weight_kg,
-        user_sex=sex,
-        top_k=top_k,
-        prefilter_k=prefilter_k,
-    )
-
-    best_match = ranked["best_match"]
-    body_glb_path = render_body_glb(
-        body_obj_path=best_match["body_obj_path"],
-        output_dir=output_dir,
-        file_name="result_body.glb",
-    )
-
     selected_rag_option = get_selected_rag_option(rag_result, selected_option_rank)
     resolved_tape_type = normalize_tape_type(
         tape_type if tape_type is not None else extract_tape_type_from_rag_result(rag_result, selected_option_rank)
     )
-    guide_video_url = get_guide_video_url(resolved_tape_type, guide_video_map)
+
+    selected_tape_asset: Optional[Dict[str, Any]] = None
+    body_obj_path: Optional[str] = None
+    best_match_payload: Dict[str, Any]
+    user_features_payload: Optional[Dict[str, Any]] = None
+    top_matches_payload: List[Dict[str, Any]] = []
+    converted_image_path: Optional[str] = None
+    mask_path: Optional[str] = None
+    debug_image_path: Optional[str] = None
+
+    if privacy_opt_out:
+        resolved_default_body_obj_path = default_body_obj_path or DEFAULT_BODY_OBJ_PATH
+        if not resolved_default_body_obj_path:
+            raise ValueError("privacy_opt_out=True 인 경우 default_body_obj_path 또는 DEFAULT_BODY_OBJ_PATH가 필요합니다.")
+        body_obj_path = resolved_default_body_obj_path
+
+        if selected_rag_option and registry_path:
+            technique_code = selected_rag_option.get("technique_code")
+            if not technique_code:
+                raise ValueError("RAG option에 technique_code가 없습니다.")
+            selected_tape_asset = find_taping_asset_for_body(
+                registry_path=registry_path,
+                body_obj_path=body_obj_path,
+                technique_code=technique_code,
+            )
+
+        best_match_payload = {
+            "annotation_id": None,
+            "model_id": get_body_model_key_from_path(body_obj_path),
+            "body_obj_path": body_obj_path,
+            "json_path": None,
+            "shape_score": None,
+            "final_score": None,
+        }
+
+    else:
+        if image_path is None or height_cm is None or weight_kg is None or sex is None:
+            raise ValueError("개인정보 입력 사용 시 image_path, height_cm, weight_kg, sex가 모두 필요합니다.")
+
+        user_features = extract_user_features(
+            image_path=image_path,
+            height_cm=height_cm,
+            weight_kg=weight_kg,
+            sex=sex,
+            output_dir=output_dir,
+        )
+
+        ranked = rank_body_candidates(
+            user_ratio_features=user_features["ratio_features"],
+            user_width_features=user_features["width_features"],
+            user_height_cm=height_cm,
+            user_weight_kg=weight_kg,
+            user_sex=sex,
+            top_k=top_k,
+            prefilter_k=prefilter_k,
+        )
+
+        best_match = ranked["best_match"]
+        body_obj_path = best_match["body_obj_path"]
+
+        if selected_rag_option and registry_path:
+            technique_code = selected_rag_option.get("technique_code")
+            if not technique_code:
+                raise ValueError("RAG option에 technique_code가 없습니다.")
+            selected_tape_asset = find_taping_asset_for_body(
+                registry_path=registry_path,
+                body_obj_path=body_obj_path,
+                technique_code=technique_code,
+            )
+
+        user_features_payload = {
+            "raw_features": user_features["raw_features"],
+            "ratio_features": user_features["ratio_features"],
+            "width_features": user_features["width_features"],
+        }
+        top_matches_payload = ranked["top_matches"]
+        converted_image_path = user_features["paths"]["converted_image_path"]
+        mask_path = user_features["paths"]["mask_path"]
+        debug_image_path = user_features["paths"]["debug_image_path"]
+
+        best_match_payload = {
+            "annotation_id": best_match.get("annotation_id"),
+            "model_id": best_match.get("model_id"),
+            "body_obj_path": best_match.get("body_obj_path"),
+            "json_path": best_match.get("json_path"),
+            "shape_score": best_match.get("shape_score"),
+            "final_score": best_match.get("final_score"),
+        }
 
     report_path = str(Path(output_dir) / "body_search_report.json")
     result = {
@@ -893,32 +1098,27 @@ def run_body_search(
             "top_k": top_k,
             "prefilter_k": prefilter_k,
             "selected_option_rank": selected_option_rank,
+            "privacy_opt_out": privacy_opt_out,
         },
         "selected_rag_option": selected_rag_option,
         "guide": {
             "tape_type": resolved_tape_type,
-            "guide_video_url": guide_video_url,
+            "guide_video_url": selected_tape_asset.get("guide_video_url") if selected_tape_asset else None,
         },
-        "user_features": {
-            "raw_features": user_features["raw_features"],
-            "ratio_features": user_features["ratio_features"],
-            "width_features": user_features["width_features"],
+        "selected_tape_asset": selected_tape_asset,
+        "user_features": user_features_payload,
+        "best_match": best_match_payload,
+        "top_matches": top_matches_payload,
+        "display_assets": {
+            "body_model_path": body_obj_path,
+            "tape_mesh_path": selected_tape_asset.get("mesh_file") if selected_tape_asset else None,
+            "guide_video_url": selected_tape_asset.get("guide_video_url") if selected_tape_asset else None,
         },
-        "best_match": {
-            "annotation_id": best_match.get("annotation_id"),
-            "model_id": best_match.get("model_id"),
-            "body_obj_path": best_match.get("body_obj_path"),
-            "json_path": best_match.get("json_path"),
-            "shape_score": best_match.get("shape_score"),
-            "final_score": best_match.get("final_score"),
-        },
-        "top_matches": ranked["top_matches"],
         "artifacts": {
             "output_dir": output_dir,
-            "converted_image_path": user_features["paths"]["converted_image_path"],
-            "mask_path": user_features["paths"]["mask_path"],
-            "debug_image_path": user_features["paths"]["debug_image_path"],
-            "body_glb_path": body_glb_path,
+            "converted_image_path": converted_image_path,
+            "mask_path": mask_path,
+            "debug_image_path": debug_image_path,
             "report_path": report_path,
         },
     }
@@ -926,10 +1126,176 @@ def run_body_search(
     with open(report_path, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
+    # =========================================================
+    # 🌟 [추가됨] 디버그 이미지 확인 및 터미널 출력 로직 (return 직전)
+    # =========================================================
+    if debug and image_path:
+        # 이 코드 구조상 extract_user_features 내부에서 이미 debug_image_path를 생성하고 있습니다.
+        if debug_image_path:
+            print(f"📸 [CV DEBUG] 랜드마크 이미지가 생성되었습니다: {debug_image_path}")
+        # 혹시 현재 스코프에 annotated_image가 있다면 추가로 저장합니다.
+        elif 'annotated_image' in locals():
+            import cv2
+            debug_img_path = Path(image_path).parent / f"debug_{Path(image_path).name}"
+            cv2.imwrite(str(debug_img_path), annotated_image)
+            print(f"📸 [CV DEBUG] 랜드마크 이미지가 임시 저장되었습니다: {debug_img_path}")
+    # =========================================================
+
     return result
 
 
+def build_error_response(
+    *,
+    message: str,
+    error_code: str,
+    request_id: Optional[str] = None,
+    output_dir: Optional[str] = None,
+    image_path: Optional[str] = None,
+    height_cm: Optional[float] = None,
+    weight_kg: Optional[float] = None,
+    sex: Optional[str] = None,
+    selected_option_rank: int = 1,
+    privacy_opt_out: bool = False,
+) -> Dict[str, Any]:
+    """
+    경량화된 실패 응답 전용 JSON 생성 함수.
+
+    성공 응답은 run_body_search()의 기존 구조를 그대로 유지하고,
+    실패 응답만 아래 최소 스키마로 반환한다.
+
+    {
+      "request_id": "...",
+      "status": "error",
+      "data": None,
+      "error": {
+        "code": "...",
+        "message": "..."
+      }
+    }
+    """
+    return {
+        "request_id": request_id,
+        "status": "error",
+        "data": None,
+        "error": {
+            "code": error_code,
+            "message": message,
+        },
+    }
+
+def classify_run_body_search_error(exc: Exception) -> str:
+    if isinstance(exc, FileNotFoundError):
+        return "FILE_NOT_FOUND"
+    if isinstance(exc, LookupError):
+        return "TAPING_ASSET_NOT_FOUND"
+    if isinstance(exc, ValueError):
+        return "INVALID_INPUT"
+    if isinstance(exc, RuntimeError):
+        msg = str(exc)
+        if "전신 포즈를 찾지 못했습니다" in msg:
+            return "POSE_NOT_FOUND"
+        if "segmentation mask가 비어 있습니다" in msg:
+            return "SEGMENTATION_FAILED"
+        if "조건에 맞는 후보를 찾지 못했습니다" in msg:
+            return "NO_BODY_CANDIDATE"
+        if "이미지 JPG 변환에 실패했습니다" in msg:
+            return "IMAGE_CONVERSION_FAILED"
+        if "OpenCV가 이미지를 읽지 못했습니다" in msg:
+            return "IMAGE_READ_FAILED"
+        return "INFERENCE_FAILED"
+    return "UNKNOWN_ERROR"
+
+
+def run_body_search_safe(
+    image_path: Optional[str],
+    height_cm: Optional[float],
+    weight_kg: Optional[float],
+    sex: Optional[str],
+    output_dir: Optional[str] = None,
+    top_k: int = TOP_K,
+    prefilter_k: int = PREFILTER_K,
+    rag_result: Optional[Dict[str, Any]] = None,
+    tape_type: Optional[str] = None,
+    selected_option_rank: int = 1,
+    registry_path: Optional[str] = None,
+    privacy_opt_out: bool = False,
+    default_body_obj_path: Optional[str] = None,
+    debug: bool = True,  # 🌟 [추가] 디버그 모드 파라미터
+) -> Dict[str, Any]:
+    """
+    run_body_search()를 감싸는 안전 래퍼.
+    """
+    request_id: Optional[str] = None
+    resolved_output_dir = output_dir
+
+    try:
+        # 1. 경로 최적화: request_id 생성 및 디렉토리 설정
+        if resolved_output_dir is None:
+            request_id = uuid.uuid4().hex[:12]
+            # APP_TMP_DIR가 정의되어 있어야 합니다 (보통 Path객체)
+            resolved_output_dir = str(Path(APP_TMP_DIR) / request_id)
+        else:
+            request_id = Path(resolved_output_dir).name
+
+        # 2. 실제 분석 함수 호출 (debug 파라미터 전달)
+        result = run_body_search(
+            image_path=image_path,
+            height_cm=height_cm,
+            weight_kg=weight_kg,
+            sex=sex,
+            output_dir=resolved_output_dir,
+            top_k=top_k,
+            prefilter_k=prefilter_k,
+            rag_result=rag_result,
+            tape_type=tape_type,
+            selected_option_rank=selected_option_rank,
+            registry_path=registry_path,
+            privacy_opt_out=privacy_opt_out,
+            default_body_obj_path=default_body_obj_path,
+            debug=debug  # 🌟 [추가] 내부 함수에도 debug 전달
+        )
+
+        # 3. [추가] 결과 로그 출력 (터미널에서 바로 확인 가능)
+        if debug:
+            best_match = result.get("best_match", {})
+            model_id = best_match.get("model_id", "Unknown")
+            print("\n" + "="*50)
+            print(f"🔥 [MATCH RESULT] 최종 결정된 모델 ID: {model_id}")
+            print(f"📍 [DEBUG INFO] Request ID: {request_id}")
+            print("="*50 + "\n")
+
+        return result
+
+    except Exception as exc:
+        # 에러 발생 시 처리 로직
+        error_code = classify_run_body_search_error(exc)
+        error_result = build_error_response(
+            message=str(exc),
+            error_code=error_code,
+            request_id=request_id,
+            output_dir=resolved_output_dir,
+            image_path=image_path,
+            height_cm=height_cm,
+            weight_kg=weight_kg,
+            sex=sex,
+            selected_option_rank=selected_option_rank,
+            privacy_opt_out=privacy_opt_out,
+        )
+
+        # 에러 리포트 저장
+        if resolved_output_dir:
+            try:
+                ensure_dir(resolved_output_dir)
+                report_path = str(Path(resolved_output_dir) / "body_search_report.json")
+                with open(report_path, "w", encoding="utf-8") as f:
+                    json.dump(error_result, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+
+        print(f"❌ [CV SAFE WRAPPER ERROR] {str(exc)}")
+        return error_result
 if __name__ == "__main__":
+
     sample_image = "user_full_body.jpg"
     sample_rag_result = {
         "options": [
@@ -952,3 +1318,7 @@ if __name__ == "__main__":
         print(json.dumps(output, ensure_ascii=False, indent=2))
     else:
         print("샘플 실행을 원하면 user_full_body.jpg 파일을 현재 경로에 두세요.")
+
+
+# 그리고 이 함수를 서버 시작 시점에 호출하거나, 
+# MediaPipe를 로드하기 직전에 호출하면 됩니다.

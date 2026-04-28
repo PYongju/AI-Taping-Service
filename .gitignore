@@ -1,19 +1,51 @@
-# Python 관련
+# =========================
+# 1. Python 및 가상환경
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
 venv/
-.env
+.venv/
+env/
 
-# Azure & API Secrets
+# =========================
+# 2. 보안 & 환경변수 (절대 깃허브에 올라가면 안 됨!!!)
+# =========================
+.env
 *.appsettings.json
 *.pem
 secrets.json
 
-# IDE 관련
+# =========================
+# 3. 우리 프로젝트 특화 임시 폴더 & 데이터
+# =========================
+# (프론트에서 사진 올렸을 때 잠깐 저장되는 임시 폴더)
+temp_uploads/
+temp_outputs/
+
+# (로컬에 불필요하게 다운로드 되었던 수천 개의 3D 모델 & JSON 파일들)
+body_jsons/
+body_models/
+body_jsons_final/
+body_models_final/
+
+# (방금 스크립트로 구워낸 인덱스 파일 - 스토리에 올렸으니 로컬엔 안 올려도 됨)
+all_models_index.json
+
+# (용량이 큰 머신러닝 모델 파일 - 깃허브 용량 초과 방지용, 필요시 제거 가능)
+pose_landmarker_full.task
+
+# =========================
+# 4. 로그 및 DB 파일
+# =========================
+*.log
+*.db
+*.sqlite3
+
+# =========================
+# 5. IDE 및 OS 관련
+# =========================
 .vscode/
 .idea/
-
-# OS 관련
 .DS_Store
 Thumbs.db

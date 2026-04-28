@@ -1,0 +1,55 @@
+.photo-guide-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 12px;
+	margin-bottom: 16px;
+}
+
+.guide-example {
+	aspect-ratio: 3/4;
+	border-radius: var(--radius-md);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px;
+	overflow: hidden;
+}
+
+.guide-example.good {
+	background: #ecfdf5;
+	border: 1.5px solid var(--color-success);
+}
+
+.guide-example.bad {
+	background: #fef2f2;
+	border: 1.5px solid var(--color-error);
+}
+
+.guide-example img {
+	width: 100%;
+	min-height: 0;
+	flex: 1;
+	object-fit: contain;
+	border-radius: calc(var(--radius-md) - 4px);
+}
+
+.guide-label {
+	font: 700 11px/1 var(--font-base);
+}
+
+.guide-label.good {
+	color: var(--color-success);
+}
+.guide-label.bad {
+	color: var(--color-error);
+}
+
+.upload-preview {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

@@ -1,0 +1,6 @@
+venv/
+.venv/
+feat_backend/venv/
+feat_backend/.venv/
+__pycache__/
+*.pyc
