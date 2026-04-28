@@ -137,7 +137,7 @@ export default function TapingGuide() {
     ]);
     try {
       const res = await fetch(
-        "https://terrypingv1-e7effabzbbbfh2e3.koreacentral-01.azurewebsites.net/api/v1/taping/chat",
+          `${import.meta.env.VITE_API_URL}/api/v1/taping/chat`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
